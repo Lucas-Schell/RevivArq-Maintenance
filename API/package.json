@@ -1,0 +1,37 @@
+{
+  "name": "node-sequelize-model",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.16.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "ejs": "^2.7.1",
+    "express": "^4.16.3",
+    "finale-rest": "^0.1.5",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.2",
+    "instagram-node": "^0.5.8",
+    "jsonwebtoken": "^8.2.1",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.2.13",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "multiparty": "^4.2.1",
+    "mysql2": "^1.5.3",
+    "node-instagram": "^4.3.0",
+    "nodemailer": "^6.3.0",
+    "path": "^0.12.7",
+    "restify": "^7.1.0",
+    "sha256": "^0.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
