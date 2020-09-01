@@ -1,0 +1,12 @@
+.container .submitBtn {
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.9); 
+    color: white;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.623);
+}
+
+.container .input {
+    margin: 5px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}

@@ -1,0 +1,19 @@
+.empresaText {
+    paddingTop:200;
+    display: 'inline-flex';
+    text-size-adjust: 33;
+    text-:'italic';
+    fontWeight:'bold';
+}
+
+.instaText {
+    color: purple;
+}
+
+.textoSobreNos{ 
+    color: red;
+}
+
+.empresaText {
+    color: blue;
+}

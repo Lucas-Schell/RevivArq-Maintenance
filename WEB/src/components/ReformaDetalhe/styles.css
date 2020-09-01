@@ -1,0 +1,27 @@
+.reforma-detalhe-main-container {
+    min-height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 3px solid lightyellow;
+    padding: 0px 20px 0px 20px;
+    background: lightyellow;
+}
+
+.reforma-detalhe-body {
+    background: transparent
+}
+
+.reforma-detalhe-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reforma-detalhe-header :first-child {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    text-align: center
+}

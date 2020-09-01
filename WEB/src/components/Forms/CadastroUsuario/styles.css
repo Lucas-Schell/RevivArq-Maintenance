@@ -1,0 +1,29 @@
+
+.form-cadastro-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-container h1 {
+  border-top: 5px;
+  border-bottom: 0px;
+  text-shadow: 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.cadastro-container .submitBtn {
+  margin: 20px;
+  min-width: 200px;
+  background-color: rgba(0, 0, 0, 0.9); 
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.623);
+}
+
+.cadastro-container .input {
+  width: 300px;
+}
+
+.cadastro-error-message {
+  margin-top: 1rem;
+  color: red
+}
