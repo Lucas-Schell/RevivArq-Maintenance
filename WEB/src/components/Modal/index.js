@@ -1,37 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import './modal.css'
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import "./modal.css";
 
 type Props = {
     maxWidth?: "xs" | "sm" | "md" | "lg" | "xl"
-}
-
-const styles = {
 };
 
-class SimpleDialog extends React.Component {
+const styles = {};
 
+class SimpleDialog extends React.Component {
     handleClose = () => {
         this.props.onClose(this.props.selectedValue);
     };
 
-    handleListItemClick = value => {
+    handleListItemClick = (value) => {
         this.props.onClose(value);
     };
 
     render() {
-        const { onClose, selectedValue, title, noCloseButton, maxWidth = "md", fullWidth = false, ...other } = this.props;
+        const {
+            onClose,
+            selectedValue,
+            title,
+            noCloseButton,
+            maxWidth = "md",
+            fullWidth = false,
+            ...other
+        } = this.props;
         return (
-            <Dialog maxWidth={maxWidth} fullWidth={fullWidth} onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
+            <Dialog
+                maxWidth={maxWidth}
+                fullWidth={fullWidth}
+                onClose={this.handleClose}
+                aria-labelledby="simple-dialog-title"
+                {...other}
+            >
                 <div className="dialog-content-container">
                     <div className="dialog-content-header">
                         <h3 className="dialog-title">{title}</h3>
-                        {noCloseButton
-                            ? null
-                            : <span className="dialog-close" onClick={this.handleClose}>x</span>
-                        }
+                        {noCloseButton ? null : (
+                            <span
+                                className="dialog-close"
+                                onClick={this.handleClose}
+                            >
+                                x
+                            </span>
+                        )}
                     </div>
                     {other.children}
                 </div>
@@ -42,33 +58,31 @@ class SimpleDialog extends React.Component {
 
 SimpleDialog.propTypes = {
     onClose: PropTypes.func,
-    selectedValue: PropTypes.string,
+    selectedValue: PropTypes.string
 };
 
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
 class Modal extends React.Component<Props> {
     state = {
-        open: false,
+        open: false
     };
 
     handleClickOpen = () => {
         this.setState({
-            open: true,
+            open: true
         });
 
-        if (this.props.callBackOpen)
-            this.props.callBackOpen()
+        if (this.props.callBackOpen) this.props.callBackOpen();
     };
 
-    handleClose = value => {
+    handleClose = (value) => {
         this.setState({ selectedValue: value, open: false });
 
-        if (this.props.callBackClose)
-            this.props.callBackClose()
+        if (this.props.callBackClose) this.props.callBackClose();
 
         if (this.props.resetCallback)
-            setTimeout(() => this.props.resetCallback(), 1000)
+            setTimeout(() => this.props.resetCallback(), 1000);
     };
 
     render() {

@@ -1,6 +1,6 @@
 .dialog-content-container {
     padding: 16px 32px 16px 24px;
-    background: rgb(255,248,41);
+    background: rgb(255, 248, 41);
 }
 
 .dialog-content-header {
@@ -9,7 +9,7 @@
 }
 
 .dialog-title {
-    color: 'rgb(21,38,32)';
+    color: "rgb(21,38,32)";
     font-size: 24px;
     font-style: normal;
     font-stretch: normal;
@@ -21,13 +21,12 @@
 .dialog-close {
     cursor: pointer;
     font-size: 20px;
-    color: 'rgb(21,38,32)';
+    color: "rgb(21,38,32)";
     height: 16px;
     text-align: center;
     width: 4px;
 }
 
 .dialog-close:hover {
-    color: 'rgb(21,38,32)';
+    color: "rgb(21,38,32)";
 }
-

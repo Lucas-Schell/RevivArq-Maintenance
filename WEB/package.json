@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "7.0.0",
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
     "@react-native-community/blur": "^3.3.1",
@@ -11,6 +12,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.10",
     "nodemon": "^1.19.2",
+    "prettier": "^2.1.2",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
     "react-blur": "^0.6.0",
@@ -21,14 +23,20 @@
     "react-number-format": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
-    "typeface-roboto": "0.0.54",
-    "@babel/runtime": "7.0.0"
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "arrowParens": "always",
+    "trailingComma": "none"
   },
   "browserslist": {
     "development": [

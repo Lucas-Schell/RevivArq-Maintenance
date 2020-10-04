@@ -3,12 +3,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 3px solid rgb(255,248,41);
+    border: 3px solid rgb(255, 248, 41);
     padding: 0px 20px 0px 20px;
 }
 
 .reforma-detalhe-body {
-    background: transparent
+    background: transparent;
 }
 
 .reforma-detalhe-header {
@@ -22,5 +22,5 @@
     display: flex;
     flex: 1;
     justify-content: center;
-    text-align: center
+    text-align: center;
 }

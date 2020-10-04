@@ -1,7 +1,7 @@
-import { store } from 'react-notifications-component';
+import { store } from "react-notifications-component";
 
 /**
- * types disponiveis: 
+ * types disponiveis:
  * success (default)
  *  danger
  *  info
@@ -9,26 +9,26 @@ import { store } from 'react-notifications-component';
  *  warning
  */
 export const showNotification = (
-  message = '',
-  title = '',
-  type = 'success',
-  insert = "bottom",
-  container = "bottom-center",
-  animationIn = ["animated", "fadeIn"],
-  animationOut = ["animated", "fadeOut"],
-  dismiss = {
-    duration: 4000,
-    onScreen: false
-  }
+    message = "",
+    title = "",
+    type = "success",
+    insert = "bottom",
+    container = "bottom-center",
+    animationIn = ["animated", "fadeIn"],
+    animationOut = ["animated", "fadeOut"],
+    dismiss = {
+        duration: 4000,
+        onScreen: false
+    }
 ) => {
-  store.addNotification({
-    title,
-    message,
-    type,
-    insert,
-    container,
-    animationIn,
-    animationOut,
-    dismiss
-  });
-}
+    store.addNotification({
+        title,
+        message,
+        type,
+        insert,
+        container,
+        animationIn,
+        animationOut,
+        dismiss
+    });
+};

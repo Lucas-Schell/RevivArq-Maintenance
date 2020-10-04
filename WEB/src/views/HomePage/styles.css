@@ -1,27 +1,27 @@
-body{
-    background-color: rgb(21,38,32);
+body {
+    background-color: rgb(21, 38, 32);
 }
 
-.texto{
-    color: rgb(21,38,32);
+.texto {
+    color: rgb(21, 38, 32);
     letter-spacing: 1px;
 }
 
 .container .clickable {
     cursor: pointer;
-    color: rgb(97,232,220);
+    color: rgb(97, 232, 220);
     text-decoration: underline;
 }
 
 .container .btn {
-	margin: 5px;
-	background-color: black;
+    margin: 5px;
+    background-color: black;
     color: black;
     text-shadow: 1px 1px rgba(255, 255, 255, 0.623);
 }
 
 .img {
-    background-image: url('../../Assets/backgroundimg5.png');
+    background-image: url("../../Assets/backgroundimg5.png");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -34,11 +34,11 @@ body{
     float: left;
     width: 50%;
     padding: 10px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
+}
+
+/* Clear floats after the columns */
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}

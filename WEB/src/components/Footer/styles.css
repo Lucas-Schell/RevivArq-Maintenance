@@ -1,24 +1,20 @@
 .App-footer {
-	font-family: 'Times New Roman', Times, serif;
-    background-color: rgb(255,248,41); 
-	height: 60px;
-	padding: 5px;
-	display: flex;
-	justify-content: center
-
-
+    font-family: "Times New Roman", Times, serif;
+    background-color: rgb(255, 248, 41);
+    height: 60px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
 }
 .App-footer .txt {
-	margin: 5px;
+    margin: 5px;
     margin-top: 20px;
-    height: 20px;   
-	float: right;
+    height: 20px;
+    float: right;
 }
-.App-footer .img{
-	height: 50px;
-	margin: 4px;
-	bottom: 0px;
-	background-image: unset;
+.App-footer .img {
+    height: 50px;
+    margin: 4px;
+    bottom: 0px;
+    background-image: unset;
 }
-
-

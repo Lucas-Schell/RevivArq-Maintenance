@@ -1,11 +1,11 @@
 {
-  "development": {
-    "api_url": "http://localhost:4000/api"
-  },
-  "hml": {
-    "api_url": "http://www.hml.ages.pucrs.br:4501/api"
-  },
-  "production": {
-    "api_url": "http://www.hml.ages.pucrs.br:4501/api"
-  }
+    "development": {
+        "api_url": "http://localhost:4000/api"
+    },
+    "hml": {
+        "api_url": "http://www.hml.ages.pucrs.br:4501/api"
+    },
+    "production": {
+        "api_url": "http://www.hml.ages.pucrs.br:4501/api"
+    }
 }

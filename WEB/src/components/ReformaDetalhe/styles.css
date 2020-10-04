@@ -9,7 +9,7 @@
 }
 
 .reforma-detalhe-body {
-    background: transparent
+    background: transparent;
 }
 
 .reforma-detalhe-header {
@@ -23,5 +23,5 @@
     display: flex;
     flex: 1;
     justify-content: center;
-    text-align: center
+    text-align: center;
 }
