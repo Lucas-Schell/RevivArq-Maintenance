@@ -11,9 +11,14 @@ routerRecovery.post('/generatePassCode', (req, res) => {
 })
 
 routerRecovery.post('/recoveryPassword', (req, res) => {
-    RecoveryController.recoveryPassword(req.body.email, req.body.passCode, req.body.password, (error, data) => {
-        res.json(ResponseHelper.createResponse(error, data, res, false))
-    })
+    RecoveryController.recoveryPassword(
+        req.body.email,
+        req.body.passCode,
+        req.body.password,
+        (error, data) => {
+            res.json(ResponseHelper.createResponse(error, data, res, false))
+        }
+    )
 })
 
 module.exports = routerRecovery

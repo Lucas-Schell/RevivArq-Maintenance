@@ -1,7 +1,7 @@
-const models     = require("./models")
-const express    = require('express')
+const models = require('./models')
+const express = require('express')
 const bodyParser = require('body-parser')
-const cors       = require('cors')
+const cors = require('cors')
 
 const loginRouter = require('./routes/login')
 const usersRouter = require('./routes/users')
@@ -12,14 +12,13 @@ const recoveryRouter = require('./routes/recover')
 const instaGaleriaRouter = require('./routes/instaGallery')
 const photosRouter = require('./routes/photos')
 
-
 const TokenManager = require('./Helpers/AuthManager')
 var config = require('./config/config')
 
 // Initialize server
 // models.sequelize.sync().then(function() {
 //     setupServer()
-// }) 
+// })
 
 setupServer()
 
@@ -36,7 +35,7 @@ function setupServer() {
     app.use('/api/InstaGaleria', instaGaleriaRouter)
     app.use('/api/recover', recoveryRouter)
     app.use('/api/photos', photosRouter)
-    
+
     app.listen(config.app.port, function () {
         console.log(`Server listening on port ${config.app.port}`)
     })

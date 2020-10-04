@@ -41,9 +41,14 @@ routerReform.delete('/:id', (req, res) => {
 
 //Send email on status change route
 routerReform.post('/sendEmailStatus', (req, res) => {
-    ReformController.sendEmailOnChangeStatus(null, req.body.status, req.body.email, (error, data) => {
-        res.json(ResponseHelper.createResponse(error, data, res, true))
-    })
+    ReformController.sendEmailOnChangeStatus(
+        null,
+        req.body.status,
+        req.body.email,
+        (error, data) => {
+            res.json(ResponseHelper.createResponse(error, data, res, true))
+        }
+    )
 })
 
 module.exports = routerReform

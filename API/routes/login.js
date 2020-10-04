@@ -1,5 +1,5 @@
-const express         = require('express')
-const ResponseHelper  = require('../Helpers/ResponseHelper')
+const express = require('express')
+const ResponseHelper = require('../Helpers/ResponseHelper')
 const LoginController = require('../Controllers/LoginController')
 
 const routerLogin = express.Router()

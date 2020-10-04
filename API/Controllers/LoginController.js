@@ -3,10 +3,9 @@ const AuthManager = require('../Helpers/AuthManager')
 
 var jwt = require('jsonwebtoken')
 
-
 class LoginController {
     static login(email, password, callback) {
-        console.log("Senha static login: " +password)
+        console.log('Senha static login: ' + password)
         AuthManager.ensureValidUser(email, password, (error, userData) => {
             if (error != null) {
                 return callback(error, null)

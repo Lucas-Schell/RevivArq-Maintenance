@@ -18,6 +18,7 @@
     "http-errors": "~1.6.2",
     "instagram-node": "^0.5.8",
     "jsonwebtoken": "^8.2.1",
+    "prettier": "^2.1.2",
     "mongod": "^2.0.0",
     "mongodb": "^3.3.2",
     "mongoose": "^5.2.13",
@@ -30,6 +31,13 @@
     "path": "^0.12.7",
     "restify": "^8.5.1",
     "sha256": "^0.2.0"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "trailingComma": "none"
   },
   "devDependencies": {
     "nodemon": "^1.19.3"

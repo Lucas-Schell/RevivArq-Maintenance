@@ -1,4 +1,4 @@
-const express        = require('express')
+const express = require('express')
 const ResponseHelper = require('../Helpers/ResponseHelper')
 const AdminController = require('../Controllers/AdminController')
 

@@ -26,34 +26,68 @@ class UserController {
      *  retorna as de um usuário pelo id (Somente usuário Administrador consegue chamar).
      */
     static findUserById(user, id, callback) {
-        console.log("Entrou")
-        if (user.isAdmin)
-            return DAO.findUser(id, callback)
+        console.log('Entrou')
+        if (user.isAdmin) return DAO.findUser(id, callback)
         else
-            return callback({ statusDesc: constants.invalidPermission, statusCode: constants.errorCodeAuth }, null)
+            return callback(
+                {
+                    statusDesc: constants.invalidPermission,
+                    statusCode: constants.errorCodeAuth
+                },
+                null
+            )
     }
 
     /*  Add User:
      *  Cria um novo usuário, e retorna-o autenticado caso sucesso
      */
     static addUser(newUserData, callback) {
-        const { cpf, password, name, email, lastName, address, civilStatus, cnpj, isAdmin } = newUserData
-        const { valid, message } = validUserRegister(cpf, password, name, email, lastName, address, civilStatus, cnpj, isAdmin)
+        const {
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            isAdmin
+        } = newUserData
+        const { valid, message } = validUserRegister(
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            isAdmin
+        )
 
         //Barra caso tentem adicionar um usuario administrador nessa chamada não autenticada
         if (!!isAdmin) {
-            const errorObj = { statusDesc: constants.invalidUserAdminAdd, statusCode: constants.invalidFields }
+            const errorObj = {
+                statusDesc: constants.invalidUserAdminAdd,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
         //Valida os campos obrigatórios e opcionais
         if (!valid) {
-            const errorObj = { statusDesc: message, statusCode: constants.invalidFields }
+            const errorObj = {
+                statusDesc: message,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
         //Gera um salt aleatório
-        let salt = UserController.randomSHA256(constants.minRandomNumber, constants.maxRandomNumber)
+        let salt = UserController.randomSHA256(
+            constants.minRandomNumber,
+            constants.maxRandomNumber
+        )
 
         //Atualiza os campos do salt e password que serão gravados no banco de dados.
         newUserData.salt = salt
@@ -61,26 +95,54 @@ class UserController {
 
         //Adiciona o user no banco, caso de algum problema retorna o erro (callback)
         //se não já loga o usuário e retorna a sessão via o método de login
-        return DAO.addUser(newUserData, callback, () => login(email, password, callback))
+        return DAO.addUser(newUserData, callback, () =>
+            login(email, password, callback)
+        )
     }
 
     /*  Add Admin User (chamada autenticada!)
      *  Cria um novo usuário administrador e retorna sucesso caso não tenha ocorrido nenhum erro
      */
     static addAdminUser(newUserData, callback) {
-        const { cpf, password, name, email, lastName, address, civilStatus, cnpj, isAdmin } = newUserData
-        const { valid, message } = validUserRegister(cpf, password, name, email, lastName, address, civilStatus, cnpj, isAdmin)
+        const {
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            isAdmin
+        } = newUserData
+        const { valid, message } = validUserRegister(
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            isAdmin
+        )
 
         //Valida os campos obrigatórios e opcionais
         if (!valid) {
-            const errorObj = { statusDesc: message, statusCode: constants.invalidFields }
+            const errorObj = {
+                statusDesc: message,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
         //TODO: validar se o usuário que está cadastrando é um sup adm
 
         //Gera um salt aleatório
-        let salt = UserController.randomSHA256(constants.minRandomNumber, constants.maxRandomNumber)
+        let salt = UserController.randomSHA256(
+            constants.minRandomNumber,
+            constants.maxRandomNumber
+        )
 
         //Atualiza os campos do salt e password que serão gravados no banco de dados.
         newUserData.salt = salt
@@ -92,29 +154,69 @@ class UserController {
     }
 
     static updateUser(user, userDataToUpdate, callback) {
-        const { salt, passCode, createdAt, updatedAt, cpf, password, name, email, lastName, address, civilStatus, cnpj, isAdmin, _id } = userDataToUpdate
+        const {
+            salt,
+            passCode,
+            createdAt,
+            updatedAt,
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            isAdmin,
+            _id
+        } = userDataToUpdate
 
-        if (user.id !== _id) { //somente o própio usuário pode editar suas informações!
-            const errorObj = { statusDesc: constants.invalidUserUpdate, statusCode: constants.invalidFields }
+        if (user.id !== _id) {
+            //somente o própio usuário pode editar suas informações!
+            const errorObj = {
+                statusDesc: constants.invalidUserUpdate,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
-        if (email || salt || password || passCode || createdAt || updatedAt) { //proibindo campos que não podem ser alterados nessa chamada caso tentem mandar na req
-            const errorObj = { statusDesc: constants.invalidsFieldToChange, statusCode: constants.invalidFields }
+        if (email || salt || password || passCode || createdAt || updatedAt) {
+            //proibindo campos que não podem ser alterados nessa chamada caso tentem mandar na req
+            const errorObj = {
+                statusDesc: constants.invalidsFieldToChange,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
-        const { valid, message } = validUserRegister(cpf, password, name, email, lastName, address, civilStatus, cnpj, false, false)
+        const { valid, message } = validUserRegister(
+            cpf,
+            password,
+            name,
+            email,
+            lastName,
+            address,
+            civilStatus,
+            cnpj,
+            false,
+            false
+        )
 
         //Barra caso tentem adicionar um usuario administrador nessa chamada não autenticada
         if (!!isAdmin) {
-            const errorObj = { statusDesc: constants.invalidUserUpdate, statusCode: constants.invalidFields }
+            const errorObj = {
+                statusDesc: constants.invalidUserUpdate,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
         //Valida os campos obrigatórios e opcionais
         if (!valid) {
-            const errorObj = { statusDesc: message, statusCode: constants.invalidFields }
+            const errorObj = {
+                statusDesc: message,
+                statusCode: constants.invalidFields
+            }
             return callback(errorObj, null)
         }
 
@@ -127,19 +229,19 @@ class UserController {
 
     static constructOrderQuery(query) {
         /**
-        * Construção do ORDER BY:
-        * 
-        * isAscending: Define se a ordenação será ascendente ou descendente. (ASC ou DESC)
-        * field: Define por qual atributo da tabela a esquisa será ordenada. Possíveis valores:
-        *  id:       id_user
-        *  name:     name
-        *  username: username 
-        *  email:    email
-        *  created:  createdAt
-        *  updated:  updatedAt
-        * 
-        *  Verifique a coleção do postman para um exemplo de uso desses campos.
-        */
+         * Construção do ORDER BY:
+         *
+         * isAscending: Define se a ordenação será ascendente ou descendente. (ASC ou DESC)
+         * field: Define por qual atributo da tabela a esquisa será ordenada. Possíveis valores:
+         *  id:       id_user
+         *  name:     name
+         *  username: username
+         *  email:    email
+         *  created:  createdAt
+         *  updated:  updatedAt
+         *
+         *  Verifique a coleção do postman para um exemplo de uso desses campos.
+         */
         let orderQuery = {}
 
         //Definição do valor de isAscending. Por padrão é ASC (Ascendente), se falso será DESC (Descendente).
@@ -174,7 +276,8 @@ class UserController {
                 orderQuery.field = 'updatedAt'
                 break
 
-            default: //Campo padrão da ordenação
+            default:
+                //Campo padrão da ordenação
                 orderQuery.field = 'createdAt'
         }
 
@@ -182,12 +285,12 @@ class UserController {
     }
 
     static constructWhereQuery(query) {
-        /** 
+        /**
          * Construição do WHERE:
-         * 
+         *
          * Possíveis parâmentros:
          * contains: procura pela string informada em todos os campos especificados na função constructWhereClause(), no arquivo UsersDAO.js
-         * 
+         *
          * Verifique a coleção do postman para um exemplo de uso desse campo.
          */
         let whereQuery = {}
