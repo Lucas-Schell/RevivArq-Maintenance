@@ -1,72 +1,72 @@
-import React, { Component } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { getReforms } from "../../services/reforms/index.js";
-import Typography from "@material-ui/core/Typography";
-import toMoneyConversion from "helpers/NumberUtility";
-import { editReform } from "../../services/reforms/index";
-import { showNotification } from "components/Notification";
-import { Constants } from "../../configs/constants";
-import { Search as SearchIcon } from "@material-ui/icons";
-import ReformaDetalhe from "../ReformaDetalhe";
+import React, { Component } from 'react'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import { getReforms } from '../../services/reforms/index.js'
+import Typography from '@material-ui/core/Typography'
+import toMoneyConversion from 'helpers/NumberUtility'
+import { editReform } from '../../services/reforms/index'
+import { showNotification } from 'components/Notification'
+import { Constants } from '../../configs/constants'
+import { Search as SearchIcon } from '@material-ui/icons'
+import ReformaDetalhe from '../ReformaDetalhe'
 
 const styles = (theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
         marginTop: 100,
-        overflowX: "auto"
+        overflowX: 'auto'
     },
     table: {
         minWidth: 650
     }
-});
+})
 
 export default class AreaAdminComponent extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             reforms: [],
             openedReformIndex: -1,
             isLoading: true
-        };
+        }
     }
 
     async componentDidMount() {
-        const reforms = await getReforms();
-        this.setState({ reforms, isLoading: false });
+        const reforms = await getReforms()
+        this.setState({ reforms, isLoading: false })
     }
 
     async updateReformStatus(reform, index, value) {
-        reform.status = value;
-        const reforms = this.state.reforms;
-        reforms[index] = reform;
-        this.setState({ reforms });
+        reform.status = value
+        const reforms = this.state.reforms
+        reforms[index] = reform
+        this.setState({ reforms })
 
-        const response = await editReform(reform);
+        const response = await editReform(reform)
 
         if (response.statusCode !== Constants.successCode) {
-            showNotification(response.statusDesc, "", "danger");
+            showNotification(response.statusDesc, '', 'danger')
         } else {
-            showNotification(response.data.message);
+            showNotification(response.data.message)
         }
     }
 
     closeDetail = () => {
-        this.setState({ openedReformIndex: -1 });
-    };
+        this.setState({ openedReformIndex: -1 })
+    }
 
     renderContent(reform, index) {
         if (
             this.state.openedReformIndex === -1 ||
             this.state.openedReformIndex === index
         )
-            return this.renderRow(reform, index);
+            return this.renderRow(reform, index)
     }
 
     renderRow(reform, index) {
@@ -90,7 +90,7 @@ export default class AreaAdminComponent extends React.Component {
                                 e.target.value
                             )
                         }
-                        style={{ width: "200px" }}
+                        style={{ width: '200px' }}
                         labelId="label"
                         id="select"
                         value={reform.status}
@@ -105,26 +105,26 @@ export default class AreaAdminComponent extends React.Component {
                 </TableCell>
                 <TableCell>
                     <SearchIcon
-                        style={{ cursor: "pointer", color: "rgb(21,38,32)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={() =>
                             this.setState({ openedReformIndex: index })
                         }
                     />
                 </TableCell>
             </TableRow>
-        );
+        )
     }
 
     render() {
-        const { reforms, isLoading, openedReformIndex } = this.state;
-        const classes = styles();
-        let count = 0;
+        const { reforms, isLoading, openedReformIndex } = this.state
+        const classes = styles()
+        let count = 0
         return (
             <div>
                 <div
                     style={{
-                        display: "flex",
-                        justifyContent: "left",
+                        display: 'flex',
+                        justifyContent: 'left',
                         marginLeft: 60,
                         marginBottom: -60,
                         marginTop: 30
@@ -135,9 +135,9 @@ export default class AreaAdminComponent extends React.Component {
                         style={{
                             marginLeft: 30,
                             marginTop: 10,
-                            color: "rgb(255,248,41)",
+                            color: 'rgb(255,248,41)',
                             fontSize: 35,
-                            fontFamily: "Playfair Display"
+                            fontFamily: 'Playfair Display'
                         }}
                         gutterBottom
                     >
@@ -147,7 +147,7 @@ export default class AreaAdminComponent extends React.Component {
                 <Paper className={classes.root} style={{ margin: 60 }}>
                     <Table className={classes.table}>
                         <TableHead
-                            style={{ backgroundColor: "rgb(255,248,41)" }}
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
                         >
                             <TableRow>
                                 <TableCell align="left">
@@ -191,19 +191,19 @@ export default class AreaAdminComponent extends React.Component {
                     {!isLoading && reforms.length === 0 && (
                         <div
                             style={{
-                                minHeight: "100px",
-                                justifyContent: "center",
-                                display: "flex",
-                                alignItems: "center"
+                                minHeight: '100px',
+                                justifyContent: 'center',
+                                display: 'flex',
+                                alignItems: 'center'
                             }}
                         >
-                            <h2 style={{ textAlign: "center" }}>
+                            <h2 style={{ textAlign: 'center' }}>
                                 Nenhuma solicitação de orçamento foi encontrada.
                             </h2>
                         </div>
                     )}
                 </Paper>
             </div>
-        );
+        )
     }
 }

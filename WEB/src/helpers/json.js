@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const show_stringify = (title, props, key) => {
     return (
@@ -7,5 +7,5 @@ export const show_stringify = (title, props, key) => {
             <pre>{JSON.stringify(props, null, 2)}</pre>
             <br />
         </div>
-    );
-};
+    )
+}

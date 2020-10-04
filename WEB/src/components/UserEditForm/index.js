@@ -1,44 +1,44 @@
-import React from "react";
-import "./styles.css";
-import { withRouter } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { Constants } from "../../../configs/constants";
+import React from 'react'
+import './styles.css'
+import { withRouter } from 'react-router-dom'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { Constants } from '../../../configs/constants'
 import {
     InputLabel,
     Checkbox,
     FormControlLabel,
     FormControl
-} from "@material-ui/core";
-import { bool } from "prop-types";
-import { editReform } from "../../../services/reforms/index";
-import { showNotification } from "components/Notification";
+} from '@material-ui/core'
+import { bool } from 'prop-types'
+import { editReform } from '../../../services/reforms/index'
+import { showNotification } from 'components/Notification'
 
 export default class UserEditForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            name: "",
-            lastName: "",
-            whatsapp: "",
-            cpf: "",
-            cnpj: "",
-            civilStatus: "",
+            name: '',
+            lastName: '',
+            whatsapp: '',
+            cpf: '',
+            cnpj: '',
+            civilStatus: '',
             address: {
-                cep: "",
-                street: "",
-                number: "",
-                complement: "",
-                neighborhood: "",
-                city: "",
-                uf: ""
+                cep: '',
+                street: '',
+                number: '',
+                complement: '',
+                neighborhood: '',
+                city: '',
+                uf: ''
             },
             errors: {}
-        };
+        }
     }
 
     componentDidMount() {
-        const { user } = this.props;
+        const { user } = this.props
 
         if (user) {
             this.setState({
@@ -52,7 +52,7 @@ export default class UserEditForm extends React.Component {
                 restrictions: reform.restrictions,
                 budgetLimit: reform.budgetLimit,
                 phone: reform.phone
-            });
+            })
         }
     }
 }

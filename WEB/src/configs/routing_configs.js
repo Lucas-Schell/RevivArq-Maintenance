@@ -1,5 +1,5 @@
 const route_configs = {
-    "/login": {
+    '/login': {
         header: {
             show: true
         }
@@ -17,6 +17,6 @@ const route_configs = {
             show_json_props: false
         }
     }
-};
+}
 
-export default route_configs;
+export default route_configs

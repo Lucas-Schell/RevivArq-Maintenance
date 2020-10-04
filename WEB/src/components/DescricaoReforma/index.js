@@ -1,45 +1,45 @@
-import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { getReforms, getReformById } from "../../services/reforms/index.js";
-import { getPhotos } from "../../services/photos/index.js";
-import Typography from "@material-ui/core/Typography";
+import React, { Component } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import { getReforms, getReformById } from '../../services/reforms/index.js'
+import { getPhotos } from '../../services/photos/index.js'
+import Typography from '@material-ui/core/Typography'
 
 const styles = (theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
         marginTop: 100,
-        overflowX: "auto"
+        overflowX: 'auto'
     },
     table: {
         minWidth: 650
     },
     tableWrapper: {
         maxHeight: 440,
-        overflow: "auto"
+        overflow: 'auto'
     }
-});
+})
 
 export default class SwitchListSecondary extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             reforms: []
-        };
+        }
     }
 
     async componentDidMount() {
-        const reforms = await getReforms();
+        const reforms = await getReforms()
         //console.log(reforms.photos)
-        const photos = await getPhotos();
+        const photos = await getPhotos()
         //console.log('getPhotos',photos)
         //const reform = await getReformById('5d92891f916da312a457a0f1')
-        this.setState({ reforms });
+        this.setState({ reforms })
         //console.log("reformas: ", reforms);
     }
 
@@ -48,14 +48,14 @@ export default class SwitchListSecondary extends React.Component {
     }
 
     render() {
-        const classes = styles();
-        let count = 0;
+        const classes = styles()
+        let count = 0
         return (
             <div>
                 <div
                     style={{
-                        display: "flex",
-                        justifyContent: "left",
+                        display: 'flex',
+                        justifyContent: 'left',
                         marginLeft: 0,
                         marginBottom: -60,
                         marginTop: 30
@@ -66,9 +66,9 @@ export default class SwitchListSecondary extends React.Component {
                         style={{
                             marginLeft: 30,
                             marginTop: 10,
-                            color: "rgb(255,248,41)",
+                            color: 'rgb(255,248,41)',
                             fontSize: 35,
-                            fontFamily: "Playfair Display"
+                            fontFamily: 'Playfair Display'
                         }}
                         gutterBottom
                     >
@@ -78,7 +78,7 @@ export default class SwitchListSecondary extends React.Component {
                 <Paper className={classes.root} style={{ margin: 60 }}>
                     <Table className={classes.table}>
                         <TableHead
-                            style={{ backgroundColor: "rgb(255,248,41)" }}
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
                         >
                             <TableRow>
                                 <TableCell>ID #</TableCell>
@@ -87,7 +87,7 @@ export default class SwitchListSecondary extends React.Component {
                                 </TableCell>
                                 <TableCell align="left">
                                     <b>Orçamento Limite</b>
-                                </TableCell>{" "}
+                                </TableCell>{' '}
                                 {/* estava Nome Solicitação, troquei para orçamento limite pois n entendi qual campo era esse e n tem nenhum parecido que volte nessa chamada */}
                                 <TableCell align="left">
                                     <b>Tipo do Estabelicimento </b>
@@ -108,7 +108,7 @@ export default class SwitchListSecondary extends React.Component {
                                     </TableCell>
                                     <TableCell align="right">
                                         Usuário {index}
-                                    </TableCell>{" "}
+                                    </TableCell>{' '}
                                     {/*Nome do usuário n volta na chamada de get reformas, vou ter que fazer um "join" ou salvar o nome junto ao criar a reforma, por enquanto deixamos mockado e vemos na próxima sprint */}
                                     <TableCell align="right">
                                         {reform.budgetLimit}
@@ -128,7 +128,7 @@ export default class SwitchListSecondary extends React.Component {
                                             onClick={(e) =>
                                                 this.handleClick(reform)
                                             }
-                                        ></Button>{" "}
+                                        ></Button>{' '}
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -136,6 +136,6 @@ export default class SwitchListSecondary extends React.Component {
                     </Table>
                 </Paper>
             </div>
-        );
+        )
     }
 }

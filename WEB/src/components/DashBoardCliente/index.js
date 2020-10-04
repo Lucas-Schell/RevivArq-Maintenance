@@ -1,11 +1,11 @@
-import React from "react";
-import "./styles.css";
-import { ExpandLess as ExpandLessIcon } from "@material-ui/icons";
+import React from 'react'
+import './styles.css'
+import { ExpandLess as ExpandLessIcon } from '@material-ui/icons'
 
 export default class AreaClienteComponent extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {};
+        super(props)
+        this.state = {}
     }
 
     render() {
@@ -14,7 +14,7 @@ export default class AreaClienteComponent extends React.Component {
                 <header className="reforma-detalhe-header">
                     <h3>Detalhes - {this.props.reform.establishmentName}</h3>
                     <ExpandLessIcon
-                        style={{ cursor: "pointer", color: "rgb(21,38,32)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={() => this.props.closeDetail()}
                     />
                 </header>
@@ -44,6 +44,6 @@ export default class AreaClienteComponent extends React.Component {
                     culpa qui officia deserunt mollit anim id est laborum.
                 </body>
             </main>
-        );
+        )
     }
 }

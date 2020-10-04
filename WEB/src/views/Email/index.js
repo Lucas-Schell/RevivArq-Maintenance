@@ -1,66 +1,66 @@
-import React from "react";
-import "./styles.css";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { genPassCode } from "services/auth";
-import { withRouter } from "react-router-dom";
-import { Constants } from "configs/constants";
-import { showNotification } from "components/Notification";
+import React from 'react'
+import './styles.css'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import { genPassCode } from 'services/auth'
+import { withRouter } from 'react-router-dom'
+import { Constants } from 'configs/constants'
+import { showNotification } from 'components/Notification'
 
 class Email extends React.Component {
     // Uma das varias maneiras de proteger uma rota é criar uma Rota protegida e usa-la com herança. Ver ProtectedPage para entender a lógica
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            email: "",
+            email: '',
             isLoading: false,
             errors: {}
-        };
+        }
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this)
+        this.onChange = this.onChange.bind(this)
     }
 
     async onSubmit(e) {
-        e.preventDefault();
-        this.setState({ isLoading: true });
-        const { email } = this.state;
+        e.preventDefault()
+        this.setState({ isLoading: true })
+        const { email } = this.state
         if (!email) {
-            await this.setState({ isLoading: false, errors: { email: true } });
-            return;
+            await this.setState({ isLoading: false, errors: { email: true } })
+            return
         }
 
-        const response = await genPassCode({ email });
+        const response = await genPassCode({ email })
 
         if (!!response && response.statusCode === Constants.successCode) {
             showNotification(
-                "Um código de recuperação foi enviado para o seu e-mail! por favor informe abaixo juntamente com a nova senha desejada",
-                "",
-                "warning"
-            );
-            this.props.setRecEmail(email);
-            this.props.goToRecPass();
+                'Um código de recuperação foi enviado para o seu e-mail! por favor informe abaixo juntamente com a nova senha desejada',
+                '',
+                'warning'
+            )
+            this.props.setRecEmail(email)
+            this.props.goToRecPass()
         } else {
-            showNotification(response.statusDesc, "", "danger");
-            this.setState({ email: "" });
+            showNotification(response.statusDesc, '', 'danger')
+            this.setState({ email: '' })
         }
-        this.setState({ isLoading: false, email: "" });
+        this.setState({ isLoading: false, email: '' })
     }
 
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-        });
+        })
     }
 
     render() {
-        const { email, isLoading, errors } = this.state;
+        const { email, isLoading, errors } = this.state
 
         return (
             <div className="email-container">
                 <form className="form-email-usuario" onSubmit={this.onSubmit}>
-                    <h1 style={{ width: "400px", textAlign: "center" }}>
+                    <h1 style={{ width: '400px', textAlign: 'center' }}>
                         Para Recuperar sua conta informe o seu e-mail cadastrado
                         abaixo.
                     </h1>
@@ -94,7 +94,7 @@ class Email extends React.Component {
                 </form>
                 {/* {show_stringify('Login Form State', this.state, 'login_state')} */}
             </div>
-        );
+        )
     }
 }
 

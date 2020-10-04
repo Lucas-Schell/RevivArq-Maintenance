@@ -82,6 +82,7 @@ export function validNumber(number) {
 export function validComplement(complement) {
     return !!complement && complement.length > 0 && complement.length <= 50;
 }
+
 export function validNeighborhood(neighborhood) {
     return (
         !!neighborhood && neighborhood.length > 0 && neighborhood.length <= 40

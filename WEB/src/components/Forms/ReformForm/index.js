@@ -1,18 +1,18 @@
-import React from "react";
-import "./styles.css";
-import { withRouter } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import Grid from "@material-ui/core/Grid";
-import { showNotification } from "components/Notification";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Input from "@material-ui/core/Input";
-import { Constants } from "../../../configs/constants";
+import React from 'react'
+import './styles.css'
+import { withRouter } from 'react-router-dom'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import Grid from '@material-ui/core/Grid'
+import { showNotification } from 'components/Notification'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import Input from '@material-ui/core/Input'
+import { Constants } from '../../../configs/constants'
 import {
     InputLabel,
     Checkbox,
@@ -20,30 +20,30 @@ import {
     FormControl,
     FormGroup,
     FormLabel
-} from "@material-ui/core";
-import Icon from "@material-ui/core/Icon";
-import SaveIcon from "@material-ui/icons/Save";
-import { postReform } from "../../../services/reforms/index.js";
-import { postPhotos } from "../../../services/photos/index.js";
+} from '@material-ui/core'
+import Icon from '@material-ui/core/Icon'
+import SaveIcon from '@material-ui/icons/Save'
+import { postReform } from '../../../services/reforms/index.js'
+import { postPhotos } from '../../../services/photos/index.js'
 
-import NumberFormat from "react-number-format";
+import NumberFormat from 'react-number-format'
 
 class ReformForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             render: null,
             photos: [],
-            establishmentName: "",
-            establishmentType: "",
-            establishmentName: "",
-            goal: "",
-            status: "",
-            area: "",
-            phone: "",
-            restrictions: "",
-            budgetLimit: "",
-            outros: "",
+            establishmentName: '',
+            establishmentType: '',
+            establishmentName: '',
+            goal: '',
+            status: '',
+            area: '',
+            phone: '',
+            restrictions: '',
+            budgetLimit: '',
+            outros: '',
             isLoading: false,
             file: [],
             imagePreviewUrl: [],
@@ -51,15 +51,15 @@ class ReformForm extends React.Component {
             open: false,
             setOpen: false,
             errors: {},
-            errorMessage: "",
+            errorMessage: '',
             address: {
-                cep: "",
-                street: "",
-                number: "",
-                complement: "",
-                neighborhood: "",
-                city: "",
-                uf: ""
+                cep: '',
+                street: '',
+                number: '',
+                complement: '',
+                neighborhood: '',
+                city: '',
+                uf: ''
             },
             reformItens: {
                 fachada: false,
@@ -72,136 +72,136 @@ class ReformForm extends React.Component {
                 projetoHidraulico: false,
                 necessidadeDemolir: false,
                 necessidadeConstruir: false,
-                outros: ""
+                outros: ''
             },
             abreFotos: false
-        };
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.imgChange = this.imgChange.bind(this);
+        }
+        this.onSubmit = this.onSubmit.bind(this)
+        this.onChange = this.onChange.bind(this)
+        this.imgChange = this.imgChange.bind(this)
     }
 
     async registrarReforma(reform) {
-        return await postReform(reform, false);
+        return await postReform(reform, false)
     }
 
     async submitFotos() {
-        const fotoAttempt = await postPhotos(this.state.file);
+        const fotoAttempt = await postPhotos(this.state.file)
         //console.log('fotoAtt',fotoAttempt)
-        return fotoAttempt;
+        return fotoAttempt
     }
 
     handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const submitfoto = await this.submitFotos();
+        const submitfoto = await this.submitFotos()
         //console.log('submitFoto', submitfoto)
 
-        console.log("ENTREI");
-        this.state.photos = submitfoto.images;
+        console.log('ENTREI')
+        this.state.photos = submitfoto.images
         this.state.budgetLimit = this.state.budgetLimit
-            .replace(/\./g, "")
-            .replace(/\,/, ".")
-            .replace("R$", "");
-        this.state.area = this.state.area.replace(/[^0-9]/g, "");
-        this.state.address.cep = this.state.address.cep.replace(/\-/g, "");
-        this.state.phone = this.state.phone.replace(/\_/, "");
+            .replace(/\./g, '')
+            .replace(/\,/, '.')
+            .replace('R$', '')
+        this.state.area = this.state.area.replace(/[^0-9]/g, '')
+        this.state.address.cep = this.state.address.cep.replace(/\-/g, '')
+        this.state.phone = this.state.phone.replace(/\_/, '')
 
         const reform = {
             photos: this.state.photos,
             file: this.state.file,
             establishmentType: this.state.establishmentType,
-            status: "Orçamento Solicitado",
+            status: 'Orçamento Solicitado',
             restrictions: this.state.restrictions,
             area: this.state.area,
             phone: this.state.phone,
             budgetLimit: this.state.budgetLimit,
             goal: this.state.goal,
-            userId: "",
+            userId: '',
             establishmentName: this.state.establishmentName,
             outros: this.state.outros,
             address: this.state.address,
             reformItens: this.state.reformItens
-        };
+        }
 
         //	console.log("REFORMA", reform)
-        const registerAttempt = await this.registrarReforma(reform);
+        const registerAttempt = await this.registrarReforma(reform)
         //	console.log("CALLBACK", registerAttempt)
         if (registerAttempt.statusCode !== Constants.successCode) {
             this.setState({
                 errorMessage: registerAttempt.statusDesc
-            });
-            showNotification(registerAttempt.statusDesc, "", "danger");
+            })
+            showNotification(registerAttempt.statusDesc, '', 'danger')
             //X const { history } = this.props
             // history.push('/AreaCliente')
             //window.location.reload();
-            return false;
+            return false
         } else {
-            const { history } = this.props;
-            history.push("/AreaCliente");
-            window.location.reload();
-            return true;
+            const { history } = this.props
+            history.push('/AreaCliente')
+            window.location.reload()
+            return true
         }
-    };
+    }
 
     async onSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
         this.setState({
             isLoading: true
-        });
+        })
     }
 
     redirect = (path) => {
-        const { history } = this.props;
-        history.push(path);
-    };
+        const { history } = this.props
+        history.push(path)
+    }
 
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-        });
-        console.log(e.target);
+        })
+        console.log(e.target)
     }
 
     imgChange = (e) => {
         //	console.log("ThunderCats")
-        let reader = new FileReader();
-        let file = e.target.files[0];
+        let reader = new FileReader()
+        let file = e.target.files[0]
         //	console.log("FILE",file)
         //	console.log("READER",reader)
         reader.onloadend = () => {
-            var aux = this.state.file;
-            var aux2 = this.state.imagePreviewUrl;
-            var aux3 = this.state.imgPost;
+            var aux = this.state.file
+            var aux2 = this.state.imagePreviewUrl
+            var aux3 = this.state.imgPost
 
-            var imgPre = { nome: file.name, foto: reader.result };
-            aux.push(file);
-            aux2.push(imgPre);
-            aux3.push(reader.result);
+            var imgPre = { nome: file.name, foto: reader.result }
+            aux.push(file)
+            aux2.push(imgPre)
+            aux3.push(reader.result)
             this.setState({
                 file: aux,
                 imagePreviewUrl: aux2,
                 imgPost: aux3
-            });
-        };
-        if (file && file.type.match("image.*")) {
-            reader.readAsDataURL(file);
+            })
+        }
+        if (file && file.type.match('image.*')) {
+            reader.readAsDataURL(file)
         }
 
         //	console.log(this.state.file)
-    };
+    }
 
     abreFotos(e) {
-        var estado = this.state.abreFotos;
+        var estado = this.state.abreFotos
         if (estado) {
             this.setState({
                 abreFotos: false
-            });
+            })
             //		console.log("Bananeira")
         } else {
             this.setState({
                 abreFotos: true
-            });
+            })
             //console.log(estado)
         }
     }
@@ -210,18 +210,18 @@ class ReformForm extends React.Component {
         //console.log(foto)
         for (let j = 0; j < this.state.file.length; j++) {
             if (this.state.file[j].name === foto.nome) {
-                this.state.file.splice(j, 1);
-                this.state.imagePreviewUrl.splice(j, 1);
-                this.state.imgPost.splice(j, 1);
-                const listfinal = this.state.imagePreviewUrl;
-                const filefinal = this.state.file;
-                const postfinal = this.state.imgPost;
+                this.state.file.splice(j, 1)
+                this.state.imagePreviewUrl.splice(j, 1)
+                this.state.imgPost.splice(j, 1)
+                const listfinal = this.state.imagePreviewUrl
+                const filefinal = this.state.file
+                const postfinal = this.state.imgPost
 
                 this.setState({
                     file: filefinal,
                     imagePreviewUrl: listfinal,
                     imgPost: postfinal
-                });
+                })
             }
         }
     }
@@ -232,16 +232,16 @@ class ReformForm extends React.Component {
         //	console.log(this.state.setOpen)
         this.setState({
             open: true
-        });
+        })
         //	console.log(this.state.open)
-    };
+    }
 
     handleClose = () => {
         //	console.log("She-ra")
         this.setState({
             open: false
-        });
-    };
+        })
+    }
 
     show = () => {
         const {
@@ -255,16 +255,16 @@ class ReformForm extends React.Component {
             outros,
             address,
             reformItens
-        } = this.state;
-        console.log("photos", photos);
-        console.log("Nome: " + establishmentName);
-        console.log("Tipo: " + establishmentType);
-        console.log("Area: " + area);
-        console.log("Orcamento: " + budgetLimit);
-        console.log("Endereco: " + address.cep);
-        console.log("Check: " + reformItens.fachada);
-        console.log("restrictions: " + restrictions);
-    };
+        } = this.state
+        console.log('photos', photos)
+        console.log('Nome: ' + establishmentName)
+        console.log('Tipo: ' + establishmentType)
+        console.log('Area: ' + area)
+        console.log('Orcamento: ' + budgetLimit)
+        console.log('Endereco: ' + address.cep)
+        console.log('Check: ' + reformItens.fachada)
+        console.log('restrictions: ' + restrictions)
+    }
 
     render() {
         const {
@@ -281,21 +281,21 @@ class ReformForm extends React.Component {
             address,
             outros,
             goal
-        } = this.state;
+        } = this.state
 
         return (
             <Grid
                 container
                 spacing={3}
                 className="reforma-container"
-                style={{ alignItems: "center" }}
+                style={{ alignItems: 'center' }}
             >
                 <Grid
                     item
                     xs={12}
                     direction="column"
                     style={{
-                        textAlign: "center",
+                        textAlign: 'center',
                         marginLeft: -10,
                         marginBottom: 20
                     }}
@@ -306,7 +306,7 @@ class ReformForm extends React.Component {
                 <Grid
                     item
                     xs={3}
-                    style={{ color: "black", backgroundColor: "black" }}
+                    style={{ color: 'black', backgroundColor: 'black' }}
                 >
                     <div></div>
                 </Grid>
@@ -315,12 +315,12 @@ class ReformForm extends React.Component {
                     item
                     xs={3}
                     direction="column"
-                    style={{ display: "flex-end" }}
+                    style={{ display: 'flex-end' }}
                     className="reforma-form-inner-container"
                 >
                     <div className="reforma-form-inputs-container-top">
                         <InputLabel
-                            style={{ textAlign: "center", fontSize: 16 }}
+                            style={{ textAlign: 'center', fontSize: 16 }}
                             htmlFor="demo-controlled-open-select"
                         >
                             Informações Gerais
@@ -328,8 +328,8 @@ class ReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display",
+                                color: 'black',
+                                fontFamily: 'Playfair Display',
                                 margin: 0
                             }}
                         >
@@ -345,8 +345,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -362,15 +362,15 @@ class ReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
                                 customInput={TextField}
                                 className="input"
-                                suffix={" m²"}
-                                inputProps={{ min: "0", step: "1" }}
+                                suffix={' m²'}
+                                inputProps={{ min: '0', step: '1' }}
                                 name="area"
                                 label="Área em m² *"
                                 onChange={(e) =>
@@ -384,14 +384,14 @@ class ReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
                                 className="input"
                                 type="text"
-                                inputProps={{ min: "0", step: "1" }}
+                                inputProps={{ min: '0', step: '1' }}
                                 name="goal"
                                 label="Objetivo *"
                                 onChange={this.onChange}
@@ -403,17 +403,17 @@ class ReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
                                 customInput={TextField}
-                                thousandSeparator={"."}
-                                decimalSeparator={","}
-                                prefix={"R$"}
+                                thousandSeparator={'.'}
+                                decimalSeparator={','}
+                                prefix={'R$'}
                                 className="input"
-                                inputProps={{ min: "0", step: "1" }}
+                                inputProps={{ min: '0', step: '1' }}
                                 name="budgetLimit"
                                 label="Orçamento Disponível *"
                                 onChange={(e) =>
@@ -428,8 +428,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -445,8 +445,8 @@ class ReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
@@ -468,7 +468,7 @@ class ReformForm extends React.Component {
 
                         <InputLabel
                             style={{
-                                textAlign: "center",
+                                textAlign: 'center',
                                 fontSize: 16,
                                 marginBottom: 10,
                                 marginTop: 50
@@ -479,8 +479,8 @@ class ReformForm extends React.Component {
                         </InputLabel>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
@@ -506,8 +506,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -531,8 +531,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
@@ -557,15 +557,15 @@ class ReformForm extends React.Component {
                                         parseInt(e.target.value)
                                     )
                                         .toString()
-                                        .slice(0, 8);
+                                        .slice(0, 8)
                                 }}
                                 inputProps={{ maxLength: 8 }}
                             />
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -589,8 +589,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -614,8 +614,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -639,8 +639,8 @@ class ReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <TextField
@@ -664,17 +664,17 @@ class ReformForm extends React.Component {
                         </Typography>
                     </div>
 
-                    <Grid container spacing={3} style={{ display: "center" }}>
+                    <Grid container spacing={3} style={{ display: 'center' }}>
                         {this.state.abreFotos ? (
                             <Grid item xs={12} style={{ marginRight: 120 }}>
                                 <Button
                                     variant="contained"
                                     onClick={(e) => this.abreFotos(e)}
                                     style={{
-                                        color: "white",
-                                        backgroundColor: "rgb(21,38,32)",
+                                        color: 'white',
+                                        backgroundColor: 'rgb(21,38,32)',
                                         fontSize: 15,
-                                        display: "flex-center",
+                                        display: 'flex-center',
                                         marginTop: 20
                                     }}
                                 >
@@ -682,14 +682,14 @@ class ReformForm extends React.Component {
                                 </Button>
                                 <Typography
                                     style={{
-                                        color: "black",
+                                        color: 'black',
                                         fontSize: 20,
-                                        display: "flex-center"
+                                        display: 'flex-center'
                                     }}
                                 >
                                     <input
                                         style={{
-                                            display: "flex-center",
+                                            display: 'flex-center',
                                             margin: 20
                                         }}
                                         required=""
@@ -705,11 +705,11 @@ class ReformForm extends React.Component {
                                     variant="contained"
                                     onClick={(e) => this.abreFotos(e)}
                                     style={{
-                                        color: "white",
-                                        backgroundColor: "rgb(21,38,32)",
+                                        color: 'white',
+                                        backgroundColor: 'rgb(21,38,32)',
                                         fontSize: 15,
                                         margin: 20,
-                                        display: "flex-center"
+                                        display: 'flex-center'
                                     }}
                                 >
                                     Adicionar Fotos
@@ -725,17 +725,17 @@ class ReformForm extends React.Component {
                                             style={{
                                                 width: 70,
                                                 height: 70,
-                                                display: "flex-center",
+                                                display: 'flex-center',
                                                 margin: 20
                                             }}
                                         ></img>
                                         <Button
                                             variant="contained"
                                             style={{
-                                                color: "white",
+                                                color: 'white',
                                                 backgroundColor:
-                                                    "rgb(21,38,32)",
-                                                display: "flex-center",
+                                                    'rgb(21,38,32)',
+                                                display: 'flex-center',
                                                 marginBottom: 80
                                             }}
                                             onClick={(e) =>
@@ -745,7 +745,7 @@ class ReformForm extends React.Component {
                                             Remover
                                         </Button>
                                     </div>
-                                );
+                                )
                             })}
                         </Grid>
                     </Grid>
@@ -934,8 +934,8 @@ class ReformForm extends React.Component {
                             onClick={() => this.handleClickOpen()}
                             variant="contained"
                             style={{
-                                color: "white",
-                                backgroundColor: "rgb(21,38,32)",
+                                color: 'white',
+                                backgroundColor: 'rgb(21,38,32)',
                                 fontSize: 25,
                                 margin: 20
                             }}
@@ -945,14 +945,14 @@ class ReformForm extends React.Component {
                     </Grid>
                     <div style={{}}>
                         <Dialog
-                            style={{ color: "black" }}
+                            style={{ color: 'black' }}
                             open={this.state.open}
                             onClose={this.handleClose}
                             aria-labelledby="alert-dialog-title"
                             aria-describedby="alert-dialog-description"
                         >
                             <DialogTitle>
-                                {"Você deseja finalizar seu orçamento?"}
+                                {'Você deseja finalizar seu orçamento?'}
                             </DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
@@ -974,7 +974,7 @@ class ReformForm extends React.Component {
                     </div>
                 </Grid>
             </Grid>
-        );
+        )
     }
 }
 

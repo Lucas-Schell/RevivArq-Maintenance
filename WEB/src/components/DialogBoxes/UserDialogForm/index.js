@@ -1,12 +1,12 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
-import UserForm from "components/Forms/UserForm";
+import UserForm from 'components/Forms/UserForm'
 
 /**
  * Propriedades:
@@ -14,30 +14,30 @@ import UserForm from "components/Forms/UserForm";
  */
 export default class UserDialogBox extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             open: false
-        };
+        }
     }
 
     handleClickOpen = () => {
-        this.setState({ open: true });
-    };
+        this.setState({ open: true })
+    }
 
     handleClose = () => {
-        this.setState({ open: false });
-    };
+        this.setState({ open: false })
+    }
 
     handleSubmit = () => {
-        this.child.onSubmit();
-        this.handleClose();
-    };
+        this.child.onSubmit()
+        this.handleClose()
+    }
 
     render() {
         return (
             <div>
                 <Button onClick={this.handleClickOpen}>
-                    {this.props.id ? "Editar Usuário" : "Criar Usuário"}
+                    {this.props.id ? 'Editar Usuário' : 'Criar Usuário'}
                 </Button>
                 <Dialog
                     open={this.state.open}
@@ -49,8 +49,8 @@ export default class UserDialogBox extends React.Component {
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Digite os seguintes dados para{" "}
-                            {this.props.id ? "atualizar" : "criar"} um usuário:
+                            Digite os seguintes dados para{' '}
+                            {this.props.id ? 'atualizar' : 'criar'} um usuário:
                         </DialogContentText>
                         <UserForm
                             hideSubmit={true}
@@ -68,11 +68,11 @@ export default class UserDialogBox extends React.Component {
                             onClick={this.handleSubmit}
                             color="primary"
                         >
-                            {this.props.id ? "Atualizar" : "Criar"}
+                            {this.props.id ? 'Atualizar' : 'Criar'}
                         </Button>
                     </DialogActions>
                 </Dialog>
             </div>
-        );
+        )
     }
 }

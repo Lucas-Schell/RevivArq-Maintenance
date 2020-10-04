@@ -1,22 +1,22 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
 // Views'
-import HomePage from "views/HomePage";
-import Page from "views/Page";
-import BlankPage from "views/BlankPage";
-import Email from "views/Email";
-import RecPassword from "views/RecPassword";
-import Erro403 from "views/Erro403";
+import HomePage from 'views/HomePage'
+import Page from 'views/Page'
+import BlankPage from 'views/BlankPage'
+import Email from 'views/Email'
+import RecPassword from 'views/RecPassword'
+import Erro403 from 'views/Erro403'
 
-import AreaAdmin from "../views/AreaAdmin";
-import AreaCliente from "../views/AreaCliente";
-import SobreNos from "../views/SobreNos";
-import FacaPedido from "../views/FacaPedido";
-import Reforma from "../views/Reforma";
+import AreaAdmin from '../views/AreaAdmin'
+import AreaCliente from '../views/AreaCliente'
+import SobreNos from '../views/SobreNos'
+import FacaPedido from '../views/FacaPedido'
+import Reforma from '../views/Reforma'
 // Users
-import UserEditPage from "views/UserPages/CreateUpdate";
-import UserListPage from "views/UserPages/List";
+import UserEditPage from 'views/UserPages/CreateUpdate'
+import UserListPage from 'views/UserPages/List'
 
 export default () => {
     return (
@@ -46,5 +46,5 @@ export default () => {
                 <Route component={Erro403} />
             </Switch>
         </main>
-    );
-};
+    )
+}

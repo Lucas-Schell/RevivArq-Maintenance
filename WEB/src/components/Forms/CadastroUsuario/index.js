@@ -1,70 +1,72 @@
-import React from "react";
-import "./styles.css";
-import { withRouter } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { Constants } from "../../../configs/constants";
-import { create } from "services/user";
-import { showNotification } from "components/Notification";
+import React from 'react'
+import './styles.css'
+import { withRouter } from 'react-router-dom'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { Constants } from '../../../configs/constants'
+import { create } from 'services/user'
+import { showNotification } from 'components/Notification'
 
 class CadastroUsuario extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            name: "",
-            lastName: "",
-            email: "",
-            whatsapp: "",
-            password: "",
-            confirmPassword: "",
+            name: '',
+            lastName: '',
+            email: '',
+            whatsapp: '',
+            password: '',
+            confirmPassword: '',
             errors: {},
-            errorMessage: ""
-        };
+            errorMessage: ''
+        }
     }
 
     async registrarUsuario(usuario) {
-        return await create(usuario, false);
+        return await create(usuario, false)
     }
 
     validName(name) {
-        return !!name && name.length > 0 && name.length <= 30;
+        return !!name && name.length > 0 && name.length <= 30
     }
 
     validLastName(lastName) {
-        return !!lastName && lastName.length > 0 && lastName.length <= 50;
+        return !!lastName && lastName.length > 0 && lastName.length <= 50
     }
 
     validEmail(email) {
-        return !!email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        return !!email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     }
+
     validPassword(password) {
-        return !!password && password.length >= 6 && password.length <= 11;
+        return !!password && password.length >= 6 && password.length <= 11
     }
+
     validWhatsApp(whatsapp) {
-        return !!whatsapp && whatsapp.length > 8 && whatsapp.length <= 11;
+        return !!whatsapp && whatsapp.length > 8 && whatsapp.length <= 11
     }
 
     handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         if (!this.validName(this.state.name)) {
-            this.setState({ errors: { name: true } });
-            return;
+            this.setState({ errors: { name: true } })
+            return
         }
         if (!this.validLastName(this.state.lastName)) {
-            this.setState({ errors: { lastName: true } });
-            return;
+            this.setState({ errors: { lastName: true } })
+            return
         }
         if (!this.validEmail(this.state.email)) {
-            this.setState({ errors: { email: true } });
-            return;
+            this.setState({ errors: { email: true } })
+            return
         }
         if (this.state.whatsapp.length < 8) {
             this.setState({
                 errors: { errors: { whatsapp: true } },
-                errorMessage: "WhatsApp invalido!"
-            });
-            return;
+                errorMessage: 'WhatsApp invalido!'
+            })
+            return
         }
         if (
             this.state.whatsapp.length >= 8 &&
@@ -72,21 +74,21 @@ class CadastroUsuario extends React.Component {
         ) {
             this.setState({
                 errors: { errors: { whatsapp: true } },
-                errorMessage: "Adicione o DDD junto ao Whatsapp!"
-            });
-            return;
+                errorMessage: 'Adicione o DDD junto ao Whatsapp!'
+            })
+            return
         }
 
         if (!this.validPassword(this.state.password)) {
-            this.setState({ errors: { password: true } });
-            return;
+            this.setState({ errors: { password: true } })
+            return
         }
         if (this.state.confirmPassword !== this.state.password) {
             this.setState({
                 errors: { confirmPassword: true },
-                errorMessage: "As senhas não estão iguais"
-            });
-            return;
+                errorMessage: 'As senhas não estão iguais'
+            })
+            return
         }
 
         const user = {
@@ -95,36 +97,36 @@ class CadastroUsuario extends React.Component {
             email: this.state.email,
             password: this.state.password,
             whatsapp: this.state.whatsapp
-        };
+        }
 
-        const registerAttempt = await this.registrarUsuario(user);
+        const registerAttempt = await this.registrarUsuario(user)
         if (registerAttempt) {
             //cadastro com sucesso já loga o usuário e vai pra tela de entrada
             if (registerAttempt.statusCode !== Constants.successCode) {
                 this.setState({
                     errorMessage: registerAttempt.statusDesc
-                });
-                return false;
+                })
+                return false
             } else {
-                const { history } = this.props;
-                history.push(this.props.goToNewRequest ? "/FacaPedido" : "/");
-                this.props.closeModal();
-                this.props.refreshHeader();
+                const { history } = this.props
+                history.push(this.props.goToNewRequest ? '/FacaPedido' : '/')
+                this.props.closeModal()
+                this.props.refreshHeader()
                 showNotification(
-                    "Cadastro efetuado com sucesso. Bem-vindo ao RevivArq!"
-                );
-                this.props.backToLogin();
-                return true;
+                    'Cadastro efetuado com sucesso. Bem-vindo ao RevivArq!'
+                )
+                this.props.backToLogin()
+                return true
             }
         } else {
-            return false;
+            return false
         }
-    };
+    }
 
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-        });
+        })
     }
 
     render() {
@@ -136,7 +138,7 @@ class CadastroUsuario extends React.Component {
             password,
             confirmPassword,
             errors
-        } = this.state;
+        } = this.state
 
         return (
             <div className="cadastro-container">
@@ -231,7 +233,7 @@ class CadastroUsuario extends React.Component {
                     </Button>
                 </form>
             </div>
-        );
+        )
     }
 }
 

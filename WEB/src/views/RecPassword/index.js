@@ -1,106 +1,106 @@
-import React from "react";
-import "./styles.css";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { withRouter } from "react-router-dom";
-import { Constants } from "configs/constants";
-import { showNotification } from "components/Notification";
-import { genNewPassword } from "services/auth";
+import React from 'react'
+import './styles.css'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import { withRouter } from 'react-router-dom'
+import { Constants } from 'configs/constants'
+import { showNotification } from 'components/Notification'
+import { genNewPassword } from 'services/auth'
 
 class RecPass extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            password: "",
-            confirm: "",
-            passCode: "",
+            password: '',
+            confirm: '',
+            passCode: '',
             isLoading: false,
             errors: {}
-        };
+        }
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this)
+        this.onChange = this.onChange.bind(this)
     }
 
     async onSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
         this.setState({
             isLoading: true
-        });
-        const { passCode, password, confirm } = this.state;
+        })
+        const { passCode, password, confirm } = this.state
 
         if (!passCode) {
             await this.setState({
                 isLoading: false,
                 errors: { passCode: true }
-            });
-            return;
+            })
+            return
         }
         if (!password) {
             await this.setState({
                 isLoading: false,
                 errors: { password: true }
-            });
-            return;
+            })
+            return
         }
         if (!confirm) {
             await this.setState({
                 isLoading: false,
                 errors: { confirm: true }
-            });
-            return;
+            })
+            return
         }
 
         if (password !== confirm) {
             await this.setState({
-                password: "",
-                confirm: "",
+                password: '',
+                confirm: '',
                 isLoading: false,
                 errors: { password: true, confirm: true }
-            });
+            })
             showNotification(
-                "A Confirmação difere da senha informada.",
-                "",
-                "danger"
-            );
-            return;
+                'A Confirmação difere da senha informada.',
+                '',
+                'danger'
+            )
+            return
         }
 
         const response = await genNewPassword({
             email: this.props.email,
             password,
             passCode
-        });
+        })
 
         if (!!response && response.statusCode === Constants.successCode) {
-            showNotification(response.data.message);
-            this.props.backToLogin();
+            showNotification(response.data.message)
+            this.props.backToLogin()
         } else {
-            showNotification(response.statusDesc, "", "danger");
-            this.setState({ passCode: "", password: "", confirm: "" });
+            showNotification(response.statusDesc, '', 'danger')
+            this.setState({ passCode: '', password: '', confirm: '' })
         }
 
         this.setState({
             isLoading: false,
-            passCode: "",
-            password: "",
-            confirm: ""
-        });
+            passCode: '',
+            password: '',
+            confirm: ''
+        })
     }
 
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-        });
+        })
     }
 
     render() {
-        const { passCode, password, confirm, isLoading, errors } = this.state;
+        const { passCode, password, confirm, isLoading, errors } = this.state
 
         return (
             <div className="recpass-container">
                 <form className="form-recpass-usuario" onSubmit={this.onSubmit}>
-                    <h1 style={{ width: "410px", textAlign: "center" }}>
+                    <h1 style={{ width: '410px', textAlign: 'center' }}>
                         Informe abaixo o código recebido por e-mail e a nova
                         senha desejada.
                     </h1>
@@ -149,7 +149,7 @@ class RecPass extends React.Component {
                 </form>
                 {/* {show_stringify('Login Form State', this.state, 'login_state')} */}
             </div>
-        );
+        )
     }
 }
 

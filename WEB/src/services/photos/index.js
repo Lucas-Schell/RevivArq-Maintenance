@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Constants } from "configs/constants";
-import { PostPhotos } from "configs/api_routes";
-import { GetPhotos } from "configs/api_routes";
+import {Constants} from "configs/constants";
+import {PostPhotos} from "configs/api_routes";
+import {GetPhotos} from "configs/api_routes";
 
 export const postPhotos = async (photos) => {
     const bodyFormData = new FormData();

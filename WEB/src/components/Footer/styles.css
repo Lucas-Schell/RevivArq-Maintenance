@@ -6,12 +6,14 @@
     display: flex;
     justify-content: center;
 }
+
 .App-footer .txt {
     margin: 5px;
     margin-top: 20px;
     height: 20px;
     float: right;
 }
+
 .App-footer .img {
     height: 50px;
     margin: 4px;

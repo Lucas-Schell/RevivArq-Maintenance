@@ -1,8 +1,8 @@
-import React from "react";
-import Page from "views/Page";
+import React from 'react'
+import Page from 'views/Page'
 
-import UserListCards from "components/UserListCards";
-import UserDialogBox from "components/DialogBoxes/UserDialogForm";
+import UserListCards from 'components/UserListCards'
+import UserDialogBox from 'components/DialogBoxes/UserDialogForm'
 
 class UserListPage extends Page {
     authenticated = () => {
@@ -12,8 +12,8 @@ class UserListPage extends Page {
                 <UserDialogBox />
                 <UserListCards />
             </div>
-        );
-    };
+        )
+    }
 
     unauthenticated = () => {
         return (
@@ -23,8 +23,8 @@ class UserListPage extends Page {
                     usuários!
                 </p>
             </div>
-        );
-    };
+        )
+    }
 }
 
 export default UserListPage;

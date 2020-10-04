@@ -1,17 +1,17 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 export default function SimpleMenu() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null)
 
     function handleClick(event) {
-        setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget)
     }
 
     function handleClose() {
-        setAnchorEl(null);
+        setAnchorEl(null)
     }
 
     return (
@@ -35,5 +35,5 @@ export default function SimpleMenu() {
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
         </div>
-    );
+    )
 }

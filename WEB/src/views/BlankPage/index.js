@@ -1,5 +1,5 @@
-import React from "react";
-import Page from "views/Page";
+import React from 'react'
+import Page from 'views/Page'
 
 class BlankPage extends Page {
     render() {
@@ -7,8 +7,8 @@ class BlankPage extends Page {
             <div>
                 <p>404 - Página não encontrada</p>
             </div>
-        );
+        )
     }
 }
 
-export default BlankPage;
+export default BlankPage

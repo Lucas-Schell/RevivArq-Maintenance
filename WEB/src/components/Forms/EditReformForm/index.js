@@ -1,38 +1,38 @@
-import React from "react";
-import "./styles.css";
-import { withRouter } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import NumberFormat from "react-number-format";
-import { Constants } from "../../../configs/constants";
+import React from 'react'
+import './styles.css'
+import { withRouter } from 'react-router-dom'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import NumberFormat from 'react-number-format'
+import { Constants } from '../../../configs/constants'
 import {
     InputLabel,
     Checkbox,
     FormControlLabel,
     FormControl,
     Typography
-} from "@material-ui/core";
-import { bool } from "prop-types";
-import { editReform } from "../../../services/reforms/index";
-import { showNotification } from "components/Notification";
+} from '@material-ui/core'
+import { bool } from 'prop-types'
+import { editReform } from '../../../services/reforms/index'
+import { showNotification } from 'components/Notification'
 
 class EditReformForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            establishmentName: "",
-            establishmentType: "",
-            area: "",
-            phone: "",
+            establishmentName: '',
+            establishmentType: '',
+            area: '',
+            phone: '',
             address: {
-                cep: "",
-                street: "",
-                number: "",
-                complement: "",
-                neighborhood: "",
-                city: "",
-                uf: ""
+                cep: '',
+                street: '',
+                number: '',
+                complement: '',
+                neighborhood: '',
+                city: '',
+                uf: ''
             }, //address é um objeto endereço com as infos dentro conforme o modelo
             reformItens: {
                 fachada: bool,
@@ -45,13 +45,13 @@ class EditReformForm extends React.Component {
                 projetoHidraulico: bool,
                 necessidadeDemolir: bool,
                 necessidadeConstruir: bool,
-                outros: ""
+                outros: ''
             },
-            goal: "",
-            restrictions: "",
-            budgetLimit: "",
+            goal: '',
+            restrictions: '',
+            budgetLimit: '',
             errors: {}
-        };
+        }
     }
 
     /**
@@ -59,7 +59,7 @@ class EditReformForm extends React.Component {
      * assim que logo na sua primeira renderização, caso não renderiza os campos vazio.
      */
     componentDidMount() {
-        const { reform } = this.props;
+        const { reform } = this.props
 
         if (reform) {
             this.setState({
@@ -73,21 +73,21 @@ class EditReformForm extends React.Component {
                 restrictions: reform.restrictions,
                 budgetLimit: reform.budgetLimit,
                 phone: reform.phone
-            });
+            })
         }
     }
 
     redirect = (path) => {
-        const { history } = this.props;
-        history.push(path);
-    };
+        const { history } = this.props
+        history.push(path)
+    }
 
     handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        console.log("Testando Entrada");
+        console.log('Testando Entrada')
 
-        const { reform } = this.props;
+        const { reform } = this.props
         const reformUpdated = {
             ...reform,
             establishmentName: this.state.establishmentName,
@@ -99,20 +99,20 @@ class EditReformForm extends React.Component {
             restrictions: this.state.restrictions,
             budgetLimit: this.state.budgetLimit,
             phone: this.state.phone
-        };
+        }
 
-        const response = await editReform(reformUpdated);
+        const response = await editReform(reformUpdated)
 
         if (response.statusCode !== Constants.successCode) {
-            showNotification(response.statusDesc, "", "danger");
-            return false;
+            showNotification(response.statusDesc, '', 'danger')
+            return false
         } else {
-            const { history } = this.props;
-            history.push("/AreaCliente");
-            window.location.reload();
-            return true;
+            const { history } = this.props
+            history.push('/AreaCliente')
+            window.location.reload()
+            return true
         }
-    };
+    }
 
     render() {
         const {
@@ -127,7 +127,7 @@ class EditReformForm extends React.Component {
             restrictions,
             budgetLimit,
             phone
-        } = this.state;
+        } = this.state
 
         //ajustar os campos que ficam com a label em cima da informação
         return (
@@ -151,7 +151,7 @@ class EditReformForm extends React.Component {
                 <Grid
                     item
                     xs={12}
-                    style={{ alignItems: "center" }}
+                    style={{ alignItems: 'center' }}
                     direction="column"
                     className="reforma-form-inner-container"
                 >
@@ -162,7 +162,7 @@ class EditReformForm extends React.Component {
                     >
                         <InputLabel
                             style={{
-                                textAlign: "center",
+                                textAlign: 'center',
                                 fontSize: 16,
                                 marginBottom: 10
                             }}
@@ -204,14 +204,14 @@ class EditReformForm extends React.Component {
                         />
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
                                 customInput={TextField}
                                 className="input"
-                                suffix={" m²"}
+                                suffix={' m²'}
                                 inputProps={{ min: 0, step: 1 }}
                                 name="area"
                                 label="Área em m² *"
@@ -251,17 +251,17 @@ class EditReformForm extends React.Component {
                         />
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
                                 customInput={TextField}
-                                thousandSeparator={"."}
-                                decimalSeparator={","}
-                                prefix={"R$"}
+                                thousandSeparator={'.'}
+                                decimalSeparator={','}
+                                prefix={'R$'}
                                 className="input"
-                                inputProps={{ min: "0", step: "1" }}
+                                inputProps={{ min: '0', step: '1' }}
                                 name="budgetLimit"
                                 label="Orçamento Disponível *"
                                 onChange={this.onChange}
@@ -272,8 +272,8 @@ class EditReformForm extends React.Component {
                         </Typography>
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
@@ -284,7 +284,7 @@ class EditReformForm extends React.Component {
                                 label="Celular *" //telefone
                                 onChange={(e) =>
                                     this.setState({
-                                        phone: "" + e.target.value
+                                        phone: '' + e.target.value
                                     })
                                 }
                                 format="(##) #####-####"
@@ -298,7 +298,7 @@ class EditReformForm extends React.Component {
                         </Typography>
                         <InputLabel
                             style={{
-                                textAlign: "center",
+                                textAlign: 'center',
                                 fontSize: 16,
                                 marginBottom: 10,
                                 marginTop: 10
@@ -310,8 +310,8 @@ class EditReformForm extends React.Component {
 
                         <Typography
                             style={{
-                                color: "black",
-                                fontFamily: "Playfair Display"
+                                color: 'black',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             <NumberFormat
@@ -378,7 +378,7 @@ class EditReformForm extends React.Component {
                                         parseInt(e.target.value)
                                     )
                                         .toString()
-                                        .slice(0, 8);
+                                        .slice(0, 8)
                                 }}
                                 inputProps={{ maxLength: 8 }}
                             />
@@ -465,7 +465,7 @@ class EditReformForm extends React.Component {
                     <Grid
                         item
                         xs={12}
-                        style={{ alignItems: "center" }}
+                        style={{ alignItems: 'center' }}
                         className="reforma-form-radios-container"
                     >
                         <InputLabel htmlFor="demo-controlled-open-select">
@@ -637,7 +637,7 @@ class EditReformForm extends React.Component {
                 <span className="reforma-error-message">
                     {this.state.errorMessage}
                 </span>
-                <Grid item xs={12} style={{ alignItems: "center" }}>
+                <Grid item xs={12} style={{ alignItems: 'center' }}>
                     <Button
                         className="submitBtn"
                         onClick={this.handleSubmit}
@@ -648,13 +648,13 @@ class EditReformForm extends React.Component {
                     <Button
                         className="submitBtn"
                         type="submit"
-                        onClick={() => this.props.history.push("/AreaCliente")}
+                        onClick={() => this.props.history.push('/AreaCliente')}
                     >
                         Voltar
                     </Button>
                 </Grid>
             </Grid>
-        );
+        )
     }
 }
 

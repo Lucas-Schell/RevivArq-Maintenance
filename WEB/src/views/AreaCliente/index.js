@@ -1,8 +1,8 @@
-import React from "react";
-import Page from "views/Page";
-import "./styles.css";
-import Typography from "@material-ui/core/Typography";
-import AreaClienteComponente from "../../components/AreaCliente/index.js";
+import React from 'react'
+import Page from 'views/Page'
+import './styles.css'
+import Typography from '@material-ui/core/Typography'
+import AreaClienteComponente from '../../components/AreaCliente/index.js'
 
 class AreaCliente extends Page {
     unauthenticated = () => {
@@ -10,10 +10,10 @@ class AreaCliente extends Page {
             <div>
                 <div
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "40vh"
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '40vh'
                     }}
                 >
                     <Typography
@@ -21,8 +21,8 @@ class AreaCliente extends Page {
                         className="txtIni"
                         style={{
                             fontSize: 40,
-                            color: "white",
-                            fontFamily: "Playfair Display"
+                            color: 'white',
+                            fontFamily: 'Playfair Display'
                         }}
                         gutterBottom
                     >
@@ -31,16 +31,16 @@ class AreaCliente extends Page {
                     </Typography>
                 </div>
             </div>
-        );
-    };
+        )
+    }
 
     authenticated = () => {
         return (
             <div>
                 <AreaClienteComponente history={this.props.history} />
             </div>
-        );
-    };
+        )
+    }
 }
 
-export default AreaCliente;
+export default AreaCliente

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import ReactNotification from "react-notifications-component";
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+import ReactNotification from 'react-notifications-component'
 
-import "react-notifications-component/dist/theme.css";
-import "./app.css";
+import 'react-notifications-component/dist/theme.css'
+import './app.css'
 
 // Internal
-import Routing from "configs/routing";
+import Routing from 'configs/routing'
 
 class App extends Component {
     render() {
@@ -15,8 +15,8 @@ class App extends Component {
                 <ReactNotification />
                 <Routing />
             </div>
-        );
+        )
     }
 }
 
-export default withRouter(App);
+export default withRouter(App)

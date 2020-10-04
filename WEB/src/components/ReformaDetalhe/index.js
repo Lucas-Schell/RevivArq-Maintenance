@@ -1,25 +1,25 @@
-import React from "react";
-import "./styles.css";
-import { ExpandLess as ExpandLessIcon } from "@material-ui/icons";
-import TextField from "@material-ui/core/TextField";
-import AttachMoney from "@material-ui/icons/AttachMoney";
-import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import WhatsApp from "@material-ui/icons/Call";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Divider from "@material-ui/core/Divider";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import BlockIcon from "@material-ui/icons/Block";
-import BuildIcon from "@material-ui/icons/Build";
-import toMoneyConversion from "helpers/NumberUtility";
-import Gallery from "react-grid-gallery";
-import { Search as SearchIcon } from "@material-ui/icons";
-import Modal from "../Modal/index";
-import { getUser, loggedUser } from "../../services/user/index.js";
+import React from 'react'
+import './styles.css'
+import { ExpandLess as ExpandLessIcon } from '@material-ui/icons'
+import TextField from '@material-ui/core/TextField'
+import AttachMoney from '@material-ui/icons/AttachMoney'
+import Grid from '@material-ui/core/Grid'
+import { Typography } from '@material-ui/core'
+import WhatsApp from '@material-ui/icons/Call'
+import LocationOnIcon from '@material-ui/icons/LocationOn'
+import Divider from '@material-ui/core/Divider'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import BlockIcon from '@material-ui/icons/Block'
+import BuildIcon from '@material-ui/icons/Build'
+import toMoneyConversion from 'helpers/NumberUtility'
+import Gallery from 'react-grid-gallery'
+import { Search as SearchIcon } from '@material-ui/icons'
+import Modal from '../Modal/index'
+import { getUser, loggedUser } from '../../services/user/index.js'
 
 const styles = (theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper
     },
@@ -29,84 +29,84 @@ const styles = (theme) => ({
     dividerInset: {
         margin: `5px 0 0 ${theme.spacing(9)}px`
     }
-});
+})
 
 const getTypes = (itens) => {
-    let tipos = "";
+    let tipos = ''
     if (itens.forro) {
-        tipos += " Forro";
+        tipos += ' Forro'
     }
     if (itens.fachada) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += "Fachada";
+        tipos += 'Fachada'
     }
     if (itens.paisagismo) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Paisagismo";
+        tipos += ' Paisagismo'
     }
     if (itens.iluminacao) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Iluminacao";
+        tipos += ' Iluminacao'
     }
     if (itens.projetoImobiliario) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Projeto Imobiliario";
+        tipos += ' Projeto Imobiliario'
     }
     if (itens.projetoHidraulico) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Projeto Hidraulico";
+        tipos += ' Projeto Hidraulico'
     }
     if (itens.necessidadeDemolir) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Demolir";
+        tipos += ' Demolir'
     }
     if (itens.necessidadeConstruir) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Construir";
+        tipos += ' Construir'
     }
     if (itens.paredesERevestimentos) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Parede e Revestimento";
+        tipos += ' Parede e Revestimento'
     }
     if (itens.identidadeEComunicação) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += " Identidade e Comunicação";
+        tipos += ' Identidade e Comunicação'
     }
     if (itens.outros.length > 0) {
         if (tipos.length > 0) {
-            tipos += ",";
+            tipos += ','
         }
-        tipos += itens.outros;
+        tipos += itens.outros
     }
-    return tipos;
-};
+    return tipos
+}
 
 export default class ReformaDetalhe extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             modalOpened: false,
             user: {},
             IMAGES: []
-        };
+        }
     }
 
     //async componentDidMount() {
@@ -115,46 +115,46 @@ export default class ReformaDetalhe extends React.Component {
     //}
 
     async componentWillMount() {
-        var i;
-        const IMAGES = [];
+        var i
+        const IMAGES = []
         for (i = 0; i < this.props.reform.photos.length; i++) {
             IMAGES.push({
                 src:
-                    "http://localhost:4000/api/photos/image?file=" +
+                    'http://localhost:4000/api/photos/image?file=' +
                     this.props.reform.photos[i],
                 thumbnail:
-                    "http://localhost:4000/api/photos/image?file=" +
+                    'http://localhost:4000/api/photos/image?file=' +
                     this.props.reform.photos[i],
                 thumbnailWidth: 320,
                 thumbnailHeight: 212
-            });
+            })
         }
-        this.setState({ IMAGES });
+        this.setState({ IMAGES })
     }
 
     componentDidMount() {
-        this.getUsuario();
+        this.getUsuario()
     }
 
     getUsuario = async () => {
         if (this.props.tipoUsuario == 1) {
-            var user = await loggedUser();
+            var user = await loggedUser()
             this.setState({
                 user
-            });
+            })
         } else {
-            var user = await getUser(this.props.reform.userId);
+            var user = await getUser(this.props.reform.userId)
             this.setState({
                 user
-            });
+            })
         }
-    };
+    }
 
     renderModalContent() {
         return (
             <Grid>
-                <h3 style={{ textAlign: "center" }}>
-                    {" "}
+                <h3 style={{ textAlign: 'center' }}>
+                    {' '}
                     Detalhes do Solicitante
                 </h3>
                 <Typography>
@@ -202,20 +202,20 @@ export default class ReformaDetalhe extends React.Component {
                     />
                 </Typography>
             </Grid>
-        );
+        )
     }
 
     render() {
-        const { reform } = this.props;
+        const { reform } = this.props
         return (
             <div
                 className="reforma-detalhe-main-container"
-                style={{ borderRadius: "15px" }}
+                style={{ borderRadius: '15px' }}
             >
                 <header className="reforma-detalhe-header">
                     <h3>Detalhes - {this.props.reform.establishmentName}</h3>
                     <ExpandLessIcon
-                        style={{ cursor: "pointer", color: "rgb(21,38,32)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={() => this.props.closeDetail()}
                     />
                 </header>
@@ -225,16 +225,16 @@ export default class ReformaDetalhe extends React.Component {
                             <Gallery
                                 images={this.state.IMAGES}
                                 style={{
-                                    cursor: "pointer",
-                                    color: "rgb(21,38,32)"
+                                    cursor: 'pointer',
+                                    color: 'rgb(21,38,32)'
                                 }}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18
                                 }}
                             >
@@ -249,14 +249,14 @@ export default class ReformaDetalhe extends React.Component {
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18,
-                                    marginTop: "20px"
+                                    marginTop: '20px'
                                 }}
                             >
                                 <AttachMoney style={{ marginRight: 10 }} />
-                                <b>Orçamento:</b>&nbsp; R${" "}
+                                <b>Orçamento:</b>&nbsp; R${' '}
                                 {toMoneyConversion(
                                     this.props.reform.budgetLimit
                                 )}
@@ -266,40 +266,40 @@ export default class ReformaDetalhe extends React.Component {
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18,
-                                    marginTop: "20px"
+                                    marginTop: '20px'
                                 }}
                             >
                                 <LocationOnIcon style={{ marginRight: 10 }} />
                                 <b>Endereço:</b>&nbsp;
-                                {this.props.reform.address.street},{" "}
-                                {this.props.reform.address.number} -{" "}
-                                {this.props.reform.address.city} -{" "}
-                                {this.props.reform.address.cep}{" "}
+                                {this.props.reform.address.street},{' '}
+                                {this.props.reform.address.number} -{' '}
+                                {this.props.reform.address.city} -{' '}
+                                {this.props.reform.address.cep}{' '}
                             </Typography>
                             <Divider />
                         </Grid>
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18,
-                                    marginTop: "20px"
+                                    marginTop: '20px'
                                 }}
                             >
                                 <AccountCircleIcon
                                     style={{ marginRight: 10 }}
-                                />{" "}
+                                />{' '}
                                 <b>Solicitante:</b>&nbsp;
-                                {this.props.reform.author}{" "}
+                                {this.props.reform.author}{' '}
                                 <SearchIcon
                                     style={{
-                                        marginLeft: "2px",
-                                        cursor: "pointer",
-                                        color: "rgb(21,38,32)"
+                                        marginLeft: '2px',
+                                        cursor: 'pointer',
+                                        color: 'rgb(21,38,32)'
                                     }}
                                     onClick={() =>
                                         this.setState({ modalOpened: true })
@@ -311,30 +311,30 @@ export default class ReformaDetalhe extends React.Component {
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18,
-                                    marginTop: "20px"
+                                    marginTop: '20px'
                                 }}
                             >
-                                <WhatsApp style={{ marginRight: 10 }} />{" "}
+                                <WhatsApp style={{ marginRight: 10 }} />{' '}
                                 <b>Contato:</b>&nbsp;
-                                {this.props.reform.phone}{" "}
+                                {this.props.reform.phone}{' '}
                             </Typography>
                             <Divider />
                         </Grid>
                         <Grid item xs={12}>
                             <Typography
                                 style={{
-                                    display: "flex",
-                                    textAlign: "center",
+                                    display: 'flex',
+                                    textAlign: 'center',
                                     fontSize: 18,
-                                    marginTop: "20px"
+                                    marginTop: '20px'
                                 }}
                             >
-                                <BlockIcon style={{ marginRight: 10 }} />{" "}
+                                <BlockIcon style={{ marginRight: 10 }} />{' '}
                                 <b>Restrições:</b>
-                                &nbsp; {this.props.reform.restrictions}{" "}
+                                &nbsp; {this.props.reform.restrictions}{' '}
                             </Typography>
                             <Divider />
                         </Grid>
@@ -347,6 +347,6 @@ export default class ReformaDetalhe extends React.Component {
                     {this.renderModalContent()}
                 </Modal>
             </div>
-        );
+        )
     }
 }

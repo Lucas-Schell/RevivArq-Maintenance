@@ -1,56 +1,56 @@
-import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import { Constants } from "../../configs/constants";
-import TableRow from "@material-ui/core/TableRow";
-import { Edit as EditIcon } from "@material-ui/icons";
-import { showNotification } from "components/Notification";
-import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import { getReforms } from "../../services/reforms/index.js";
-import { loggedUser } from "../../services/user/index";
-import Typography from "@material-ui/core/Typography";
-import ReformaDetalhe from "../ReformaDetalhe/index.js";
-import toMoneyConversion from "helpers/NumberUtility";
-import { Search as SearchIcon } from "@material-ui/icons";
-import BlockIcon from "@material-ui/icons/Block";
-import { Button } from "@material-ui/core";
-import { any } from "prop-types";
-import { update } from "../../services/user/index.js";
-import TextField from "@material-ui/core/TextField";
+import React, { Component } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import { Constants } from '../../configs/constants'
+import TableRow from '@material-ui/core/TableRow'
+import { Edit as EditIcon } from '@material-ui/icons'
+import { showNotification } from 'components/Notification'
+import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
+import { getReforms } from '../../services/reforms/index.js'
+import { loggedUser } from '../../services/user/index'
+import Typography from '@material-ui/core/Typography'
+import ReformaDetalhe from '../ReformaDetalhe/index.js'
+import toMoneyConversion from 'helpers/NumberUtility'
+import { Search as SearchIcon } from '@material-ui/icons'
+import BlockIcon from '@material-ui/icons/Block'
+import { Button } from '@material-ui/core'
+import { any } from 'prop-types'
+import { update } from '../../services/user/index.js'
+import TextField from '@material-ui/core/TextField'
 import {
     InputLabel,
     Checkbox,
     FormControlLabel,
     FormControl
-} from "@material-ui/core";
-import Select from "@material-ui/core/Select";
+} from '@material-ui/core'
+import Select from '@material-ui/core/Select'
 
 const styles = (theme) => ({
     root: {
-        width: "100%",
+        width: '100%',
         marginTop: 100,
-        overflowX: "auto",
-        borderRadius: "55px"
+        overflowX: 'auto',
+        borderRadius: '55px'
     },
     table: {
         minWidth: 650,
-        borderBottomRightRadius: "15px",
-        border: "15px",
-        marginBottom: "15px"
+        borderBottomRightRadius: '15px',
+        border: '15px',
+        marginBottom: '15px'
     },
     tableWrapper: {
         maxHeight: 440,
-        overflow: "auto"
+        overflow: 'auto'
     }
-});
+})
 
 export default class SwitchListSecondary extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             reforms: [],
             user: {},
@@ -58,15 +58,15 @@ export default class SwitchListSecondary extends React.Component {
             openedReformIndex: -1,
             isLoading: true,
             abreEdicao: false
-        };
+        }
     }
 
     async componentDidMount() {
-        const reforms = await getReforms();
-        this.setState({ reforms, isLoading: false });
+        const reforms = await getReforms()
+        this.setState({ reforms, isLoading: false })
 
-        const user = await loggedUser();
-        this.setState({ user, isLoading: false });
+        const user = await loggedUser()
+        this.setState({ user, isLoading: false })
         //const user = await read()
     }
 
@@ -74,21 +74,21 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({
             irDash: true,
             reforma: reform
-        });
+        })
         this.props.history.push({
-            pathname: "/reforma",
+            pathname: '/reforma',
             state: {
                 reform
             }
-        });
+        })
     }
 
     async updateUsers(editUser) {
-        return await update(editUser);
+        return await update(editUser)
     }
 
     handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         const editUser = {
             _id: this.state.user._id,
@@ -98,24 +98,24 @@ export default class SwitchListSecondary extends React.Component {
             cnpj: this.state.user.cnpj,
             civilStatus: this.state.user.civilStatus,
             whatsapp: this.state.user.whatsapp
-        };
-
-        const updateUser = await this.updateUsers(editUser);
-        if (updateUser.statusCode !== Constants.successCode) {
-            showNotification(updateUser.statusDesc, "", "danger");
-            return false;
-        } else {
-            showNotification(updateUser.data.message);
-            return true;
         }
-    };
+
+        const updateUser = await this.updateUsers(editUser)
+        if (updateUser.statusCode !== Constants.successCode) {
+            showNotification(updateUser.statusDesc, '', 'danger')
+            return false
+        } else {
+            showNotification(updateUser.data.message)
+            return true
+        }
+    }
 
     renderContent(reform, index) {
         if (
             this.state.openedReformIndex === -1 ||
             this.state.openedReformIndex === index
         )
-            return this.renderRow(reform, index);
+            return this.renderRow(reform, index)
     }
 
     renderRow(reform, index) {
@@ -124,7 +124,7 @@ export default class SwitchListSecondary extends React.Component {
             <TableRow key={reform.id}>
                 <TableCell
                     component="th"
-                    style={{ borderBottomLeftRadius: "15px" }}
+                    style={{ borderBottomLeftRadius: '15px' }}
                     scope="row"
                 >
                     {reform.establishmentName}
@@ -136,7 +136,7 @@ export default class SwitchListSecondary extends React.Component {
                 <TableCell align="right">{reform.status}</TableCell>
                 <TableCell align="right">
                     <SearchIcon
-                        style={{ cursor: "pointer", color: "rgb(21,38,32)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={(e) =>
                             this.setState({ openedReformIndex: index })
                         }
@@ -144,73 +144,73 @@ export default class SwitchListSecondary extends React.Component {
                 </TableCell>
                 <TableCell
                     align="right"
-                    style={{ borderBottomRightRadius: "15px" }}
+                    style={{ borderBottomRightRadius: '15px' }}
                 >
                     <EditIcon
-                        style={{ cursor: "pointer", color: "rgb(21,38,32)" }}
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={(e) => this.handleClick(reform)}
                     />
                 </TableCell>
             </TableRow>
-        );
+        )
     }
 
     handleClickvoltar() {
         this.setState({
             irDash: false
-        });
+        })
     }
 
     trocaBotao(e) {
-        var estado = this.state.trocaBotao;
+        var estado = this.state.trocaBotao
         if (estado) {
             this.setState({
                 trocaBotao: false,
                 abreEdicao: false,
                 disabled: false
-            });
+            })
         } else {
             this.setState({
                 trocaBotao: true,
                 abreEdicao: true,
                 disabled: true
-            });
+            })
         }
     }
 
     abreEdicao(e) {
-        var estado = this.state.disabled;
+        var estado = this.state.disabled
         if (estado) {
             this.setState({
                 abreEdicao: false,
                 trocaBotao: false
-            });
+            })
         } else {
             this.setState({
                 abreEdicao: true,
                 trocaBotao: true
-            });
+            })
         }
     }
 
     closeDetail = () => {
-        this.setState({ openedReformIndex: -1 });
-    };
+        this.setState({ openedReformIndex: -1 })
+    }
 
     render() {
-        const { reforms, isLoading, user } = this.state;
-        const classes = styles();
-        let count = 0;
+        const { reforms, isLoading, user } = this.state
+        const classes = styles()
+        let count = 0
 
-        const formState = "outlined-disabled";
+        const formState = 'outlined-disabled'
 
         return (
-            <div style={{ display: "inline-flex" }}>
-                <div style={{ display: "flex-start " }}>
+            <div style={{ display: 'inline-flex' }}>
+                <div style={{ display: 'flex-start ' }}>
                     <div
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
+                            display: 'flex',
+                            justifyContent: 'center',
                             marginLeft: 60,
                             marginBottom: -60,
                             marginTop: 30,
@@ -222,9 +222,9 @@ export default class SwitchListSecondary extends React.Component {
                             style={{
                                 marginLeft: 30,
                                 marginTop: 10,
-                                color: "rgb(255,248,41)",
+                                color: 'rgb(255,248,41)',
                                 fontSize: 40,
-                                fontFamily: "Playfair Display"
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -233,37 +233,37 @@ export default class SwitchListSecondary extends React.Component {
                     </div>
                     <Paper
                         className={classes.root}
-                        style={{ margin: 60, borderRadius: "15px" }}
+                        style={{ margin: 60, borderRadius: '15px' }}
                     >
                         <Table
                             className={classes.table}
                             style={{
-                                "border-collapse": "separate",
-                                "border-radius": "15px"
+                                'border-collapse': 'separate',
+                                'border-radius': '15px'
                             }}
                         >
                             <TableHead
-                                style={{ backgroundColor: "rgb(255,248,41)" }}
+                                style={{ backgroundColor: 'rgb(255,248,41)' }}
                             >
                                 <TableRow>
                                     <TableCell
                                         style={{
-                                            borderTopLeftRadius: "15px",
-                                            fontSize: "20px"
+                                            borderTopLeftRadius: '15px',
+                                            fontSize: '20px'
                                         }}
                                     >
                                         Detalhes do Usuário
                                     </TableCell>
                                     <TableCell
-                                        style={{ alignItems: "center" }}
-                                        style={{ borderTopRightRadius: "15px" }}
+                                        style={{ alignItems: 'center' }}
+                                        style={{ borderTopRightRadius: '15px' }}
                                     >
                                         {this.state.trocaBotao ? (
                                             <Typography>
                                                 <TableCell>
                                                     <BlockIcon
                                                         style={{
-                                                            fontWeight: "bold"
+                                                            fontWeight: 'bold'
                                                         }}
                                                         onClick={(e) =>
                                                             this.trocaBotao(e)
@@ -276,11 +276,11 @@ export default class SwitchListSecondary extends React.Component {
                                                 <TableCell>
                                                     <EditIcon
                                                         style={{
-                                                            cursor: "pointer",
-                                                            align: "right",
+                                                            cursor: 'pointer',
+                                                            align: 'right',
                                                             marginLeft: 10,
                                                             color:
-                                                                "rgb(21,38,32)"
+                                                                'rgb(21,38,32)'
                                                         }}
                                                         onClick={(e) =>
                                                             this.abreEdicao(e)
@@ -296,7 +296,7 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell align="left">
                                         <Typography
-                                            style={{ fontSize: "18px" }}
+                                            style={{ fontSize: '18px' }}
                                         >
                                             Nome:<br></br>
                                             <TextField
@@ -323,7 +323,7 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell align="left">
                                         <Typography
-                                            style={{ fontSize: "18px" }}
+                                            style={{ fontSize: '18px' }}
                                         >
                                             Sobrenome:<br></br>
                                             <TextField
@@ -351,7 +351,7 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell align="left">
                                         <Typography
-                                            style={{ fontSize: "18px" }}
+                                            style={{ fontSize: '18px' }}
                                         >
                                             Celular:<br></br>
                                             <TextField
@@ -379,7 +379,7 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell align="left">
                                         <Typography
-                                            style={{ fontSize: "18px" }}
+                                            style={{ fontSize: '18px' }}
                                         >
                                             CPF:<br></br>
                                             <TextField
@@ -406,7 +406,7 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell align="left">
                                         <Typography
-                                            style={{ fontSize: "18px" }}
+                                            style={{ fontSize: '18px' }}
                                         >
                                             CNPJ:<br></br>
                                             <TextField
@@ -437,8 +437,8 @@ export default class SwitchListSecondary extends React.Component {
                                     >
                                         <Typography
                                             style={{
-                                                marginTop: "2px",
-                                                fontSize: "18px"
+                                                marginTop: '2px',
+                                                fontSize: '18px'
                                             }}
                                         >
                                             Estado Civil:
@@ -459,10 +459,10 @@ export default class SwitchListSecondary extends React.Component {
                                                 }
                                                 labelId="label"
                                                 id="select"
-                                                style={{ width: "200px" }}
+                                                style={{ width: '200px' }}
                                                 value={
                                                     this.state.user
-                                                        .civilStatus || ""
+                                                        .civilStatus || ''
                                                 }
                                             >
                                                 <MenuItem value="Solteiro(a)">
@@ -487,16 +487,16 @@ export default class SwitchListSecondary extends React.Component {
                                 <TableRow>
                                     <TableCell
                                         style={{
-                                            borderBottomLeftRadius: "15px"
+                                            borderBottomLeftRadius: '15px'
                                         }}
                                     >
                                         {this.state.abreEdicao ? (
                                             <Button
                                                 type="submit"
                                                 style={{
-                                                    color: "white",
+                                                    color: 'white',
                                                     backgroundColor:
-                                                        "rgb(21,38,32)"
+                                                        'rgb(21,38,32)'
                                                 }}
                                                 onClick={this.handleSubmit}
                                             >
@@ -513,7 +513,7 @@ export default class SwitchListSecondary extends React.Component {
                 </div>
                 <div
                     style={{
-                        display: "block",
+                        display: 'block',
                         marginLeft: 0,
                         marginBottom: -0,
                         marginTop: 0
@@ -524,9 +524,9 @@ export default class SwitchListSecondary extends React.Component {
                             variant="overline"
                             style={{
                                 marginTop: 40,
-                                color: "rgb(255,248,41)",
+                                color: 'rgb(255,248,41)',
                                 fontSize: 40,
-                                fontFamily: "Playfair Display"
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             Solicitações de Orçamento
@@ -535,18 +535,18 @@ export default class SwitchListSecondary extends React.Component {
                     <div className={classes.tableWrapper}>
                         <Paper
                             className={classes.root}
-                            style={{ margin: 10, borderRadius: "15px" }}
+                            style={{ margin: 10, borderRadius: '15px' }}
                         >
                             <Table
                                 className={classes.table}
                                 style={{
-                                    "border-collapse": "separate",
-                                    "border-radius": "15px"
+                                    'border-collapse': 'separate',
+                                    'border-radius': '15px'
                                 }}
                             >
                                 <TableHead
                                     style={{
-                                        backgroundColor: "rgb(255,248,41)"
+                                        backgroundColor: 'rgb(255,248,41)'
                                     }}
                                 >
                                     <TableRow>
@@ -561,7 +561,7 @@ export default class SwitchListSecondary extends React.Component {
                                             align="left"
                                         >
                                             <b>Orçamento Limite</b>
-                                        </TableCell>{" "}
+                                        </TableCell>{' '}
                                         {/* estava Nome Solicitação, troquei para orçamento limite pois n entendi qual campo era esse e n tem nenhum parecido que volte nessa chamada */}
                                         <TableCell
                                             style={{ fontSize: 15 }}
@@ -585,7 +585,7 @@ export default class SwitchListSecondary extends React.Component {
                                             style={{ fontSize: 15 }}
                                             align="left"
                                             style={{
-                                                borderTopRightRadius: "15px"
+                                                borderTopRightRadius: '15px'
                                             }}
                                         >
                                             <b></b>
@@ -612,13 +612,13 @@ export default class SwitchListSecondary extends React.Component {
                             {!isLoading && reforms.length === 0 && (
                                 <div
                                     style={{
-                                        minHeight: "100px",
-                                        justifyContent: "center",
-                                        display: "flex",
-                                        alignItems: "center"
+                                        minHeight: '100px',
+                                        justifyContent: 'center',
+                                        display: 'flex',
+                                        alignItems: 'center'
                                     }}
                                 >
-                                    <h2 style={{ textAlign: "center" }}>
+                                    <h2 style={{ textAlign: 'center' }}>
                                         Você não possui nenhuma solicitação
                                         efetuada.
                                     </h2>
@@ -628,6 +628,6 @@ export default class SwitchListSecondary extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }

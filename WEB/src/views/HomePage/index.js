@@ -1,44 +1,44 @@
-import React from "react";
-import "./styles.css";
-import InstaGallery from "../../components/InstaGallery/index.js";
-import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import './styles.css'
+import InstaGallery from '../../components/InstaGallery/index.js'
+import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 // Biblioteca de Componentes
-import carol from "../../Assets/carol.png";
-import vanessa from "../../Assets/vanessa.png";
-import Divider from "@material-ui/core/Divider";
+import carol from '../../Assets/carol.png'
+import vanessa from '../../Assets/vanessa.png'
+import Divider from '@material-ui/core/Divider'
 // Views
-import Page from "views/Page";
-import { Button } from "@material-ui/core";
+import Page from 'views/Page'
+import { Button } from '@material-ui/core'
 
 // Serviços
 
 const styles = (theme) => ({
     root: {
-        display: "flex"
+        display: 'flex'
     },
     button: {
         margin: 1
     }
-});
+})
 
 class HomePage extends Page {
     // Uma das varias maneiras de proteger uma rota é criar uma Rota protegida e usa-la com herança. Ver ProtectedPage para entender a lógica
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             userList: []
-        };
+        }
     }
 
     authenticated = () => {
-        return this.unauthenticated();
-    };
+        return this.unauthenticated()
+    }
 
     unauthenticated = () => {
-        const { classes } = this.props;
+        const { classes } = this.props
         return (
             <div>
                 <Grid container spacing={3}>
@@ -49,16 +49,16 @@ class HomePage extends Page {
                         justify="center"
                         style={{
                             height: 700,
-                            alignItems: "center",
-                            objectFit: "nonen"
+                            alignItems: 'center',
+                            objectFit: 'nonen'
                         }}
                     >
                         <div
                             style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                height: "70vh"
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '70vh'
                             }}
                         >
                             <Typography
@@ -66,8 +66,8 @@ class HomePage extends Page {
                                 className="txtIni"
                                 style={{
                                     fontSize: 60,
-                                    color: "white",
-                                    fontFamily: "Playfair Display"
+                                    color: 'white',
+                                    fontFamily: 'Playfair Display'
                                 }}
                                 gutterBottom
                             >
@@ -79,13 +79,13 @@ class HomePage extends Page {
                     <Grid item xs={6}>
                         <Typography
                             style={{
-                                textAlign: "right",
+                                textAlign: 'right',
                                 marginTop: 80,
                                 marginRight: 30,
                                 fontSize: 60,
-                                fontWeight: "bold",
-                                color: "white",
-                                fontFamily: "Playfair Display"
+                                fontWeight: 'bold',
+                                color: 'white',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             QUEM
@@ -98,8 +98,8 @@ class HomePage extends Page {
                         item
                         xs={6}
                         style={{
-                            textAlign: "left",
-                            justifyContent: "left",
+                            textAlign: 'left',
+                            justifyContent: 'left',
                             marginTop: 83,
                             fontSize: 20
                         }}
@@ -108,23 +108,23 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 marginLeft: 30,
                                 marginRight: 260,
                                 marginTop: 15,
                                 fontSize: 20,
-                                color: "rgb(255,255,255)",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,255,255)',
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
-                            Somos uma empresa que oferece{" "}
-                            <b style={{ color: "rgb(255,248,41)" }}>
+                            Somos uma empresa que oferece{' '}
+                            <b style={{ color: 'rgb(255,248,41)' }}>
                                 serviços personalizados
-                            </b>{" "}
+                            </b>{' '}
                             de arquitetura e design para transformar o seu
-                            negócio{" "}
-                            <b style={{ color: "rgb(255,248,41)" }}>
+                            negócio{' '}
+                            <b style={{ color: 'rgb(255,248,41)' }}>
                                 cabendo no seu bolso
                             </b>
                         </Typography>
@@ -141,7 +141,7 @@ class HomePage extends Page {
                     >
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: "rgb(255,248,41)" }}
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
                         />
                     </Grid>
 
@@ -159,12 +159,12 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 marginTop: 100,
                                 fontSize: 20,
-                                color: "rgb(255,255,255)",
-                                fontWeight: "bold",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,255,255)',
+                                fontWeight: 'bold',
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -175,11 +175,11 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 fontSize: 20,
-                                color: "rgb(255,248,41)",
-                                fontWeight: "bold",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,248,41)',
+                                fontWeight: 'bold',
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -190,12 +190,12 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 marginTop: 15,
                                 fontSize: 20,
-                                color: "rgb(255,255,255)",
+                                color: 'rgb(255,255,255)',
                                 letterSpacing: 0.5,
-                                fontFamily: "Playfair Display"
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -228,12 +228,12 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 marginTop: 100,
                                 fontSize: 20,
-                                color: "rgb(255,255,255)",
-                                fontWeight: "bold",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,255,255)',
+                                fontWeight: 'bold',
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -244,11 +244,11 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 fontSize: 20,
-                                color: "rgb(255,248,41)",
-                                fontWeight: "bold",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,248,41)',
+                                fontWeight: 'bold',
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -259,12 +259,12 @@ class HomePage extends Page {
                             variant="overline"
                             display="block"
                             style={{
-                                textAlign: "left",
+                                textAlign: 'left',
                                 marginTop: 15,
                                 fontSize: 20,
-                                color: "rgb(255,255,255)",
+                                color: 'rgb(255,255,255)',
                                 letterSpacing: 0.5,
-                                fontFamily: "Playfair Display"
+                                fontFamily: 'Playfair Display'
                             }}
                             gutterBottom
                         >
@@ -298,23 +298,23 @@ class HomePage extends Page {
                     >
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: "rgb(255,248,41)" }}
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
                         />
                     </Grid>
 
                     <Grid item xs={12} style={{ marginTop: 80 }}>
                         <Typography
                             style={{
-                                textAlign: "center",
+                                textAlign: 'center',
                                 marginBottom: 30,
                                 fontSize: 40,
-                                fontWeight: "bold",
-                                color: "white",
-                                fontFamily: "Playfair Display"
+                                fontWeight: 'bold',
+                                color: 'white',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
-                            Fique ligado no nosso{" "}
-                            <b style={{ color: "rgb(255,248,41)" }}>
+                            Fique ligado no nosso{' '}
+                            <b style={{ color: 'rgb(255,248,41)' }}>
                                 Instagram!
                             </b>
                         </Typography>
@@ -329,13 +329,13 @@ class HomePage extends Page {
                     >
                         <Typography
                             style={{
-                                textAlign: "center",
+                                textAlign: 'center',
                                 marginBottom: 20,
                                 marginLeft: 100,
                                 marginRight: 100,
                                 fontSize: 20,
-                                color: "white",
-                                fontFamily: "Playfair Display"
+                                color: 'white',
+                                fontFamily: 'Playfair Display'
                             }}
                         >
                             Atualizamos nosso instagram diariamente com dicas de
@@ -346,13 +346,13 @@ class HomePage extends Page {
 
                         <Button
                             style={{
-                                color: "rgb(255,248,41)",
-                                fontFamily: "Playfair Display"
+                                color: 'rgb(255,248,41)',
+                                fontFamily: 'Playfair Display'
                             }}
                             onClick={() => {
                                 window.open(
-                                    "https://www.instagram.com/revivarq"
-                                );
+                                    'https://www.instagram.com/revivarq'
+                                )
                             }}
                             className={classes.button}
                         >
@@ -361,8 +361,8 @@ class HomePage extends Page {
                     </Grid>
                 </Grid>
             </div>
-        );
-    };
+        )
+    }
 }
 
 export default withStyles(styles)(HomePage);

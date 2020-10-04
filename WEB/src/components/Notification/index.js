@@ -1,4 +1,4 @@
-import { store } from "react-notifications-component";
+import { store } from 'react-notifications-component'
 
 /**
  * types disponiveis:
@@ -9,13 +9,13 @@ import { store } from "react-notifications-component";
  *  warning
  */
 export const showNotification = (
-    message = "",
-    title = "",
-    type = "success",
-    insert = "bottom",
-    container = "bottom-center",
-    animationIn = ["animated", "fadeIn"],
-    animationOut = ["animated", "fadeOut"],
+    message = '',
+    title = '',
+    type = 'success',
+    insert = 'bottom',
+    container = 'bottom-center',
+    animationIn = ['animated', 'fadeIn'],
+    animationOut = ['animated', 'fadeOut'],
     dismiss = {
         duration: 4000,
         onScreen: false
@@ -30,5 +30,5 @@ export const showNotification = (
         animationIn,
         animationOut,
         dismiss
-    });
-};
+    })
+}
