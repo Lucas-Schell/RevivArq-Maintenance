@@ -29,7 +29,7 @@ class ValidationHelper {
 
     /**
      * Validador de status da reforma
-     * @param {*} civilStatus 
+     * @param {*} civilStatus
      * @return Boolean
      */
     static validReformStatus(reformStatus) {
@@ -42,48 +42,53 @@ class ValidationHelper {
     }
 
 
-    static get UFs() { return ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"] }
+    static get UFs() {
+        return ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
+    }
 
     /**
      * Validador de CPF
-     * @param {*} cpf 
+     * @param {*} cpf
      * @return Boolean
      */
     static validCPF(cpf) {
-        var numeros, digitos, soma, i, resultado, digitos_iguais;
-        digitos_iguais = 1;
-        if (cpf.length < 11)
+        cpf = cpf.replace(/[^\d]+/g, '');
+
+        if (cpf === '') return false;
+        if (cpf.length !== 11 ||
+            cpf === "00000000000" ||
+            cpf === "11111111111" ||
+            cpf === "22222222222" ||
+            cpf === "33333333333" ||
+            cpf === "44444444444" ||
+            cpf === "55555555555" ||
+            cpf === "66666666666" ||
+            cpf === "77777777777" ||
+            cpf === "88888888888" ||
+            cpf === "99999999999")
             return false;
-        for (i = 0; i < cpf.length - 1; i++)
-            if (cpf.charAt(i) != cpf.charAt(i + 1)) {
-                digitos_iguais = 0;
-                break;
-            }
-        if (!digitos_iguais) {
-            numeros = cpf.substring(0, 9);
-            digitos = cpf.substring(9);
-            soma = 0;
-            for (i = 10; i > 1; i--)
-                soma += numeros.charAt(10 - i) * i;
-            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(0))
-                return false;
-            numeros = cpf.substring(0, 10);
-            soma = 0;
-            for (i = 11; i > 1; i--)
-                soma += numeros.charAt(11 - i) * i;
-            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(1))
-                return false;
-            return true;
-        }
-        else
+
+        let add = 0;
+        for (let i = 0; i < 9; i++)
+            add += parseInt(cpf.charAt(i)) * (10 - i);
+        let rev = 11 - (add % 11);
+        if (rev === 10 || rev === 11)
+            rev = 0;
+        if (rev !== parseInt(cpf.charAt(9)))
             return false;
+
+        add = 0;
+        for (let i = 0; i < 10; i++)
+            add += parseInt(cpf.charAt(i)) * (11 - i);
+        rev = 11 - (add % 11);
+        if (rev === 10 || rev === 11)
+            rev = 0;
+        return rev === parseInt(cpf.charAt(10));
     }
 
     /**
      * Validador de CNPJ
-     * @param {*} cnpj 
+     * @param {*} cnpj
      * @return Boolean
      */
     static validCNPJ(cnpj) {
@@ -140,7 +145,7 @@ class ValidationHelper {
 
     /**
      * Validador de senha
-     * @param {*} password 
+     * @param {*} password
      * @return Boolean
      */
     static validPassword(password) {
@@ -149,7 +154,7 @@ class ValidationHelper {
 
     /**
      * Validador de nome
-     * @param {*} name 
+     * @param {*} name
      * @return Boolean
      */
     static validName(name) {
@@ -158,7 +163,7 @@ class ValidationHelper {
 
     /**
      * Validador de sobrenome
-     * @param {*} lastName 
+     * @param {*} lastName
      * @return Boolean
      */
     static validLastName(lastName) {
@@ -167,7 +172,7 @@ class ValidationHelper {
 
     /**
      * Validador de rua
-     * @param {*} name 
+     * @param {*} name
      * @return Boolean
      */
     static validStreet(street) {
@@ -176,7 +181,7 @@ class ValidationHelper {
 
     /**
      * Validador de cep
-     * @param {*} cep 
+     * @param {*} cep
      * @return Boolean
      */
     static validCep(cep) {
@@ -185,7 +190,7 @@ class ValidationHelper {
 
     /**
      * Validador de email
-     * @param {*} email 
+     * @param {*} email
      * @return Boolean
      */
     static validEmail(email) {
@@ -194,7 +199,7 @@ class ValidationHelper {
 
     /**
      * Validador de estado civil
-     * @param {*} civilStatus 
+     * @param {*} civilStatus
      * @return Boolean
      */
     static validCivilStatus(civilStatus) {
@@ -209,124 +214,124 @@ class ValidationHelper {
 
     /**
      * Validador de rua (endereço)
-     * @param {*} street 
+     * @param {*} street
      * @return Boolean
      */
     static validStreet(street) {
         return (!!street && street.length > 0 && street.length <= 50)
     }
 
-    /** 
+    /**
      * Validador de número (endereço)
-     * @param {*} number 
+     * @param {*} number
      * @return Boolean
      */
     static validNumber(number) {
         return (!!number && number > 0)
     }
 
-    /** 
+    /**
      * Validador de complemento (endereço)
-     * @param {*} complement 
+     * @param {*} complement
      * @return Boolean
      */
     static validComplement(complement) {
         return (!!complement && complement.length > 0 && complement.length <= 50)
     }
 
-    /** 
+    /**
      * Validador de bairro (endereço)
-     * @param {*} neighborhood 
+     * @param {*} neighborhood
      * @return Boolean
      */
     static validNeighborhood(neighborhood) {
         return (!!neighborhood && neighborhood.length > 0 && neighborhood.length <= 40)
     }
 
-    /** 
+    /**
      * Validador de cidade (endereço)
-     * @param {*} neighborhood 
+     * @param {*} neighborhood
      * @return Boolean
      */
     static validCity(city) {
         return (!!city && city.length > 0 && city.length <= 40)
     }
 
-    /** 
+    /**
      * Validador de UF
-     * @param {*} UF 
+     * @param {*} UF
      * @return Boolean
      */
     static validUF(uf) {
         return (!!uf && ValidationHelper.UFs.includes(uf))
     }
 
-    /** 
+    /**
      * Validador de tipo de estabelecimento
-     * @param {*} establishmentType 
+     * @param {*} establishmentType
      * @return Boolean
      */
     static validEstablishmentType(establishmentType) {
         return (!!establishmentType && establishmentType.length > 0 && establishmentType.length <= 50)
     }
 
-    /** 
+    /**
      * Validador do nome do estabelecimento
-     * @param {*} establishmentType 
+     * @param {*} establishmentType
      * @return Boolean
      */
     static validEstablishmentName(establishmentName) {
         return (!!establishmentName && establishmentName.length > 0 && establishmentName.length <= 60)
     }
 
-    /** 
+    /**
      * Validador de área do estabelecimento
-     * @param {*} area 
+     * @param {*} area
      * @return Boolean
      */
     static validArea(area) {
         return (!!area && !isNaN(area) && (area > 0 && area <= 999999))
     }
 
-    /** 
+    /**
      * Validador do objetivo
-     * @param {*} goal 
+     * @param {*} goal
      * @return Boolean
      */
     static validGoal(goal) {
         return (!!goal && goal.length >= 0 && goal.length <= 100)
     }
 
-    /** 
+    /**
      * Validador do telefone
-     * @param {*} phone 
+     * @param {*} phone
      * @return Boolean
      */
     static validPhone(phone) {
         return (!!phone && phone.length >= 0 && phone.length <= 20)
     }
 
-    /** 
+    /**
      * Validador das restrições
-     * @param {*} restrictions 
+     * @param {*} restrictions
      * @return Boolean
      */
     static validRestrictions(restrictions) {
         return (!!restrictions && restrictions.length >= 0 && restrictions.length <= 100)
     }
 
-    /** 
+    /**
      * Validador do limite de orçamento
-     * @param {*} budgetLimit 
+     * @param {*} budgetLimit
      * @return Boolean
      */
     static validBudgetLimit(budgetLimit) {
         return (!!budgetLimit && !isNaN(budgetLimit) && budgetLimit > 0 && budgetLimit <= Number.MAX_VALUE)
     }
 
-    /** 
+    /**
      * Validador do campo outros
-     * @param {*} outros 
+     * @param {*} outros
      * @return Boolean
      */
     static validOutros(outros) {
