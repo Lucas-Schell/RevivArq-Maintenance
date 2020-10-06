@@ -1,9 +1,8 @@
 .empresaText {
-    paddingtop: 200;
-    display: "inline-flex";
-    text-size-adjust: 33;
-    text-: "italic";
-    fontweight: "bold";
+    display: inline-flex;
+    font-size-adjust: 33;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .instaText {

@@ -308,11 +308,7 @@ class ValidationHelper {
      * @return Boolean
      */
     static validEstablishmentName(establishmentName) {
-        return (
-            !!establishmentName &&
-            establishmentName.length > 0 &&
-            establishmentName.length <= 60
-        )
+        return !!establishmentName && establishmentName.length <= 60
     }
 
     /**
@@ -330,7 +326,7 @@ class ValidationHelper {
      * @return Boolean
      */
     static validGoal(goal) {
-        return !!goal && goal.length >= 0 && goal.length <= 100
+        return !!goal && goal.length <= 100
     }
 
     /**
@@ -339,7 +335,7 @@ class ValidationHelper {
      * @return Boolean
      */
     static validPhone(phone) {
-        return !!phone && phone.length >= 0 && phone.length <= 20
+        return !!phone && phone.length <= 20
     }
 
     /**
@@ -348,11 +344,7 @@ class ValidationHelper {
      * @return Boolean
      */
     static validRestrictions(restrictions) {
-        return (
-            !!restrictions &&
-            restrictions.length >= 0 &&
-            restrictions.length <= 100
-        )
+        return !!restrictions && restrictions.length <= 100
     }
 
     /**
@@ -375,9 +367,7 @@ class ValidationHelper {
      * @return Boolean
      */
     static validOutros(outros) {
-        return (
-            !outros || (!!outros && outros.length >= 0 && outros.length <= 200)
-        )
+        return !outros || (!!outros && outros.length <= 200)
     }
 
     /**

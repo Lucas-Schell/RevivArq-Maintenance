@@ -36,7 +36,6 @@ class ReformForm extends React.Component {
             photos: [],
             establishmentName: '',
             establishmentType: '',
-            establishmentName: '',
             goal: '',
             status: '',
             area: '',
@@ -978,4 +977,4 @@ class ReformForm extends React.Component {
     }
 }
 
-export default withRouter(ReformForm);
+export default withRouter(ReformForm)
