@@ -93,6 +93,6 @@ export const api_auth_user = {
 }
 
 export const api_get_user = {
-    method: "get",
+    method: 'get',
     url: `${api}/auth_user/user`
-};
+}

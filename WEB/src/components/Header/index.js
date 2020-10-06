@@ -9,6 +9,7 @@ import LoginForm from 'components/Forms/LoginForm'
 import CadastroUsuario from 'components/Forms/CadastroUsuario'
 import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
+import { makeStyles } from '@material-ui/core/styles'
 import { showNotification } from 'components/Notification'
 
 class Header extends React.Component {
@@ -285,6 +286,17 @@ class Header extends React.Component {
                         Início
                     </Button>
 
+                    <Button
+                        style={{ fontFamily: 'Playfair Display' }}
+                        id="botaoTicket"
+                        className="btn"
+                        onClick={() => {
+                            this.redirect('/ticket')
+                        }}
+                    >
+                        Envie um ticket
+                    </Button>
+
                     {(!isAdmin || isAdmin === 'false') && (
                         <Button
                             style={{ fontFamily: 'Playfair Display' }}
@@ -328,4 +340,4 @@ class Header extends React.Component {
     }
 }
 
-export default withRouter(Header);
+export default withRouter(Header)

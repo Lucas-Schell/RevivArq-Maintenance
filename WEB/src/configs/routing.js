@@ -8,6 +8,7 @@ import BlankPage from 'views/BlankPage'
 import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import Erro403 from 'views/Erro403'
+import Ticket from '../views/TicketPage'
 
 import AreaAdmin from '../views/AreaAdmin'
 import AreaCliente from '../views/AreaCliente'
@@ -32,6 +33,7 @@ export default () => {
                 <Route path="/FacaPedido" component={FacaPedido} />
                 <Route path="/Reforma" component={Reforma} />
                 <Route path="/Erro403" component={Erro403} />
+                <Route path="/ticket" component={Ticket} />
 
                 {/* User Container */}
                 <Route exact path="/users" component={UserListPage} />

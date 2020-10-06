@@ -88,6 +88,7 @@ local.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/*
 
 # Gradle
 .idea/**/gradle.xml
@@ -604,6 +605,8 @@ paket-files/
 
 # JetBrains Rider
 .idea/
+.idea
+.idea/*
 *.sln.iml
 
 # CodeRush
