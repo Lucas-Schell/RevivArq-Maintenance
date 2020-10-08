@@ -21,6 +21,7 @@ import { Button } from '@material-ui/core'
 import { any } from 'prop-types'
 import { update } from '../../services/user/index.js'
 import TextField from '@material-ui/core/TextField'
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import {
     InputLabel,
     Checkbox,
@@ -149,6 +150,15 @@ export default class SwitchListSecondary extends React.Component {
                     <EditIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={(e) => this.handleClick(reform)}
+                    />
+                </TableCell>
+                <TableCell
+                    align="right"
+                    style={{ borderBottomRightRadius: '15px' }}
+                >
+                    <NoteAddIcon
+                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
+                        onClick={(e) => console.log("Teste")}
                     />
                 </TableCell>
             </TableRow>
@@ -551,7 +561,7 @@ export default class SwitchListSecondary extends React.Component {
                                 >
                                     <TableRow>
                                         <TableCell
-                                            style={{ fontSize: 15 }}
+                                            style={{ fontSize: 15, borderTopLeftRadius: '15px'}}
                                             className="table-row"
                                         >
                                             <b>Nome Estabelecimento</b>
@@ -574,6 +584,12 @@ export default class SwitchListSecondary extends React.Component {
                                             align="left"
                                         >
                                             <b>Status</b>
+                                        </TableCell>
+                                        <TableCell
+                                            style={{ fontSize: 15 }}
+                                            align="left"
+                                        >
+                                            <b></b>
                                         </TableCell>
                                         <TableCell
                                             style={{ fontSize: 15 }}
