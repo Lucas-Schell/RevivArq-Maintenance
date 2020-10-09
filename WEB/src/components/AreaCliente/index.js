@@ -145,7 +145,6 @@ export default class SwitchListSecondary extends React.Component {
                 </TableCell>
                 <TableCell
                     align="right"
-                    style={{ borderBottomRightRadius: '15px' }}
                 >
                     <EditIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
