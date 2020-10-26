@@ -1,14 +1,11 @@
 import axios from 'axios'
 import { Constants } from 'configs/constants'
-import { api_get_reforms, UpdateReforms } from 'configs/api_routes'
-import { GetReforms } from 'configs/api_routes'
-import { PostReform } from 'configs/api_routes'
+import { GetReforms, PostReform, UpdateReforms } from 'configs/api_routes'
 
 export const getReforms = async (user) => {
-    let route = GetReforms
     const response = await axios({
         method: 'get',
-        url: route.url,
+        url: GetReforms.url,
         timeout: 5000,
         data: user,
         headers: {
@@ -18,8 +15,7 @@ export const getReforms = async (user) => {
     })
 
     if (response) {
-        const api_response = response.data.data
-        return api_response
+        return response.data.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',
@@ -42,8 +38,7 @@ export const editReform = async (reform) => {
     })
 
     if (response) {
-        const api_response = response.data
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',
@@ -77,15 +72,11 @@ export const editReform = async (reform) => {
 } */
 
 export const postReform = async (reform) => {
-    let userID = await sessionStorage.getItem('id')
-
-    reform.userId = userID
-
-    let route = PostReform
+    reform.userId = await sessionStorage.getItem('id')
 
     const response = await axios({
         method: 'post',
-        url: route.url,
+        url: PostReform.url,
         timeout: 5000,
         data: reform,
         headers: {
@@ -95,8 +86,7 @@ export const postReform = async (reform) => {
     })
 
     if (response) {
-        const api_response = response.data
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',

@@ -5,7 +5,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import { Constants } from '../../configs/constants'
 import TableRow from '@material-ui/core/TableRow'
-import { Edit as EditIcon } from '@material-ui/icons'
+import { Edit as EditIcon, Search as SearchIcon } from '@material-ui/icons'
 import { showNotification } from 'components/Notification'
 import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
@@ -14,7 +14,6 @@ import { loggedUser } from '../../services/user/index'
 import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
 import toMoneyConversion from 'helpers/NumberUtility'
-import { Search as SearchIcon } from '@material-ui/icons'
 import BlockIcon from '@material-ui/icons/Block'
 import { Button } from '@material-ui/core'
 import { update } from '../../services/user'
@@ -56,6 +55,7 @@ export default class SwitchListSecondary extends React.Component {
 
     async componentDidMount() {
         const reforms = await getReforms()
+        console.log(reforms)
         this.setState({ reforms, isLoading: false })
 
         const user = await loggedUser()
@@ -146,7 +146,7 @@ export default class SwitchListSecondary extends React.Component {
                 >
                     <NoteAddIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={(e) => console.log('Teste')}
+                        onClick={() => console.log('Teste')}
                     />
                 </TableCell>
             </TableRow>
@@ -586,7 +586,7 @@ export default class SwitchListSecondary extends React.Component {
                                             style={{ fontSize: 15 }}
                                             align="left"
                                         >
-                                            <b></b>
+                                            <b />
                                         </TableCell>
                                         <TableCell
                                             style={{ fontSize: 15 }}
