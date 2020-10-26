@@ -19,13 +19,7 @@ import BlockIcon from '@material-ui/icons/Block'
 import { Button } from '@material-ui/core'
 import { update } from '../../services/user'
 import TextField from '@material-ui/core/TextField'
-import NoteAddIcon from '@material-ui/icons/NoteAdd';
-import {
-    InputLabel,
-    Checkbox,
-    FormControlLabel,
-    FormControl
-} from '@material-ui/core'
+import NoteAddIcon from '@material-ui/icons/NoteAdd'
 import Select from '@material-ui/core/Select'
 
 const styles = () => ({
@@ -140,9 +134,7 @@ export default class SwitchListSecondary extends React.Component {
                         }
                     />
                 </TableCell>
-                <TableCell
-                    align="right"
-                >
+                <TableCell align="right">
                     <EditIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                         onClick={() => this.handleClick(reform)}
@@ -154,7 +146,7 @@ export default class SwitchListSecondary extends React.Component {
                 >
                     <NoteAddIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={(e) => console.log("Teste")}
+                        onClick={(e) => console.log('Teste')}
                     />
                 </TableCell>
             </TableRow>
@@ -563,7 +555,10 @@ export default class SwitchListSecondary extends React.Component {
                                 >
                                     <TableRow>
                                         <TableCell
-                                            style={{ fontSize: 15, borderTopLeftRadius: '15px'}}
+                                            style={{
+                                                fontSize: 15,
+                                                borderTopLeftRadius: '15px'
+                                            }}
                                             className="table-row"
                                         >
                                             <b>Nome Estabelecimento</b>
