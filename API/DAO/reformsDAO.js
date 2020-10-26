@@ -15,7 +15,6 @@ function fetchReforms(id, callback, getAll = false) {
             return callback(errorObj, null)
         }
         callback(null, reforms)
-        return
     })
 }
 
@@ -30,12 +29,10 @@ function fetchReform(user, id, callback, getAll = false) {
         }
 
         reforms.forEach((reformEach) => {
-            if (reformEach.id == id) {
+            if (reformEach.id === id) {
                 callback(null, reformEach)
             }
         })
-
-        return
     })
 }
 
@@ -71,7 +68,6 @@ function findReform(id, callback) {
             return callback(errorObj, null)
         }
         callback(null, reform)
-        return
     })
 }
 
@@ -135,29 +131,9 @@ function updateReform(filteredReform, callback, isAdmin, callbackSendMail) {
                     callbackSendMail()
 
                 callback(null, { message: constants.reformUpdated }) //retorna apenas uma mensagem de sucesso, talvez nem tenha necessidade...
-                return
             }
         }
     )
-}
-
-function createOrderClause(query) {
-    // Algoritmo para Sort de field unico, na controller monta-se a query para que ela seja transformada aqui.
-    // Se quiserem sort de multiplos fields ver documentação do Mongoose e adaptar
-    return { [query.field]: query.isAscending }
-}
-
-function createWhereClause(query) {
-    if (query.contains !== undefined) {
-        query.$or = [
-            // equivalente à new RegExp(query.contains, "i")
-            { name: { $regex: `${query.contains}`, $options: 'i' } },
-            { username: { $regex: `${query.contains}`, $options: 'i' } },
-            { email: { $regex: `${query.contains}`, $options: 'i' } }
-        ]
-    }
-    delete query.contains
-    return query
 }
 
 module.exports.fetchReforms = fetchReforms

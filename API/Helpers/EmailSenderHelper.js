@@ -33,6 +33,8 @@ class EmailSenderHelper {
      *
      * @param {Novo status} status
      * @param {Destinatário} email
+     * @param name
+     * @param establishmentName
      */
     static sendEmailOnChangeStatus(status, email, name, establishmentName) {
         switch (status) {

@@ -24,8 +24,6 @@ const dev = {
 
 const test = {}
 
-const production = {}
-
 const config = {
     dev,
     test

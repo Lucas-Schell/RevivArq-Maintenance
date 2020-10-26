@@ -285,13 +285,9 @@ class Constants {
         return 'Não foi possivel realizar a alteração pois alguns campos enviados não são permitidos!'
     }
 
-    static get invalidUserUpdate() {
-        return 'Não é possivel atualizar as informações do usuário'
-    }
-
     static get invalidPermission() {
         return 'Acesso negado a este recurso!'
     }
 }
 
-module.exports = Constants;
+module.exports = Constants

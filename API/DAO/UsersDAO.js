@@ -20,7 +20,6 @@ function fetchUsers(orderQuery, whereQuery, callback) {
                 return callback(errorObj, null)
             }
             callback(null, users)
-            return
         })
 }
 
@@ -69,10 +68,7 @@ function findAdminUser(id, callback) {
             }
             return callback(errorObj, null)
         }
-        if (user.isAdmin) {
-            return true
-        }
-        return false
+        return !!user.isAdmin
     })
 }
 
@@ -130,7 +126,6 @@ function updateUser(newUserData, callback) {
             return callback(errorObj, null)
         } else {
             callback(null, { message: 'Informações atualizadas com sucesso!' })
-            return
         }
     })
 }
@@ -194,7 +189,7 @@ function findUserByEmail(email, password, callback) {
                 return false
             }
 
-            if (response.nModified == 0) {
+            if (response.nModified === 0) {
                 //e-mail nao encontrado
                 let errorObj = {
                     statusDesc: constants.notFoundDesc,
@@ -224,7 +219,7 @@ function updateUserByPassCode(email, passCode, password, salt, callback) {
                 return false
             }
 
-            if (user.nModified == 0) {
+            if (user.nModified === 0) {
                 //usuario nao encontrado
                 let errorObj = {
                     statusDesc: constants.invalidPassCode,
@@ -253,7 +248,7 @@ function updatePassCode(email, passCode, callback, sendEmail) {
                 return false
             }
 
-            if (user.nModified == 0) {
+            if (user.nModified === 0) {
                 //e-mail nao encontrado
                 let errorObj = {
                     statusDesc: constants.invalidEmail,
