@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -10,7 +9,7 @@ import { Edit as EditIcon } from '@material-ui/icons'
 import { showNotification } from 'components/Notification'
 import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
-import { getReforms } from '../../services/reforms/index.js'
+import { getReforms } from '../../services/reforms'
 import { loggedUser } from '../../services/user/index'
 import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
@@ -18,18 +17,11 @@ import toMoneyConversion from 'helpers/NumberUtility'
 import { Search as SearchIcon } from '@material-ui/icons'
 import BlockIcon from '@material-ui/icons/Block'
 import { Button } from '@material-ui/core'
-import { any } from 'prop-types'
-import { update } from '../../services/user/index.js'
+import { update } from '../../services/user'
 import TextField from '@material-ui/core/TextField'
-import {
-    InputLabel,
-    Checkbox,
-    FormControlLabel,
-    FormControl
-} from '@material-ui/core'
 import Select from '@material-ui/core/Select'
 
-const styles = (theme) => ({
+const styles = () => ({
     root: {
         width: '100%',
         marginTop: 100,
@@ -119,7 +111,6 @@ export default class SwitchListSecondary extends React.Component {
     }
 
     renderRow(reform, index) {
-        //console.log(reform)
         return (
             <TableRow key={reform.id}>
                 <TableCell
@@ -137,7 +128,7 @@ export default class SwitchListSecondary extends React.Component {
                 <TableCell align="right">
                     <SearchIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={(e) =>
+                        onClick={() =>
                             this.setState({ openedReformIndex: index })
                         }
                     />
@@ -148,7 +139,7 @@ export default class SwitchListSecondary extends React.Component {
                 >
                     <EditIcon
                         style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={(e) => this.handleClick(reform)}
+                        onClick={() => this.handleClick(reform)}
                     />
                 </TableCell>
             </TableRow>
@@ -161,8 +152,8 @@ export default class SwitchListSecondary extends React.Component {
         })
     }
 
-    trocaBotao(e) {
-        var estado = this.state.trocaBotao
+    trocaBotao() {
+        const estado = this.state.trocaBotao
         if (estado) {
             this.setState({
                 trocaBotao: false,
@@ -178,8 +169,8 @@ export default class SwitchListSecondary extends React.Component {
         }
     }
 
-    abreEdicao(e) {
-        var estado = this.state.disabled
+    abreEdicao() {
+        const estado = this.state.disabled
         if (estado) {
             this.setState({
                 abreEdicao: false,
@@ -200,7 +191,6 @@ export default class SwitchListSecondary extends React.Component {
     render() {
         const { reforms, isLoading, user } = this.state
         const classes = styles()
-        let count = 0
 
         const formState = 'outlined-disabled'
 
@@ -255,8 +245,10 @@ export default class SwitchListSecondary extends React.Component {
                                         Detalhes do Usuário
                                     </TableCell>
                                     <TableCell
-                                        style={{ alignItems: 'center' }}
-                                        style={{ borderTopRightRadius: '15px' }}
+                                        style={{
+                                            alignItems: 'center',
+                                            borderTopRightRadius: '15px'
+                                        }}
                                     >
                                         {this.state.trocaBotao ? (
                                             <Typography>
@@ -268,7 +260,7 @@ export default class SwitchListSecondary extends React.Component {
                                                         onClick={(e) =>
                                                             this.trocaBotao(e)
                                                         }
-                                                    ></BlockIcon>
+                                                    />
                                                 </TableCell>
                                             </Typography>
                                         ) : (
@@ -285,7 +277,7 @@ export default class SwitchListSecondary extends React.Component {
                                                         onClick={(e) =>
                                                             this.abreEdicao(e)
                                                         }
-                                                    ></EditIcon>
+                                                    />
                                                 </TableCell>
                                             </Typography>
                                         )}
@@ -298,7 +290,8 @@ export default class SwitchListSecondary extends React.Component {
                                         <Typography
                                             style={{ fontSize: '18px' }}
                                         >
-                                            Nome:<br></br>
+                                            Nome:
+                                            <br />
                                             <TextField
                                                 disabled={
                                                     !this.state.abreEdicao
@@ -325,7 +318,8 @@ export default class SwitchListSecondary extends React.Component {
                                         <Typography
                                             style={{ fontSize: '18px' }}
                                         >
-                                            Sobrenome:<br></br>
+                                            Sobrenome:
+                                            <br />
                                             <TextField
                                                 disabled={
                                                     !this.state.abreEdicao
@@ -353,7 +347,8 @@ export default class SwitchListSecondary extends React.Component {
                                         <Typography
                                             style={{ fontSize: '18px' }}
                                         >
-                                            Celular:<br></br>
+                                            Celular:
+                                            <br />
                                             <TextField
                                                 disabled={
                                                     !this.state.abreEdicao
@@ -381,7 +376,8 @@ export default class SwitchListSecondary extends React.Component {
                                         <Typography
                                             style={{ fontSize: '18px' }}
                                         >
-                                            CPF:<br></br>
+                                            CPF:
+                                            <br />
                                             <TextField
                                                 disabled={
                                                     !this.state.abreEdicao
@@ -408,7 +404,8 @@ export default class SwitchListSecondary extends React.Component {
                                         <Typography
                                             style={{ fontSize: '18px' }}
                                         >
-                                            CNPJ:<br></br>
+                                            CNPJ:
+                                            <br />
                                             <TextField
                                                 disabled={
                                                     !this.state.abreEdicao
@@ -503,7 +500,7 @@ export default class SwitchListSecondary extends React.Component {
                                                 Atualizar Dados
                                             </Button>
                                         ) : (
-                                            <div></div>
+                                            <div />
                                         )}
                                     </TableCell>
                                 </TableRow>
@@ -579,16 +576,16 @@ export default class SwitchListSecondary extends React.Component {
                                             style={{ fontSize: 15 }}
                                             align="left"
                                         >
-                                            <b></b>
+                                            <b />
                                         </TableCell>
                                         <TableCell
-                                            style={{ fontSize: 15 }}
-                                            align="left"
                                             style={{
+                                                fontSize: 15,
                                                 borderTopRightRadius: '15px'
                                             }}
+                                            align="left"
                                         >
-                                            <b></b>
+                                            <b />
                                         </TableCell>
                                     </TableRow>
                                 </TableHead>
