@@ -1,16 +1,58 @@
 import React from 'react'
 import {
+    Button,
     Grid,
     Hidden,
+    Input,
     makeStyles,
     Typography,
     useMediaQuery
 } from '@material-ui/core'
+import Page from '../Page'
+import { withStyles } from '@material-ui/core/styles'
 
-/*const useStyles = makeStyles({
+const styles = (theme) => ({
+    container: {
+        alignItems: 'center',
+        alignContent: 'space-between'
+    }
+})
 
-})*/
+class TicketPage extends Page {
+    constructor(props) {
+        super(props)
+        this.state = {
+            userList: []
+        }
+    }
 
-export default function Ticket() {
-    return <h1>Hello</h1>
+    authenticated = () => {
+        return this.unauthenticated()
+    }
+    unauthenticated = () => {
+        return (
+            <Grid container /*className={styles().container}*/>
+                <Grid item xs={12}>
+                    <Typography>FORM</Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Input />
+                </Grid>
+                <Grid item xs={12}>
+                    <Input />
+                </Grid>
+                <Grid item xs={12}>
+                    <Input />
+                </Grid>
+                <Grid item xs={12}>
+                    <Input />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button>Teste</Button>
+                </Grid>
+            </Grid>
+        )
+    }
 }
+
+export default withStyles(styles)(TicketPage)
