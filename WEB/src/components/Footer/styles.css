@@ -8,8 +8,7 @@
 }
 
 .App-footer .txt {
-    margin: 5px;
-    margin-top: 20px;
+    margin: 20px 5px 5px;
     height: 20px;
     float: right;
 }
@@ -17,6 +16,6 @@
 .App-footer .img {
     height: 50px;
     margin: 4px;
-    bottom: 0px;
+    bottom: 0;
     background-image: unset;
 }

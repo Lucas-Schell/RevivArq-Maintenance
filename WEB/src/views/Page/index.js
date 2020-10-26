@@ -53,11 +53,7 @@ class Page extends React.Component {
     }
 
     isAdmin = () => {
-        if (sessionStorage.getItem('isAdmin')) {
-            return true
-        } else {
-            return false
-        }
+        return sessionStorage.getItem('isAdmin')
     }
 
     /*
@@ -103,9 +99,6 @@ class Page extends React.Component {
     }
 
     footer = () => {
-        const pathname = this.props.history.location.pathname
-        const { footer } = getRouteConfigs(pathname)
-
         return <Footer />
     }
 

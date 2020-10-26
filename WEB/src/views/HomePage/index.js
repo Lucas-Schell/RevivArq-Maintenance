@@ -14,7 +14,7 @@ import { Button } from '@material-ui/core'
 
 // Serviços
 
-const styles = (theme) => ({
+const styles = () => ({
     root: {
         display: 'flex'
     },
@@ -89,7 +89,7 @@ class HomePage extends Page {
                             }}
                         >
                             QUEM
-                            <br></br>
+                            <br />
                             SOMOS
                         </Typography>
                     </Grid>
@@ -151,7 +151,7 @@ class HomePage extends Page {
                             src={carol}
                             className="carolAvatar"
                             alt="carol"
-                        ></img>
+                        />
                     </Grid>
 
                     <Grid item sm={3} xs={12} style={{ marginLeft: -50 }}>
@@ -220,7 +220,7 @@ class HomePage extends Page {
                             src={vanessa}
                             className="vanessaAvatar"
                             alt="vanessa"
-                        ></img>
+                        />
                     </Grid>
 
                     <Grid item xs={12} sm={3} style={{ marginLeft: -50 }}>
@@ -365,4 +365,4 @@ class HomePage extends Page {
     }
 }
 
-export default withStyles(styles)(HomePage);
+export default withStyles(styles)(HomePage)

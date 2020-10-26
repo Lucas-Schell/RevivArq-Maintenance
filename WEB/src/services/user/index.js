@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as crypto from 'crypto-js'
-import { crud_user } from 'configs/api_routes'
-import { api_auth_user, api_get_user } from 'configs/api_routes'
+import { api_auth_user, api_get_user, crud_user } from 'configs/api_routes'
 import { Constants } from 'configs/constants'
 import * as querystring from 'query-string'
 
@@ -151,8 +150,6 @@ export const list = async (contains, sort, isAscending) => {
 
     let route = crud_user.list()
 
-    // console.warn(`${route.url}?${queryParams}`)
-
     const response = await axios({
         method: route.method,
         url: `${route.url}?${queryParams}`,
@@ -164,8 +161,7 @@ export const list = async (contains, sort, isAscending) => {
     })
 
     if (response) {
-        const api_response = response.data
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',

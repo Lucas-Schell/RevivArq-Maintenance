@@ -7,11 +7,6 @@ export const api_login = () => {
 export const api_verify_token = () => {
     return { method: 'get', url: `${api}/login/token` }
 }
-
-export const authentication = {
-    login: api_login,
-    verify: api_verify_token
-}
 // API Instagram
 export const api_get_gallery = () => {
     return { method: 'get', url: `${api}/InstaGaleria` }
@@ -48,11 +43,6 @@ export const crud_user = {
 
 // Reforms
 //export const api_get_reforms_id	 		=                   { method: 'get', url: `${api}/reform/id` }
-
-export const api_get_reforms = () => {
-    return { method: 'get', url: `${api}/reform` }
-}
-
 export const GetReforms = {
     method: 'get',
     url: `${api}/reform`

@@ -49,5 +49,8 @@
       "not op_mini all",
       "ie 11"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
   }
 }

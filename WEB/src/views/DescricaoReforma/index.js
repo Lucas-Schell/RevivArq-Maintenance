@@ -43,4 +43,4 @@ class AreaCliente extends Page {
     }
 }
 
-export default AreaCliente;
+export default AreaCliente

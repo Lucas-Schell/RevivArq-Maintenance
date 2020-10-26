@@ -38,11 +38,11 @@ class InstaGallery extends Component {
     }
 
     getGallery = async () => {
-        var response = await get()
-        var imagens = response.data
-        var aux = this.state.fotos
+        const response = await get()
+        const imagens = response.data
+        const aux = this.state.fotos
         console.log(imagens)
-        for (var i = 0; i < imagens.length; i++) {
+        for (let i = 0; i < imagens.length; i++) {
             aux.push(imagens[i].images.standard_resolution.url)
         }
         this.setState({
@@ -71,4 +71,4 @@ class InstaGallery extends Component {
     }
 }
 
-export default withStyles(styles)(InstaGallery);
+export default withStyles(styles)(InstaGallery)

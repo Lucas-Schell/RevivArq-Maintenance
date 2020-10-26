@@ -11,20 +11,15 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Input from '@material-ui/core/Input'
 import { Constants } from '../../../configs/constants'
 import {
-    InputLabel,
     Checkbox,
-    FormControlLabel,
     FormControl,
-    FormGroup,
-    FormLabel
+    FormControlLabel,
+    InputLabel
 } from '@material-ui/core'
-import Icon from '@material-ui/core/Icon'
-import SaveIcon from '@material-ui/icons/Save'
-import { postReform } from '../../../services/reforms/index.js'
-import { postPhotos } from '../../../services/photos/index.js'
+import { postReform } from '../../../services/reforms'
+import { postPhotos } from '../../../services/photos'
 
 import NumberFormat from 'react-number-format'
 
@@ -85,26 +80,23 @@ class ReformForm extends React.Component {
     }
 
     async submitFotos() {
-        const fotoAttempt = await postPhotos(this.state.file)
-        //console.log('fotoAtt',fotoAttempt)
-        return fotoAttempt
+        return await postPhotos(this.state.file)
     }
 
     handleSubmit = async (event) => {
         event.preventDefault()
 
         const submitfoto = await this.submitFotos()
-        //console.log('submitFoto', submitfoto)
 
         console.log('ENTREI')
         this.state.photos = submitfoto.images
         this.state.budgetLimit = this.state.budgetLimit
             .replace(/\./g, '')
-            .replace(/\,/, '.')
+            .replace(/,/, '.')
             .replace('R$', '')
         this.state.area = this.state.area.replace(/[^0-9]/g, '')
-        this.state.address.cep = this.state.address.cep.replace(/\-/g, '')
-        this.state.phone = this.state.phone.replace(/\_/, '')
+        this.state.address.cep = this.state.address.cep.replace(/-/g, '')
+        this.state.phone = this.state.phone.replace(/_/, '')
 
         const reform = {
             photos: this.state.photos,
@@ -163,17 +155,14 @@ class ReformForm extends React.Component {
     }
 
     imgChange = (e) => {
-        //	console.log("ThunderCats")
         let reader = new FileReader()
         let file = e.target.files[0]
-        //	console.log("FILE",file)
-        //	console.log("READER",reader)
         reader.onloadend = () => {
-            var aux = this.state.file
-            var aux2 = this.state.imagePreviewUrl
-            var aux3 = this.state.imgPost
+            const aux = this.state.file
+            const aux2 = this.state.imagePreviewUrl
+            const aux3 = this.state.imgPost
 
-            var imgPre = { nome: file.name, foto: reader.result }
+            const imgPre = { nome: file.name, foto: reader.result }
             aux.push(file)
             aux2.push(imgPre)
             aux3.push(reader.result)
@@ -190,23 +179,20 @@ class ReformForm extends React.Component {
         //	console.log(this.state.file)
     }
 
-    abreFotos(e) {
-        var estado = this.state.abreFotos
+    abreFotos() {
+        const estado = this.state.abreFotos
         if (estado) {
             this.setState({
                 abreFotos: false
             })
-            //		console.log("Bananeira")
         } else {
             this.setState({
                 abreFotos: true
             })
-            //console.log(estado)
         }
     }
 
     deletarImg(foto) {
-        //console.log(foto)
         for (let j = 0; j < this.state.file.length; j++) {
             if (this.state.file[j].name === foto.nome) {
                 this.state.file.splice(j, 1)
@@ -226,43 +212,15 @@ class ReformForm extends React.Component {
     }
 
     handleClickOpen = () => {
-        //	console.log("He-Man")
-        //	console.log(this.state.open)
-        //	console.log(this.state.setOpen)
         this.setState({
             open: true
         })
-        //	console.log(this.state.open)
     }
 
     handleClose = () => {
-        //	console.log("She-ra")
         this.setState({
             open: false
         })
-    }
-
-    show = () => {
-        const {
-            photos,
-            establishmentName,
-            establishmentType,
-            area,
-            budgetLimit,
-            endereco,
-            restrictions,
-            outros,
-            address,
-            reformItens
-        } = this.state
-        console.log('photos', photos)
-        console.log('Nome: ' + establishmentName)
-        console.log('Tipo: ' + establishmentType)
-        console.log('Area: ' + area)
-        console.log('Orcamento: ' + budgetLimit)
-        console.log('Endereco: ' + address.cep)
-        console.log('Check: ' + reformItens.fachada)
-        console.log('restrictions: ' + restrictions)
     }
 
     render() {
@@ -271,14 +229,11 @@ class ReformForm extends React.Component {
             establishmentType,
             area,
             budgetLimit,
-            endereco,
             restrictions,
             errors,
-            abreFotos,
             phone,
             reformItens,
             address,
-            outros,
             goal
         } = this.state
 
@@ -307,7 +262,7 @@ class ReformForm extends React.Component {
                     xs={3}
                     style={{ color: 'black', backgroundColor: 'black' }}
                 >
-                    <div></div>
+                    <div />
                 </Grid>
 
                 <Grid
@@ -454,11 +409,11 @@ class ReformForm extends React.Component {
                                 mask="_"
                                 className="input"
                                 name="phone"
-                                onChange={(e) =>
+                                onChange={(e) => {
                                     this.setState({ phone: e.target.value })
-                                }
+                                    this.onChange(e)
+                                }}
                                 label="Celular *"
-                                onChange={this.onChange}
                                 error={errors.phone}
                                 value={phone}
                                 autoComplete="phone"
@@ -695,7 +650,7 @@ class ReformForm extends React.Component {
                                         type="file"
                                         accept="image/*"
                                         onChange={(e) => this.imgChange(e)}
-                                    ></input>
+                                    />
                                 </Typography>
                             </Grid>
                         ) : (
@@ -727,7 +682,8 @@ class ReformForm extends React.Component {
                                                 display: 'flex-center',
                                                 margin: 20
                                             }}
-                                        ></img>
+                                            alt={'foto'}
+                                        />
                                         <Button
                                             variant="contained"
                                             style={{
@@ -737,7 +693,7 @@ class ReformForm extends React.Component {
                                                 display: 'flex-center',
                                                 marginBottom: 80
                                             }}
-                                            onClick={(e) =>
+                                            onClick={() =>
                                                 this.deletarImg(foto)
                                             }
                                         >

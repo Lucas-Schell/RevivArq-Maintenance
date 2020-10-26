@@ -99,11 +99,6 @@ export default class ReformaDetalhe extends React.Component {
         }
     }
 
-    //async componentDidMount() {
-    //const photo = await getPhoto()
-    //this.setState({ photo })
-    //}
-
     async componentWillMount() {
         const IMAGES = []
         for (let i = 0; i < this.props.reform.photos.length; i++) {
@@ -114,8 +109,7 @@ export default class ReformaDetalhe extends React.Component {
                 thumbnail:
                     'http://localhost:4000/api/photos/image?file=' +
                     this.props.reform.photos[i],
-                thumbnailWidth: 320,
-                thumbnailHeight: 212
+                objectFit: 'cover'
             })
         }
         this.setState({ IMAGES })

@@ -1,7 +1,6 @@
 import React from 'react'
 import Page from 'views/Page'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import './styles.css'
 
 class Erro403 extends Page {
@@ -60,4 +59,4 @@ class Erro403 extends Page {
     }
 }
 
-export default Erro403;
+export default Erro403
