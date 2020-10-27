@@ -73,10 +73,11 @@ function findReform(id, callback) {
 
 function addReform(reform, callback, callbackSendMail) {
     const newReform = new ReformModel(reform)
-    newReform.save((error, reform) => {
-        if (reform) {
+
+    newReform.save((error, createdReform) => {
+        if (createdReform) {
             callbackSendMail()
-            callback(null, reform)
+            callback(null, createdReform)
         } else {
             let errorObj = {
                 statusDesc: error,

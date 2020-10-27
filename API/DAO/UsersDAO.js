@@ -78,9 +78,9 @@ function findAdminUser(id, callback) {
 function addUser(user, callback, doLogin) {
     const newUser = new UserModel(user)
 
-    newUser.save((error, user) => {
-        if (user && doLogin) doLogin()
-        else if (user) callback(null, user)
+    newUser.save((error, createdUser) => {
+        if (createdUser && doLogin) doLogin()
+        else if (createdUser) callback(null, createdUser)
         else {
             const { code } = error
             if (code === constants.duplicateKey) {

@@ -43,8 +43,9 @@ class AuthManager {
             { email: email },
             '+password +salt',
             (error, userFound) => {
+                let errorObj
                 if (error) {
-                    let errorObj = {
+                    errorObj = {
                         statusDesc: error,
                         statusCode: constants.errorCodeMongoose
                     }
@@ -65,7 +66,7 @@ class AuthManager {
                     return callback(null, userFound)
                 }
 
-                let errorObj = {
+                errorObj = {
                     statusDesc: constants.authenticationFailed,
                     statusCode: constants.errorCodeAuth
                 }
