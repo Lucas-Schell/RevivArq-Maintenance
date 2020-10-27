@@ -33,7 +33,7 @@ class Header extends React.Component {
         }
     }
 
-    componentWillReceiveProps(props, undefined) {
+    componentWillReceiveProps(props, next) {
         const { display } = this.props
         if (props.display !== display) {
             this.setState({ display: props.display })
