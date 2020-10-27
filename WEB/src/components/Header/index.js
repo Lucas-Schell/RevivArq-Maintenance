@@ -270,7 +270,7 @@ class Header extends React.Component {
         if (display) {
             return (
                 <Grid container className={'App-header-container'} xs={12}>
-                    <Grid item xs={2}>
+                    <Grid item xs={4}>
                         <img
                             src={logo}
                             className="App-logo"
@@ -284,8 +284,8 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        spacing={2}
-                        xs={6}
+                        //spacing={2}
+                        xs={4}
                         className={'App-header-container-center'}
                     >
                         <Grid item>
@@ -322,7 +322,7 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        xs={2}
+                        xs={4}
                         className={'App-header-container-right'}
                     >
                         <Grid item>{userName}</Grid>
