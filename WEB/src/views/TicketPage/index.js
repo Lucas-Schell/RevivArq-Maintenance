@@ -31,7 +31,7 @@ class TicketPage extends Page {
     }
     unauthenticated = () => {
         return (
-            <Grid container /*className={styles().container}*/>
+            <Grid container style={{ alignContent: 'space-between' }}>
                 <Grid item xs={12}>
                     <Typography>FORM</Typography>
                 </Grid>
