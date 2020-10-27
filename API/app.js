@@ -13,7 +13,7 @@ const instaGaleriaRouter = require('./routes/instaGallery')
 const photosRouter = require('./routes/photos')
 
 const TokenManager = require('./Helpers/AuthManager')
-var config = require('./config/config')
+const config = require('./config/config')
 
 // Initialize server
 // models.sequelize.sync().then(function() {
@@ -24,6 +24,7 @@ setupServer()
 
 function setupServer() {
     const app = express()
+    app.disable('x-powered-by')
 
     app.use(cors())
     app.use(bodyParser.json())
