@@ -9,7 +9,6 @@ import {
     useMediaQuery
 } from '@material-ui/core'
 import Page from '../Page'
-import theme from '../../styles/customMuiTheme'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = (theme) => ({
