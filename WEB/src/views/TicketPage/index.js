@@ -29,7 +29,7 @@ const styles = (theme) => ({
         backgroundColor: '#f5f5f5'
     },
     button: {
-        width: 500,
+        width: '80%',
         color: 'white',
         backgroundColor: '#152620',
         '&:hover': {

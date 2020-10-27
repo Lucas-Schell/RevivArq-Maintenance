@@ -10,6 +10,16 @@ import CadastroUsuario from 'components/Forms/CadastroUsuario'
 import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import { showNotification } from 'components/Notification'
+import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = (theme) => ({
+    container: {
+        backgroundColor: '#FFF289',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})
 
 class Header extends React.Component {
     constructor(props) {
@@ -161,7 +171,6 @@ class Header extends React.Component {
     renderUserArea = () => {
         return (
             <Button
-                style={{ fontFamily: 'Playfair Display' }}
                 id="botaoCliente"
                 className="btn"
                 onClick={() => {
@@ -256,57 +265,70 @@ class Header extends React.Component {
     render() {
         const { display } = this.props
         const { render, modalOpened, botaoSair, userName, isAdmin } = this.state
+        const { classes } = this.props
 
         if (display) {
             return (
-                <header className="App-header" style={{ flex: 1 }}>
-                    <img
-                        src={logo}
-                        className="App-logo"
-                        alt="logo"
-                        onClick={() => {
-                            this.redirect('/')
-                        }}
-                    />
+                <Grid container className={'App-header-container'} xs={12}>
+                    <Grid item xs={2}>
+                        <img
+                            src={logo}
+                            className="App-logo"
+                            alt="logo"
+                            onClick={() => {
+                                this.redirect('/')
+                            }}
+                        />
+                    </Grid>
 
-                    <Button
-                        style={{ fontFamily: 'Playfair Display' }}
-                        id="botaoAbout"
-                        className="btn"
-                        onClick={() => {
-                            this.redirect('/')
-                        }}
+                    <Grid
+                        container
+                        item
+                        spacing={2}
+                        xs={6}
+                        className={'App-header-container-center'}
                     >
-                        Início
-                    </Button>
+                        <Grid item>
+                            <Button
+                                onClick={() => {
+                                    this.redirect('/')
+                                }}
+                            >
+                                Início
+                            </Button>
+                        </Grid>
 
-                    <Button
-                        style={{ fontFamily: 'Playfair Display' }}
-                        id="botaoTicket"
-                        className="btn"
-                        onClick={() => {
-                            this.redirect('/ticket')
-                        }}
+                        <Grid item>
+                            <Button
+                                onClick={() => {
+                                    this.redirect('/ticket')
+                                }}
+                            >
+                                Envie um ticket
+                            </Button>
+                        </Grid>
+
+                        <Grid item>
+                            {(!isAdmin || isAdmin === 'false') && (
+                                <Button onClick={this.redirectFacaPedido}>
+                                    Faça um Orçamento
+                                </Button>
+                            )}
+                        </Grid>
+
+                        <Grid item>{render}</Grid>
+                    </Grid>
+
+                    <Grid
+                        container
+                        item
+                        xs={2}
+                        className={'App-header-container-right'}
                     >
-                        Envie um ticket
-                    </Button>
+                        <Grid item>{userName}</Grid>
 
-                    {(!isAdmin || isAdmin === 'false') && (
-                        <Button
-                            style={{ fontFamily: 'Playfair Display' }}
-                            id="botaoEquipe"
-                            className="btn"
-                            onClick={this.redirectFacaPedido}
-                        >
-                            Faça um Orçamento
-                        </Button>
-                    )}
-
-                    {render}
-
-                    {botaoSair}
-
-                    {userName}
+                        <Grid item>{botaoSair}</Grid>
+                    </Grid>
 
                     <Modal
                         open={modalOpened}
@@ -326,7 +348,7 @@ class Header extends React.Component {
                     >
                         {this.renderModalContent()}
                     </Modal>
-                </header>
+                </Grid>
             )
         } else {
             return <div />
