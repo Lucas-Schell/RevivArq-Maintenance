@@ -42,10 +42,6 @@ class CadastroUsuario extends React.Component {
         return !!password && password.length >= 6 && password.length <= 11
     }
 
-    validWhatsApp(whatsapp) {
-        return !!whatsapp && whatsapp.length > 8 && whatsapp.length <= 11
-    }
-
     handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -237,4 +233,4 @@ class CadastroUsuario extends React.Component {
     }
 }
 
-export default withRouter(CadastroUsuario);
+export default withRouter(CadastroUsuario)

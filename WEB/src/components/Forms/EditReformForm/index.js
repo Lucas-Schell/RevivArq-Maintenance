@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid'
 import NumberFormat from 'react-number-format'
 import { Constants } from '../../../configs/constants'
 import {
-    InputLabel,
     Checkbox,
-    FormControlLabel,
     FormControl,
+    FormControlLabel,
+    InputLabel,
     Typography
 } from '@material-ui/core'
 import { bool } from 'prop-types'
@@ -145,7 +145,7 @@ class EditReformForm extends React.Component {
                 </Grid>
 
                 <Grid direction="column" item xs={3}>
-                    <div></div>
+                    <div />
                 </Grid>
 
                 <Grid
@@ -658,4 +658,4 @@ class EditReformForm extends React.Component {
     }
 }
 
-export default withRouter(EditReformForm);
+export default withRouter(EditReformForm)

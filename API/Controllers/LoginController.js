@@ -1,7 +1,7 @@
 const constants = require('../config/contants')
 const AuthManager = require('../Helpers/AuthManager')
 
-var jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 class LoginController {
     static login(email, password, callback) {
@@ -18,7 +18,7 @@ class LoginController {
 
     static validateToken(req, callback) {
         AuthManager.containsToken(req)
-        jwt.verify(req.token, constants.APISecretKey, (error, data) => {
+        jwt.verify(req.token, constants.APISecretKey, (error) => {
             if (error) {
                 callback(null, false)
             } else {

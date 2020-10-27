@@ -2,14 +2,13 @@ import React from 'react'
 import logo from './logo2.png'
 import './styles.css'
 import { withRouter } from 'react-router-dom'
-import { validToken, logout } from 'services/auth'
+import { logout, validToken } from 'services/auth'
 import Button from '@material-ui/core/Button'
 import Modal from '../Modal/index'
 import LoginForm from 'components/Forms/LoginForm'
 import CadastroUsuario from 'components/Forms/CadastroUsuario'
 import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
-import { makeStyles } from '@material-ui/core/styles'
 import { showNotification } from 'components/Notification'
 
 class Header extends React.Component {
@@ -34,7 +33,7 @@ class Header extends React.Component {
         }
     }
 
-    componentWillReceiveProps(props) {
+    componentWillReceiveProps(props, next) {
         const { display } = this.props
         if (props.display !== display) {
             this.setState({ display: props.display })
@@ -54,11 +53,6 @@ class Header extends React.Component {
 
     componentWillMount() {
         this.renderHeaderButtons()
-    }
-
-    verificaAdmin = async () => {
-        var response = await sessionStorage.getItem('isAdmin')
-        return response
     }
 
     redirect = (path) => {
@@ -105,10 +99,10 @@ class Header extends React.Component {
     doLogout = async () => {
         await logout()
         this.setState({ botaoSair: null, isAdmin: 'false', userName: null })
-        this.renderHeaderButtons()
+        await this.renderHeaderButtons()
         showNotification('Desconectado com sucesso!')
         const { history } = this.props
-        if (history != '/') this.redirect('/')
+        if (history !== '/') this.redirect('/')
     }
 
     renderLogin = () => {
@@ -129,7 +123,7 @@ class Header extends React.Component {
     renderHeaderButtons = async () => {
         try {
             const isAuthenticated = await validToken()
-            await this.validAdmin()
+            this.validAdmin()
             const admin = this.state.isAdmin
 
             if (!isAuthenticated) {
@@ -180,7 +174,7 @@ class Header extends React.Component {
     }
 
     renderModalContent() {
-        if (this.state.modalState == this.modalScreen.login)
+        if (this.state.modalState === this.modalScreen.login)
             return (
                 <LoginForm
                     goToNewRequest={this.state.goToNewRequest}
@@ -199,7 +193,7 @@ class Header extends React.Component {
                     }
                 />
             )
-        if (this.state.modalState == this.modalScreen.register)
+        if (this.state.modalState === this.modalScreen.register)
             return (
                 <CadastroUsuario
                     goToNewRequest={this.state.goToNewRequest}
@@ -215,7 +209,7 @@ class Header extends React.Component {
                     }
                 />
             )
-        if (this.state.modalState == this.modalScreen.email)
+        if (this.state.modalState === this.modalScreen.email)
             return (
                 <Email
                     setRecEmail={(email) => this.setState({ recEmail: email })}
@@ -228,7 +222,7 @@ class Header extends React.Component {
                     }
                 />
             )
-        if (this.state.modalState == this.modalScreen.recpass)
+        if (this.state.modalState === this.modalScreen.recpass)
             return (
                 <RecPassword
                     email={this.state.recEmail}
@@ -335,7 +329,7 @@ class Header extends React.Component {
                 </header>
             )
         } else {
-            return <div></div>
+            return <div />
         }
     }
 }

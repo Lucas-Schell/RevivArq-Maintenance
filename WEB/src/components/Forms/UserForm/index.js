@@ -147,7 +147,7 @@ class UserForm extends React.Component {
         const { hideSubmit } = this.props
 
         if (hideSubmit) {
-            return <div></div>
+            return <div />
         } else {
             return (
                 <Button
@@ -168,7 +168,6 @@ class UserForm extends React.Component {
         return (
             <div className="container">
                 <form onSubmit={this.onSubmit} autoComplete="off">
-                    {/* Nome */}
                     <TextField
                         className="input"
                         name="name"
@@ -182,7 +181,6 @@ class UserForm extends React.Component {
                     />
                     <br />
 
-                    {/* Email */}
                     <TextField
                         className="input"
                         name="email"
@@ -196,7 +194,6 @@ class UserForm extends React.Component {
                     />
                     <br />
 
-                    {/* Username */}
                     <TextField
                         className="input"
                         name="username"
@@ -211,27 +208,25 @@ class UserForm extends React.Component {
                     />
                     <br />
 
-                    {/* Senha */}
                     <TextField
                         className="input"
                         name="password"
                         label={this.state.id ? 'Senha (Desativado)' : 'Senha'}
                         onChange={this.onChange}
                         value={password}
-                        required={this.state.id ? false : true}
+                        required={!this.state.id}
                         error={errors.password}
                         type="password"
                         autoComplete="password"
-                        disabled={isLoading || this.state.id ? true : false}
+                        disabled={isLoading || this.state.id}
                     />
                     <br />
 
                     {this.renderSubmitButton()}
                 </form>
-                {/* {show_stringify(this.state)} */}
             </div>
         )
     }
 }
 
-export default withRouter(UserForm);
+export default withRouter(UserForm)

@@ -1,6 +1,5 @@
 import React from 'react'
 import Page from 'views/Page'
-import './styles.css'
 import { validToken } from 'services/auth'
 import AreaAdminComponent from '../../components/AreaAdmin/index.js'
 
@@ -10,16 +9,11 @@ class AreaAdmin extends Page {
     }
 
     componentDidMount() {
-        var admin = sessionStorage.getItem('isAdmin')
+        const admin = sessionStorage.getItem('isAdmin')
         this.setState({
             isAdmin: admin
         })
         console.log(admin)
-    }
-
-    verificaAdmin = async () => {
-        var response = await sessionStorage.getItem('isAdmin')
-        return response
     }
 
     renderAdmin = async () => {
@@ -56,4 +50,4 @@ class AreaAdmin extends Page {
     }
 }
 
-export default AreaAdmin;
+export default AreaAdmin

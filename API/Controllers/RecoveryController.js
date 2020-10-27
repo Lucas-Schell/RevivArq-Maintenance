@@ -9,7 +9,7 @@ class RecoveryController {
      * Gerar codigo provisório para recuperar a senha
      */
     static generatePassCode(email, callback) {
-        var passCode = this.generatePassword()
+        const passCode = this.generatePassword()
         DAO.updatePassCode(email, passCode, callback, () =>
             EmailSenderHelper.sendEmailWithPassCodeRecovery(email, passCode)
         )
@@ -50,9 +50,9 @@ class RecoveryController {
      * Gera uma senha aleatória
      */
     static generatePassword() {
-        var result = ''
-        var characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
-        for (var i = 0; i < 8; i++) {
+        let result = ''
+        const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'
+        for (let i = 0; i < 8; i++) {
             result += characters.charAt(
                 Math.floor(Math.random() * characters.length)
             )
@@ -69,4 +69,4 @@ class RecoveryController {
     }
 }
 
-module.exports = RecoveryController;
+module.exports = RecoveryController

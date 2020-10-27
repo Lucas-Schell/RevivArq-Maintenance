@@ -19,7 +19,6 @@ class Footer extends React.Component {
     }
 
     render() {
-        const { display } = this.props
         const { render } = this.state
 
         return (
@@ -41,4 +40,4 @@ class Footer extends React.Component {
     }
 }
 
-export default withRouter(Footer);
+export default withRouter(Footer)

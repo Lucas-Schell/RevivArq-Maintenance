@@ -33,7 +33,6 @@ export const login = async (email, password, encrypt_password) => {
         let token
         let isAdmin
         let id
-        let user
         const api_response = response.data
         const responseData = api_response.data
 
@@ -41,7 +40,6 @@ export const login = async (email, password, encrypt_password) => {
             token = api_response.data.token
             isAdmin = api_response.data.userData.isAdmin
             id = api_response.data.userData.id
-            user = api_response.data.userData
         }
 
         if (token) {
@@ -87,8 +85,7 @@ export const validToken = async () => {
 
     if (response) {
         const responseData = response.data
-        const isAuthenticated = responseData.data
-        return isAuthenticated
+        return responseData.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',
@@ -111,8 +108,7 @@ export const genPassCode = async (data) => {
     })
 
     if (response) {
-        const api_response = response.data
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',
@@ -134,8 +130,7 @@ export const genNewPassword = async (data) => {
     })
 
     if (response) {
-        const api_response = response.data
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',

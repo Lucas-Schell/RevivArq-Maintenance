@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 // Serviços
 
 // Biblioteca de Componentes
-import Button from '@material-ui/core/Button'
 
 /**
  *  Recomendo substituir este Header por um header advindo de uma biblioteca de componentes
@@ -19,8 +18,6 @@ class FacaPedido extends React.Component {
     }
 
     render() {
-        const { display } = this.props
-        const { render } = this.state
         return <div>Hello World</div>
     }
 }

@@ -1,8 +1,6 @@
 import React from 'react'
 import Page from 'views/Page'
 import './styles.css'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import ReformForm from 'components/Forms/ReformForm'
 
@@ -53,4 +51,4 @@ class FacaPedido extends Page {
     }
 }
 
-export default FacaPedido;
+export default FacaPedido

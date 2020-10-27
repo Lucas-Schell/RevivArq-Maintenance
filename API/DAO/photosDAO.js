@@ -1,7 +1,7 @@
-const constants = require("../config/contants");
+require('../config/contants')
 
-function addPhoto(photo, callback) {
-  console.log(photo);
+function addPhoto(photo) {
+    console.log(photo)
 }
 
-module.exports.addPhoto = addPhoto;
+module.exports.addPhoto = addPhoto

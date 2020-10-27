@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import Table from '@material-ui/core/Table'
@@ -7,16 +7,16 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { getReforms } from '../../services/reforms/index.js'
+import { getReforms } from '../../services/reforms'
 import Typography from '@material-ui/core/Typography'
-import toMoneyConversion from 'helpers/NumberUtility'
+import toMoneyConversion from 'helpers/toMoneyConversion'
 import { editReform } from '../../services/reforms/index'
 import { showNotification } from 'components/Notification'
 import { Constants } from '../../configs/constants'
 import { Search as SearchIcon } from '@material-ui/icons'
 import ReformaDetalhe from '../ReformaDetalhe'
 
-const styles = (theme) => ({
+const styles = () => ({
     root: {
         width: '100%',
         marginTop: 100,
@@ -118,7 +118,6 @@ export default class AreaAdminComponent extends React.Component {
     render() {
         const { reforms, isLoading, openedReformIndex } = this.state
         const classes = styles()
-        let count = 0
         return (
             <div>
                 <div

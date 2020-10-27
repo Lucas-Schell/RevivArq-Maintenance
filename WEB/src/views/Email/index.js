@@ -92,10 +92,9 @@ class Email extends React.Component {
                     </Button>
                     <br />
                 </form>
-                {/* {show_stringify('Login Form State', this.state, 'login_state')} */}
             </div>
         )
     }
 }
 
-export default withRouter(Email);
+export default withRouter(Email)

@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import React from 'react'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import { getReforms, getReformById } from '../../services/reforms/index.js'
-import { getPhotos } from '../../services/photos/index.js'
+import { getReforms } from '../../services/reforms'
 import Typography from '@material-ui/core/Typography'
+import Icon from '@material-ui/core/Icon'
+import Button from '@material-ui/core/Button'
 
-const styles = (theme) => ({
+const styles = () => ({
     root: {
         width: '100%',
         marginTop: 100,
@@ -36,7 +36,7 @@ export default class SwitchListSecondary extends React.Component {
     async componentDidMount() {
         const reforms = await getReforms()
         //console.log(reforms.photos)
-        const photos = await getPhotos()
+        //const photos = await getPhotos()
         //console.log('getPhotos',photos)
         //const reform = await getReformById('5d92891f916da312a457a0f1')
         this.setState({ reforms })
@@ -49,7 +49,6 @@ export default class SwitchListSecondary extends React.Component {
 
     render() {
         const classes = styles()
-        let count = 0
         return (
             <div>
                 <div
@@ -125,10 +124,10 @@ export default class SwitchListSecondary extends React.Component {
                                             color="primary"
                                             className={classes.button}
                                             endIcon={<Icon>send</Icon>}
-                                            onClick={(e) =>
+                                            onClick={() =>
                                                 this.handleClick(reform)
                                             }
-                                        ></Button>{' '}
+                                        />{' '}
                                     </TableCell>
                                 </TableRow>
                             ))}

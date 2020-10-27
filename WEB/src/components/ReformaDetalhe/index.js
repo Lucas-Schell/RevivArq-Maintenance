@@ -1,8 +1,13 @@
 import React from 'react'
 import './styles.css'
-import { ExpandLess as ExpandLessIcon } from '@material-ui/icons'
+import {
+    ExpandLess as ExpandLessIcon,
+    Search as SearchIcon
+} from '@material-ui/icons'
 import TextField from '@material-ui/core/TextField'
 import AttachMoney from '@material-ui/icons/AttachMoney'
+import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap'
+import FlagRoundedIcon from '@material-ui/icons/FlagRounded'
 import Grid from '@material-ui/core/Grid'
 import { Typography } from '@material-ui/core'
 import WhatsApp from '@material-ui/icons/Call'
@@ -11,25 +16,10 @@ import Divider from '@material-ui/core/Divider'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import BlockIcon from '@material-ui/icons/Block'
 import BuildIcon from '@material-ui/icons/Build'
-import toMoneyConversion from 'helpers/NumberUtility'
+import toMoneyConversion from 'helpers/toMoneyConversion'
 import Gallery from 'react-grid-gallery'
-import { Search as SearchIcon } from '@material-ui/icons'
 import Modal from '../Modal/index'
-import { getUser, loggedUser } from '../../services/user/index.js'
-
-const styles = (theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper
-    },
-    dividerFullWidth: {
-        margin: `5px 0 0 ${theme.spacing(2)}px`
-    },
-    dividerInset: {
-        margin: `5px 0 0 ${theme.spacing(9)}px`
-    }
-})
+import { getUser, loggedUser } from '../../services/user'
 
 const getTypes = (itens) => {
     let tipos = ''
@@ -40,7 +30,7 @@ const getTypes = (itens) => {
         if (tipos.length > 0) {
             tipos += ','
         }
-        tipos += 'Fachada'
+        tipos += ' Fachada'
     }
     if (itens.paisagismo) {
         if (tipos.length > 0) {
@@ -92,7 +82,7 @@ const getTypes = (itens) => {
     }
     if (itens.outros.length > 0) {
         if (tipos.length > 0) {
-            tipos += ','
+            tipos += ', '
         }
         tipos += itens.outros
     }
@@ -109,15 +99,9 @@ export default class ReformaDetalhe extends React.Component {
         }
     }
 
-    //async componentDidMount() {
-    //const photo = await getPhoto()
-    //this.setState({ photo })
-    //}
-
     async componentWillMount() {
-        var i
         const IMAGES = []
-        for (i = 0; i < this.props.reform.photos.length; i++) {
+        for (let i = 0; i < this.props.reform.photos.length; i++) {
             IMAGES.push({
                 src:
                     'http://localhost:4000/api/photos/image?file=' +
@@ -125,8 +109,7 @@ export default class ReformaDetalhe extends React.Component {
                 thumbnail:
                     'http://localhost:4000/api/photos/image?file=' +
                     this.props.reform.photos[i],
-                thumbnailWidth: 320,
-                thumbnailHeight: 212
+                objectFit: 'cover'
             })
         }
         this.setState({ IMAGES })
@@ -137,13 +120,14 @@ export default class ReformaDetalhe extends React.Component {
     }
 
     getUsuario = async () => {
-        if (this.props.tipoUsuario == 1) {
-            var user = await loggedUser()
+        let user
+        if (this.props.tipoUsuario === 1) {
+            user = await loggedUser()
             this.setState({
                 user
             })
         } else {
-            var user = await getUser(this.props.reform.userId)
+            user = await getUser(this.props.reform.userId)
             this.setState({
                 user
             })
@@ -221,7 +205,7 @@ export default class ReformaDetalhe extends React.Component {
                 </header>
                 <div>
                     <Grid container spacing={5}>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} style={{ objectFit: 'cover' }}>
                             <Gallery
                                 images={this.state.IMAGES}
                                 style={{
@@ -272,12 +256,43 @@ export default class ReformaDetalhe extends React.Component {
                                     marginTop: '20px'
                                 }}
                             >
+                                <ZoomOutMapIcon style={{ marginRight: 10 }} />
+                                <b>Área:</b>&nbsp; {this.props.reform.area} m²
+                            </Typography>
+                            <Divider />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography
+                                style={{
+                                    display: 'flex',
+                                    textAlign: 'center',
+                                    fontSize: 18,
+                                    marginTop: '20px'
+                                }}
+                            >
+                                <FlagRoundedIcon style={{ marginRight: 10 }} />
+                                <b>Objetivo:</b>&nbsp; {this.props.reform.goal}
+                            </Typography>
+                            <Divider />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography
+                                style={{
+                                    display: 'flex',
+                                    textAlign: 'center',
+                                    fontSize: 18,
+                                    marginTop: '20px'
+                                }}
+                            >
                                 <LocationOnIcon style={{ marginRight: 10 }} />
                                 <b>Endereço:</b>&nbsp;
                                 {this.props.reform.address.street},{' '}
-                                {this.props.reform.address.number} -{' '}
+                                {this.props.reform.address.number},{' '}
+                                {this.props.reform.address.complement} -{' '}
+                                {this.props.reform.address.neighborhood}.{' '}
                                 {this.props.reform.address.city} -{' '}
-                                {this.props.reform.address.cep}{' '}
+                                {this.props.reform.address.uf}.{' '}
+                                {this.props.reform.address.cep}
                             </Typography>
                             <Divider />
                         </Grid>

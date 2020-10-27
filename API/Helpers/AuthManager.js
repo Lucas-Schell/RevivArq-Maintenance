@@ -43,8 +43,9 @@ class AuthManager {
             { email: email },
             '+password +salt',
             (error, userFound) => {
+                let errorObj
                 if (error) {
-                    let errorObj = {
+                    errorObj = {
                         statusDesc: error,
                         statusCode: constants.errorCodeMongoose
                     }
@@ -54,7 +55,7 @@ class AuthManager {
 
                 if (
                     userFound &&
-                    userFound.password == sha256(password + userFound.salt)
+                    userFound.password === sha256(password + userFound.salt)
                 ) {
                     userFound = userFound.toObject()
                     delete userFound.password
@@ -65,7 +66,7 @@ class AuthManager {
                     return callback(null, userFound)
                 }
 
-                let errorObj = {
+                errorObj = {
                     statusDesc: constants.authenticationFailed,
                     statusCode: constants.errorCodeAuth
                 }
@@ -78,8 +79,7 @@ class AuthManager {
         const bearerHeader = req.headers.authorization
         if (bearerHeader !== undefined) {
             const bearer = bearerHeader.split(' ')
-            const bearerToken = bearer[1]
-            req.token = bearerToken
+            req.token = bearer[1]
             return true
         } else {
             return false
