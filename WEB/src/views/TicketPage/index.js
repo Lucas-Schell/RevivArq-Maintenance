@@ -9,6 +9,7 @@ import {
     useMediaQuery
 } from '@material-ui/core'
 import Page from '../Page'
+import TextField from '@material-ui/core/TextField'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = (theme) => ({
@@ -25,9 +26,16 @@ const styles = (theme) => ({
         backgroundColor: '#FFF829'
     },
     textField: {
-        width: 700,
-        backgroundColor: '#FFF829',
-        textAlign: 'center'
+        backgroundColor: '#f5f5f5'
+    },
+    button: {
+        width: 500,
+        color: 'white',
+        backgroundColor: '#152620',
+        '&:hover': {
+            opacity: 0.9,
+            backgroundColor: '#152620'
+        }
     }
 })
 
@@ -50,7 +58,7 @@ class TicketPage extends Page {
                     container
                     item
                     xs={6}
-                    spacing={40}
+                    spacing={8}
                     className={classes.containerTitle}
                 >
                     <Grid item xs={12}>
@@ -60,19 +68,38 @@ class TicketPage extends Page {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Input fullWidth />
+                        <TextField
+                            className={classes.textField}
+                            fullWidth
+                            variant="outlined"
+                            label="Nome"
+                        />
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Input fullWidth />
+                        <TextField
+                            className={classes.textField}
+                            fullWidth
+                            variant="outlined"
+                            label="E-Mail"
+                        />
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Input fullWidth />
+                        <TextField
+                            className={classes.textField}
+                            fullWidth
+                            label="Ticket"
+                            multiline
+                            rows={4}
+                            variant="outlined"
+                        />
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Button fullWidth>Send</Button>
+                        <Button className={classes.button} variant="contained">
+                            Enviar
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>
