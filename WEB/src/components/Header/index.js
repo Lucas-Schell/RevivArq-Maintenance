@@ -123,7 +123,7 @@ class Header extends React.Component {
     renderHeaderButtons = async () => {
         try {
             const isAuthenticated = await validToken()
-            await this.validAdmin()
+            this.validAdmin()
             const admin = this.state.isAdmin
 
             if (!isAuthenticated) {

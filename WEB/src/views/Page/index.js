@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.css'
 
 import { validToken } from 'services/auth/'
 import { getRouteConfigs } from 'configs'

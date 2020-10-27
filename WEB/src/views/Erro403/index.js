@@ -1,7 +1,6 @@
 import React from 'react'
 import Page from 'views/Page'
 import Typography from '@material-ui/core/Typography'
-import './styles.css'
 
 class Erro403 extends Page {
     unauthenticated = () => {

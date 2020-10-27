@@ -3,6 +3,7 @@
     font-size-adjust: 33;
     font-style: italic;
     font-weight: bold;
+    color: blue;
 }
 
 .instaText {
@@ -11,8 +12,4 @@
 
 .textoSobreNos {
     color: red;
-}
-
-.empresaText {
-    color: blue;
 }

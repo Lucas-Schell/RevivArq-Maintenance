@@ -1,6 +1,5 @@
 import React from 'react'
 import Page from 'views/Page'
-import './styles.css'
 import { validToken } from 'services/auth'
 import AreaAdminComponent from '../../components/AreaAdmin/index.js'
 

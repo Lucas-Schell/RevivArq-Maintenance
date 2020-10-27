@@ -1,5 +1,5 @@
 import env from 'configs/environment'
-import routing_configs from 'configs/routing_configs'
+import routing_configs from 'configs/route_configs'
 
 export const api = env.api_url
 
