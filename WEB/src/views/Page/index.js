@@ -131,7 +131,7 @@ class Page extends React.Component {
             return (
                 <div>
                     {this.header()}
-                    <div style={{ minHeight: '87.5vh' }}>{render}</div>
+                    <div style={{ minHeight: '91vh' }}>{render}</div>
                     {this.onRender(onRender)}
                     {this.footer()}
                 </div>
