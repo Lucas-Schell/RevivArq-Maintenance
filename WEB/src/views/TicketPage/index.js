@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = (theme) => ({
     container: {
-        minHeight: '500px',
+        minHeight: '800px',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -27,10 +27,9 @@ const styles = (theme) => ({
     },
     textField: {
         width: 700,
-        backgroundColor: '#FFF829'
-    },
-
-    gridwrapper: { width: '100%' }
+        backgroundColor: '#FFF829',
+        textAlign: 'center'
+    }
 })
 
 class TicketPage extends Page {
@@ -47,25 +46,36 @@ class TicketPage extends Page {
     unauthenticated = () => {
         const { classes } = this.props
         return (
-            <Grid container className={classes.container} xs={6}>
-                <Grid item xs={12} className={classes.containerTitle}>
-                    <Typography className={classes.titleText}>
-                        Mande a sua dúvida com o ticket abaixo
-                    </Typography>
-                </Grid>
+            <Grid container xs={12} className={classes.container}>
+                <Grid
+                    container
+                    item
+                    xs={6}
+                    spacing={40}
+                    className={classes.containerTitle}
+                >
+                    <Grid item xs={12}>
+                        <Typography className={classes.titleText}>
+                            ENVIE SEU TICKET
+                        </Typography>
+                    </Grid>
 
-                {/*<Grid item xs={12}>
-                    <Input className={classes.textField} />
+                    <Grid item xs={12}>
+                        <Input fullWidth />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Input fullWidth />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Input fullWidth />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Button fullWidth>Send</Button>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <Input className={classes.textField} />
-                </Grid>
-                <Grid item xs={12}>
-                    <Input className={classes.textField} />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button className={classes.textField}>Send</Button>
-                </Grid>*/}
             </Grid>
         )
     }
