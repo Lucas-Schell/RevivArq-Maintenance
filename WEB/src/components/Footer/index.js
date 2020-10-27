@@ -3,6 +3,7 @@ import './styles.css'
 import Typography from '@material-ui/core/Typography'
 import { withRouter } from 'react-router-dom'
 import logo_ages from '../../Assets/logo_ages.png'
+import Grid from '@material-ui/core/Grid'
 
 class Footer extends React.Component {
     constructor(props) {
@@ -19,23 +20,14 @@ class Footer extends React.Component {
     }
 
     render() {
-        const { render } = this.state
-
         return (
-            <div className="App-footer">
-                <Typography
-                    className="txt"
-                    style={{
-                        fontFamily: 'Playfair Display',
-                        alignItems: 'flex-end'
-                    }}
-                >
+            <Grid container className={'App-footer'} xs={12}>
+                <img src={logo_ages} className="img" />
+                <Typography>
                     Agência Experimental de Engenharia de Software - PUCRS -
                     Escola Politécnica. Todos os direitos reservados ©.
                 </Typography>
-                <img src={logo_ages} className="img" alt="logo" />
-                {render}
-            </div>
+            </Grid>
         )
     }
 }

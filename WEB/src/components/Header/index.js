@@ -284,7 +284,6 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        //spacing={2}
                         xs={4}
                         className={'App-header-container-center'}
                     >
