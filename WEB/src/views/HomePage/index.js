@@ -12,8 +12,6 @@ import Divider from '@material-ui/core/Divider'
 // Views
 import Page from 'views/Page'
 
-import { Button } from '@material-ui/core'
-
 // Serviços
 
 const styles = () => ({
