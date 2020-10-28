@@ -124,14 +124,17 @@ class HomePage extends Page {
                         />
                     </Grid>
 
-                    <Grid container className={classes.image} xs={12}>
+                    <Grid container xs={12}>
                         <Grid
                             container
                             item
-                            xs={6}
+                            xs={window.screen.width > 1000 ? 6 : 12}
                             className={classes.centering}
                         >
-                            <Typography className={classes.text}>
+                            <Typography
+                                className={classes.text}
+                                style={{ fontWeight: 'bold', fontSize: 35 }}
+                            >
                                 Quem somos?
                             </Typography>
                         </Grid>
@@ -139,7 +142,7 @@ class HomePage extends Page {
                         <Grid
                             container
                             item
-                            xs={6}
+                            xs={window.screen.width > 1000 ? 6 : 12}
                             className={classes.centering}
                         >
                             <Typography className={classes.text}>
@@ -163,16 +166,23 @@ class HomePage extends Page {
                         />
                     </Grid>
 
-                    <Grid container item xs={12}>
-                        <Grid item xs={3}>
-                            <img src={carol} className={classes.avatar} />
-                        </Grid>
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        style={{
+                            justifyContent: 'space-around'
+                        }}
+                    >
                         <Grid
                             container
                             item
-                            xs={3}
+                            xs={window.screen.width > 1000 ? 5 : 12}
                             style={{ height: 'fit-content' }}
                         >
+                            <Grid item xs={12}>
+                                <img src={carol} className={classes.avatar} />
+                            </Grid>
                             <Grid item xs={12}>
                                 <Typography
                                     className={classes.textMin}
@@ -220,10 +230,15 @@ class HomePage extends Page {
                                 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item xs={3}>
-                            <img src={vanessa} className={classes.avatar} />
-                        </Grid>
-                        <Grid container item xs={3}>
+
+                        <Grid
+                            container
+                            item
+                            xs={window.screen.width > 1000 ? 5 : 12}
+                        >
+                            <Grid item xs={12}>
+                                <img src={vanessa} className={classes.avatar} />
+                            </Grid>
                             <Grid item xs={12}>
                                 <Typography
                                     className={classes.textMin}
