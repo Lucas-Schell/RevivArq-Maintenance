@@ -112,31 +112,14 @@ class EmailSenderHelper {
             email
         )
     }
+
+    static sendEmailTicket(name, email, message) {
+        this.sendEmail(
+            constants.ticketMessage(name, email, message),
+            `Novo Ticket de ${name}`,
+            constants.returnEmailAdmin
+        )
+    }
 }
 
 module.exports = EmailSenderHelper
-
-/*
-let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'miguel.barros1889@gmail.com',
-        pass: 'Mb12345678'
-    }
-})
-
-let mailOptions = {
-    from: 'miguel.barros1889@gmail.com',
-    to: 'lucas.schell@acad.pucrs.br',
-    subject: 'Nossa, eu sei mandar e-mails agora!',
-    text: 'Oi gostoso, manda foto de agora'
-}
-
-transporter.sendMail(mailOptions, function (err, data) {
-    if (err) {
-        console.log('Socorram-me, merdei')
-    } else {
-        console.log('DEU BOM GURIZADA!!!!!!')
-    }
-})
-*/

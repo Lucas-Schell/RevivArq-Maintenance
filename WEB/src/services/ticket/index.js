@@ -11,6 +11,8 @@ export const postTicket = async (ticket) => {
         headers: {
             'Content-Type': 'application/json'
         }
+    }).catch(() => {
+        return 404
     })
 
     if (response) {

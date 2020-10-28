@@ -59,7 +59,7 @@ class TicketForm extends React.Component {
             message: this.state.message
         }
         const registerAttempt = await postTicket(ticket)
-        if (registerAttempt.statusCode !== Constants.Created) {
+        if (registerAttempt !== 'OK') {
             showNotification(
                 'Sua mensagem não foi enviada, tente novamente mais tarde.',
                 'Erro',
