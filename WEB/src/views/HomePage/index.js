@@ -18,7 +18,6 @@ import { Button } from '@material-ui/core'
 
 const styles = () => ({
     containerRoot: {
-        alignItems: 'center',
         justifyContent: 'center',
         minHeight: '91vh'
     },
@@ -26,10 +25,17 @@ const styles = () => ({
         justifyContent: 'center',
         alignSelf: 'flex-start'
     },
+
+    secondContainer: {
+        padding: '0px 50px 0px 50px',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     image: {
         justifyContent: 'center',
         alignSelf: 'flex-start'
     },
+
     centering: {
         alignItems: 'center',
         justifyContent: 'center'
@@ -45,12 +51,22 @@ const styles = () => ({
         fontSize: 30,
         color: '#FFFFFF'
     },
+
+    textMin: {
+        fontFamily: 'Roboto',
+        fontSize: 20,
+        color: '#FFFFFF'
+    },
     span: {
         color: '#FFF829'
     },
 
     avatar: {
-        height: 150
+        height: 150,
+        width: 150
+    },
+    divider: {
+        padding: '50px 0px 50px 0px'
     }
 })
 
@@ -71,42 +87,43 @@ class HomePage extends Page {
     unauthenticated = () => {
         const { classes } = this.props
         return (
-            <div>
-                <Grid container xs={12} className={classes.containerRoot}>
+            <Grid container xs={12} className={classes.containerRoot}>
+                <Grid container item xs={12} className={classes.imageContainer}>
                     <Grid
-                        container
                         item
                         xs={12}
-                        className={classes.imageContainer}
+                        className="img"
+                        justify="center"
+                        style={{
+                            height: 700,
+                            //alignItems: 'center',
+                            objectFit: 'nonen'
+                        }}
                     >
                         <Grid
-                            item
+                            container
                             xs={12}
-                            className="img"
-                            justify="center"
+                            item
                             style={{
-                                height: 700,
                                 alignItems: 'center',
-                                objectFit: 'nonen'
+                                height: '100%'
                             }}
                         >
-                            <Grid
-                                container
-                                item
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    height: '70vh'
-                                }}
-                            >
-                                <Grid item>
-                                    <Typography className={classes.titleText}>
-                                        Renovando seu Negócio
-                                    </Typography>
-                                </Grid>
+                            <Grid item xs={12}>
+                                <Typography className={classes.titleText}>
+                                    Renovando seu Negócio
+                                </Typography>
                             </Grid>
                         </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid container className={classes.secondContainer}>
+                    <Grid item xs={12} className={classes.divider}>
+                        <Divider
+                            variant="middle"
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                        />
                     </Grid>
 
                     <Grid container className={classes.image} xs={12}>
@@ -152,15 +169,57 @@ class HomePage extends Page {
                         <Grid item xs={3}>
                             <img src={carol} className={classes.avatar} />
                         </Grid>
-                        <Grid container item xs={3}>
+                        <Grid
+                            container
+                            item
+                            xs={3}
+                            style={{ height: 'fit-content' }}
+                        >
                             <Grid item xs={12}>
-                                <Typography>Carolina Santos</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'left',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
+                                    Carolina Santos
+                                </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>Fundadora</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'left',
+                                        color: '#FFF829'
+                                    }}
+                                >
+                                    Fundadora
+                                </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>pode crer</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'justify'
+                                    }}
+                                >
+                                    Oi gente! Sou a Carol, uma das arquitetas
+                                    inquietas da Revivarq! Me formei em
+                                    Arquitetura e Urbanismo no ano de 2018, na
+                                    PUCRS. Tenho experiência com projetos
+                                    comerciais, administrativos e
+                                    licenciamentos. Adoro ver as mudanças que a
+                                    arquitetura pode trazer para as pessoas,
+                                    pessoal e profissionalmente. Acredito que as
+                                    mudanças são muito importantes pra que o
+                                    futuro seja significativo. Além de
+                                    arquiteta, estudo dança e sou uma grande
+                                    apreciadora de arte. Por isso, adoro
+                                    relacionar essas duas áreas. Uma boa
+                                    arquitetura deve ser considerada uma bela
+                                    obra de arte!
+                                </Typography>
                             </Grid>
                         </Grid>
                         <Grid item xs={3}>
@@ -168,13 +227,54 @@ class HomePage extends Page {
                         </Grid>
                         <Grid container item xs={3}>
                             <Grid item xs={12}>
-                                <Typography>Carolina Santos</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'left',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
+                                    Vanessa
+                                </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>Fundadora</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'left',
+                                        color: '#FFF829'
+                                    }}
+                                >
+                                    Fundadora
+                                </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>pode crer</Typography>
+                                <Typography
+                                    className={classes.textMin}
+                                    style={{
+                                        textAlign: 'justify'
+                                    }}
+                                >
+                                    E aí, tudo bacana? Eu sou a Vanessa,
+                                    arquiteta formada pela PUCRS em 2018 e
+                                    acredito na desmistificação e democratização
+                                    da arquitetura. Tenho uma trajetória focada
+                                    no ramo de arquitetura comercial,
+                                    especialmente trabalhando com grande redes
+                                    varejistas no cenário nacional. Entretanto,
+                                    acredito que olhar para o empreendedor de
+                                    bairro e oferecer a ele uma oportunidade de
+                                    planejamento e reconfiguração de seu espaço
+                                    de trabalho propicia um benefício para além
+                                    de seu negócio, impactando também a
+                                    vitalidade urbana e permitindo uma
+                                    movimentação econômica local mais justa.
+                                    Além de arquiteta, sou uma curiosa nata e
+                                    conhecer universos diferentes é meu hobby
+                                    favorito, portanto sinta-se mais que
+                                    convidado para uma xícara de café e uma boa
+                                    prosa que vou adorar.
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -186,19 +286,37 @@ class HomePage extends Page {
                         />
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography>Fique ligado</Typography>
+                    <Grid item xs={12} style={{ paddingBottom: 20 }}>
+                        <Typography
+                            style={{
+                                fontSize: 30,
+                                fontFamily: 'Roboto',
+                                color: '#FFFFFF'
+                            }}
+                        >
+                            Fique ligado no nosso{' '}
+                            <span className={classes.span}>Instagram!</span>
+                        </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography>Fique ligado</Typography>
+                    <Grid item xs={12} style={{ paddingBottom: 20 }}>
+                        <Typography className={classes.textMin}>
+                            Atualizamos nosso instagram diariamente com dicas de
+                            arquitetura, vídeos de montagem de projetos,
+                            notícias sobre arquitetura e tecnologia e portifólio
+                            dos projetos realizados
+                        </Typography>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <Typography>Fique ligado</Typography>
+                    <Grid item xs={12} style={{ paddingBottom: 20 }}>
+                        <Typography className={classes.textMin}>
+                            <span className={classes.span}>
+                                Siga nosso instagram!
+                            </span>
+                        </Typography>
                     </Grid>
                 </Grid>
-            </div>
+            </Grid>
 
             /*<div>
                 <Grid container spacing={3}>
