@@ -1,4 +1,4 @@
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 const models = require('../models/index')
 const UserModel = models['Users']
 

@@ -1,7 +1,7 @@
 const DAO = require('../DAO/reformsDAO')
 const EmailSenderHelper = require('../Helpers/EmailSenderHelper')
 const { validReformRegister } = require('../Helpers/ValidationHelper')
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 
 class ReformController {
     /**

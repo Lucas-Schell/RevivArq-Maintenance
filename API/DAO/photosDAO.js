@@ -1,4 +1,4 @@
-require('../config/contants')
+require('../config/Contents')
 
 function addPhoto(photo) {
     console.log(photo)

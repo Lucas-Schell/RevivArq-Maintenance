@@ -1,4 +1,4 @@
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 const jwt = require('jsonwebtoken')
 const models = require('../models/index')
 const ResponseHelper = require('../Helpers/ResponseHelper')
