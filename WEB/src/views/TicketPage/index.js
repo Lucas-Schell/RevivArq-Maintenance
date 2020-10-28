@@ -7,7 +7,7 @@ class TicketPage extends Page {
         return this.unauthenticated()
     }
     unauthenticated = () => {
-        console.log('max burro')
+        console.log('os cara pega o bagulho pronto e acham que tao abalando')
         const { classes } = this.props
 
         return <TicketForm classes={classes} />
