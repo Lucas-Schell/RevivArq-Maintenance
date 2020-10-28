@@ -242,7 +242,7 @@ class Header extends React.Component {
         if (display) {
             return (
                 <Grid container className={'App-header-container'} xs={12}>
-                    <Grid item xs={3}>
+                    <Grid item xs={window.screen.width > 1000 ? 3 : 12}>
                         <img
                             src={logo}
                             className="App-logo"
@@ -256,7 +256,7 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        xs={6}
+                        xs={window.screen.width > 1000 ? 6 : 12}
                         className={'App-header-container-center'}
                     >
                         <Grid item>
@@ -293,7 +293,7 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        xs={3}
+                        xs={window.screen.width > 1000 ? 3 : 12}
                         className={'App-header-container-right'}
                     >
                         <Grid item>{userName}</Grid>

@@ -178,7 +178,7 @@ class HomePage extends Page {
                             container
                             item
                             xs={window.screen.width > 1000 ? 5 : 12}
-                            style={{ height: 'fit-content' }}
+                            style={{ height: 'fit-content', marginTop: 50 }}
                         >
                             <Grid item xs={12}>
                                 <img src={carol} className={classes.avatar} />
@@ -235,6 +235,7 @@ class HomePage extends Page {
                             container
                             item
                             xs={window.screen.width > 1000 ? 5 : 12}
+                            style={{ marginTop: 50 }}
                         >
                             <Grid item xs={12}>
                                 <img src={vanessa} className={classes.avatar} />
