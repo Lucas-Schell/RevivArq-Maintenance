@@ -2,7 +2,7 @@ const DAO = require('../DAO/UsersDAO')
 const sha256 = require('sha256')
 const EmailSenderHelper = require('../Helpers/EmailSenderHelper')
 const { validPassword } = require('../Helpers/ValidationHelper')
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 
 class RecoveryController {
     /**

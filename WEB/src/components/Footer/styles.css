@@ -1,21 +1,11 @@
 .App-footer {
-    font-family: "Times New Roman", Times, serif;
     background-color: rgb(255, 248, 41);
-    height: 60px;
-    padding: 5px;
-    display: flex;
     justify-content: center;
-}
-
-.App-footer .txt {
-    margin: 20px 5px 5px;
-    height: 20px;
-    float: right;
+    align-items: center;
+    height: 4vh;
 }
 
 .App-footer .img {
-    height: 50px;
-    margin: 4px;
-    bottom: 0;
+    height: 25px;
     background-image: unset;
 }

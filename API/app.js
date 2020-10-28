@@ -11,6 +11,7 @@ const reformRouter = require('./routes/reform')
 const recoveryRouter = require('./routes/recover')
 const instaGaleriaRouter = require('./routes/instaGallery')
 const photosRouter = require('./routes/photos')
+const ticketsRouter = require('./routes/tickets')
 
 const TokenManager = require('./Helpers/AuthManager')
 const config = require('./config/config')
@@ -36,6 +37,7 @@ function setupServer() {
     app.use('/api/InstaGaleria', instaGaleriaRouter)
     app.use('/api/recover', recoveryRouter)
     app.use('/api/photos', photosRouter)
+    app.use('/api/ticket', ticketsRouter)
 
     app.listen(config.app.port, function () {
         console.log(`Server listening on port ${config.app.port}`)

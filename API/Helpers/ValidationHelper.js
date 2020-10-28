@@ -1,4 +1,4 @@
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 
 class ValidationHelper {
     /**

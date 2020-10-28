@@ -1,5 +1,5 @@
-const constants = require('../config/contants')
 const nodemailer = require('nodemailer')
+const constants = require('../config/Contents')
 
 class EmailSenderHelper {
     /**
@@ -110,6 +110,14 @@ class EmailSenderHelper {
             constants.emailRecoveryPassCodeMessage.concat(passCode),
             constants.emailRecoveryPassCodeSubject,
             email
+        )
+    }
+
+    static sendEmailTicket(name, email, message) {
+        this.sendEmail(
+            constants.ticketMessage(name, email, message),
+            `Novo Ticket de ${name}`,
+            constants.returnEmailAdmin
         )
     }
 }

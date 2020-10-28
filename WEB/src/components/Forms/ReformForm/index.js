@@ -88,7 +88,6 @@ class ReformForm extends React.Component {
 
         const submitfoto = await this.submitFotos()
 
-        console.log('ENTREI')
         this.state.photos = submitfoto.images
         this.state.budgetLimit = this.state.budgetLimit
             .replace(/\./g, '')

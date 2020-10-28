@@ -149,15 +149,19 @@ class Constants {
 
     //EMAIL SENDER DATA
     static get returnEmailSender() {
-        return 'fachadas.galeria@gmail.com'
+        return 'miguel.barros1889@gmail.com'
     }
 
     static get returnPasswordSender() {
-        return 'o0i9u8y7t6'
+        return 'Mb12345678'
     }
 
     static get returnSMTPProvider() {
         return 'Gmail'
+    }
+
+    static get returnEmailAdmin() {
+        return 'gabriecs398@gmail.com'
     }
 
     // STATUS E-MAIL
@@ -287,6 +291,12 @@ class Constants {
 
     static get invalidPermission() {
         return 'Acesso negado a este recurso!'
+    }
+
+    //TICKET MESSAGES
+
+    static ticketMessage(name, userEmail, msg) {
+        return `Ticket recebido de: ${name}\nE-Mail do remetente: ${userEmail}\n\n\n${msg}`
     }
 }
 

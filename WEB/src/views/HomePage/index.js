@@ -3,6 +3,7 @@ import './styles.css'
 import InstaGallery from '../../components/InstaGallery/index.js'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
+import image from '../../Assets/backgroundimg5.png'
 import Typography from '@material-ui/core/Typography'
 // Biblioteca de Componentes
 import carol from '../../Assets/carol.png'
@@ -10,16 +11,46 @@ import vanessa from '../../Assets/vanessa.png'
 import Divider from '@material-ui/core/Divider'
 // Views
 import Page from 'views/Page'
+
 import { Button } from '@material-ui/core'
 
 // Serviços
 
 const styles = () => ({
-    root: {
-        display: 'flex'
+    containerRoot: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '91vh'
     },
-    button: {
-        margin: 1
+    imageContainer: {
+        justifyContent: 'center',
+        alignSelf: 'flex-start'
+    },
+    image: {
+        justifyContent: 'center',
+        alignSelf: 'flex-start'
+    },
+    centering: {
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    titleText: {
+        fontFamily: 'Roboto',
+        fontSize: 70,
+        color: '#FFFFFF'
+    },
+
+    text: {
+        fontFamily: 'Roboto',
+        fontSize: 30,
+        color: '#FFFFFF'
+    },
+    span: {
+        color: '#FFF829'
+    },
+
+    avatar: {
+        height: 150
     }
 })
 
@@ -41,6 +72,135 @@ class HomePage extends Page {
         const { classes } = this.props
         return (
             <div>
+                <Grid container xs={12} className={classes.containerRoot}>
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        className={classes.imageContainer}
+                    >
+                        <Grid
+                            item
+                            xs={12}
+                            className="img"
+                            justify="center"
+                            style={{
+                                height: 700,
+                                alignItems: 'center',
+                                objectFit: 'nonen'
+                            }}
+                        >
+                            <Grid
+                                container
+                                item
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    height: '70vh'
+                                }}
+                            >
+                                <Grid item>
+                                    <Typography className={classes.titleText}>
+                                        Renovando seu Negócio
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid container className={classes.image} xs={12}>
+                        <Grid
+                            container
+                            item
+                            xs={6}
+                            className={classes.centering}
+                        >
+                            <Typography className={classes.text}>
+                                Quem somos?
+                            </Typography>
+                        </Grid>
+
+                        <Grid
+                            container
+                            item
+                            xs={6}
+                            className={classes.centering}
+                        >
+                            <Typography className={classes.text}>
+                                Somos uma empresa que oferece{' '}
+                                <span className={classes.span}>
+                                    serviços personalizados
+                                </span>{' '}
+                                de arquitetura e design para transformar o seu
+                                negócio{' '}
+                                <span className={classes.span}>
+                                    cabendo no seu bolso
+                                </span>
+                            </Typography>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} className={classes.divider}>
+                        <Divider
+                            variant="middle"
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                        />
+                    </Grid>
+
+                    <Grid container item xs={12}>
+                        <Grid item xs={3}>
+                            <img src={carol} className={classes.avatar} />
+                        </Grid>
+                        <Grid container item xs={3}>
+                            <Grid item xs={12}>
+                                <Typography>Carolina Santos</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Fundadora</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>pode crer</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <img src={vanessa} className={classes.avatar} />
+                        </Grid>
+                        <Grid container item xs={3}>
+                            <Grid item xs={12}>
+                                <Typography>Carolina Santos</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Fundadora</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>pode crer</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} className={classes.divider}>
+                        <Divider
+                            variant="middle"
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
+                    </Grid>
+                </Grid>
+            </div>
+
+            /*<div>
                 <Grid container spacing={3}>
                     <Grid
                         item
@@ -66,8 +226,7 @@ class HomePage extends Page {
                                 className="txtIni"
                                 style={{
                                     fontSize: 60,
-                                    color: 'white',
-                                    fontFamily: 'Playfair Display'
+                                    color: 'white'
                                 }}
                                 gutterBottom
                             >
@@ -360,7 +519,7 @@ class HomePage extends Page {
                         </Button>
                     </Grid>
                 </Grid>
-            </div>
+            </div>*/
         )
     }
 }

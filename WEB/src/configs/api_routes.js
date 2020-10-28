@@ -86,3 +86,8 @@ export const api_get_user = {
     method: 'get',
     url: `${api}/auth_user/user`
 }
+
+export const PostTicket = {
+    method: 'post',
+    url: `${api}/ticket/`
+}

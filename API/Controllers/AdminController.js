@@ -1,4 +1,4 @@
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 const DAO = require('../DAO/UsersDAO')
 const sha256 = require('sha256')
 const { validUserRegister } = require('../Helpers/ValidationHelper')

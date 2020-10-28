@@ -1,17 +1,35 @@
 .App-logo {
-    height: 50px;
+    height: 52px;
     width: 150px;
-    margin: 2px;
     float: left;
     cursor: pointer;
 }
 
-.App-header {
+.App-header-container {
     font-family: "Times New Roman", Times, serif;
     background-color: rgb(255, 248, 41);
-    height: 50px;
-    padding: 5px;
+    align-items: center;
+    justify-content: space-between;
+    height: 5vh;
+
 }
+
+.App-header-container-center {
+    font-family: "Times New Roman", Times, serif;
+    background-color: rgb(255, 248, 41);
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.App-header-container-right {
+    justify-content: flex-end;
+
+}
+.App-button {
+
+}
+
 
 .App-title {
     margin: 5px;
@@ -25,56 +43,4 @@
     margin: 5px;
     padding-right: 3em;
     color: rgb(21, 38, 32);
-}
-
-.App-header .loginbtn {
-    margin: 5px;
-    float: right;
-    color: rgb(21, 38, 32);
-}
-
-@media only screen and (max-width: 400px) {
-    .App-logo {
-        padding-top: 12px;
-    }
-
-    .App-header {
-        height: 80px;
-    }
-
-    .App-title {
-        padding-top: 5px;
-    }
-
-    .App-header .btn {
-        font-size: 0.8em;
-        top: 7px;
-    }
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes App-logo-move {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(10px);
-    }
-}
-
-@keyframes App-logo-spinmove {
-    from {
-        transform: translateX(-75%) rotate(0deg);
-    }
-    to {
-        transform: translateX(75%) rotate(360deg);
-    }
 }

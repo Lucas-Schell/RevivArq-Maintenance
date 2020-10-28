@@ -1,4 +1,4 @@
-const constants = require('../config/contants')
+const constants = require('../config/Contents')
 const AuthManager = require('../Helpers/AuthManager')
 
 const jwt = require('jsonwebtoken')
