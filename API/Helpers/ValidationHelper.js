@@ -396,8 +396,19 @@ class ValidationHelper {
             !ValidationHelper.validCivilStatus(civilStatus)
         )
             message = constants.invalidCivilStatus
-        //campos opcionais endereço, valida caso venha preenchido.
-        else if (!!address) {
+        else message = this.validAddress(address)
+
+        return {
+            valid: !message,
+            message
+        }
+    }
+
+    static validAddress(address) {
+        let message
+        if (!address) {
+            message = constants.invalidAddress
+        } else {
             if (
                 !!address.street &&
                 !ValidationHelper.validStreet(address.street)
@@ -408,10 +419,7 @@ class ValidationHelper {
                 !ValidationHelper.validNumber(address.number)
             )
                 message = constants.invalidNumber
-            else if (
-                !!address.cep &&
-                !ValidationHelper.validNumber(address.cep)
-            )
+            else if (!!address.cep && !ValidationHelper.validCep(address.cep))
                 message = constants.invalidCEP
             else if (
                 !!address.complement &&
@@ -432,10 +440,7 @@ class ValidationHelper {
                 message = constants.invalidUF
         }
 
-        return {
-            valid: !message,
-            message
-        }
+        return message
     }
 
     static validReformRegister(
@@ -476,39 +481,7 @@ class ValidationHelper {
             !ValidationHelper.validOutros(reformItens.outros)
         )
             message = constants.invalidOutros
-        else if (!address) {
-            message = constants.invalidAddress
-        } else {
-            if (
-                !!address.street &&
-                !ValidationHelper.validStreet(address.street)
-            )
-                message = constants.invalidStreet
-            else if (
-                !!address.number &&
-                !ValidationHelper.validNumber(address.number)
-            )
-                message = constants.invalidNumber
-            else if (!!address.cep && !ValidationHelper.validCep(address.cep))
-                message = constants.invalidCEP
-            else if (
-                !!address.complement &&
-                !ValidationHelper.validComplement(address.complement)
-            )
-                message = constants.invalidComplement
-            else if (
-                !!address.neighborhood &&
-                !ValidationHelper.validNeighborhood(address.neighborhood)
-            )
-                message = constants.invalidNeighborhood
-            else if (
-                !!address.city &&
-                !ValidationHelper.validCity(address.city)
-            )
-                message = constants.invalidCity
-            else if (!!address.uf && !ValidationHelper.validUF(address.uf))
-                message = constants.invalidUF
-        }
+        else message = this.validAddress(address)
 
         return {
             valid: !message,
