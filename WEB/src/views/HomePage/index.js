@@ -47,6 +47,10 @@ const styles = () => ({
     },
     span: {
         color: '#FFF829'
+    },
+
+    avatar: {
+        height: 150
     }
 })
 
@@ -135,6 +139,63 @@ class HomePage extends Page {
                                 </span>
                             </Typography>
                         </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} className={classes.divider}>
+                        <Divider
+                            variant="middle"
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                        />
+                    </Grid>
+
+                    <Grid container item xs={12}>
+                        <Grid item xs={3}>
+                            <img src={carol} className={classes.avatar} />
+                        </Grid>
+                        <Grid container item xs={3}>
+                            <Grid item xs={12}>
+                                <Typography>Carolina Santos</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Fundadora</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>pode crer</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <img src={vanessa} className={classes.avatar} />
+                        </Grid>
+                        <Grid container item xs={3}>
+                            <Grid item xs={12}>
+                                <Typography>Carolina Santos</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>Fundadora</Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography>pode crer</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} className={classes.divider}>
+                        <Divider
+                            variant="middle"
+                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Typography>Fique ligado</Typography>
                     </Grid>
                 </Grid>
             </div>
