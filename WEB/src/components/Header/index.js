@@ -73,13 +73,6 @@ class Header extends React.Component {
     renderUserName = () => {
         return (
             <Button
-                style={{
-                    float: 'right',
-                    fontFamily: 'Playfair Display',
-                    padding: 10
-                }}
-                id="logoutBtn"
-                className="btn"
                 onClick={() => {
                     this.redirect('/AreaCliente')
                 }}
@@ -90,20 +83,7 @@ class Header extends React.Component {
     }
 
     renderLogout = () => {
-        return (
-            <Button
-                style={{
-                    float: 'right',
-                    fontFamily: 'Playfair Display',
-                    padding: 10
-                }}
-                id="logoutBtn"
-                className="btn"
-                onClick={() => this.doLogout()}
-            >
-                S A I R
-            </Button>
-        )
+        return <Button onClick={() => this.doLogout()}>Sair</Button>
     }
 
     doLogout = async () => {
@@ -118,14 +98,11 @@ class Header extends React.Component {
     renderLogin = () => {
         return (
             <Button
-                style={{ fontFamily: 'Playfair Display' }}
-                id="loginBtn"
-                className="loginbtn"
                 onClick={() => {
                     this.setState({ modalOpened: true })
                 }}
             >
-                E N T R A R
+                Entrar
             </Button>
         )
     }
@@ -156,9 +133,6 @@ class Header extends React.Component {
     renderAdmin = () => {
         return (
             <Button
-                style={{ fontFamily: 'Playfair Display' }}
-                id="botaoAdmin"
-                className="btn"
                 onClick={() => {
                     this.redirect('/AreaAdmin')
                 }}
@@ -171,8 +145,6 @@ class Header extends React.Component {
     renderUserArea = () => {
         return (
             <Button
-                id="botaoCliente"
-                className="btn"
                 onClick={() => {
                     this.redirect('/AreaCliente')
                 }}
@@ -270,7 +242,7 @@ class Header extends React.Component {
         if (display) {
             return (
                 <Grid container className={'App-header-container'} xs={12}>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                         <img
                             src={logo}
                             className="App-logo"
@@ -284,7 +256,7 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        xs={4}
+                        xs={6}
                         className={'App-header-container-center'}
                     >
                         <Grid item>
@@ -321,7 +293,7 @@ class Header extends React.Component {
                     <Grid
                         container
                         item
-                        xs={4}
+                        xs={3}
                         className={'App-header-container-right'}
                     >
                         <Grid item>{userName}</Grid>
