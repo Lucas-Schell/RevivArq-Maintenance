@@ -481,7 +481,7 @@ class ValidationHelper {
             !ValidationHelper.validOutros(reformItens.outros)
         )
             message = constants.invalidOutros
-        else message = this.validAddress(address)
+        else message = ValidationHelper.validAddress(address)
 
         return {
             valid: !message,
