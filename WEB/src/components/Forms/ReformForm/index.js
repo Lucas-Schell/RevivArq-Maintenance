@@ -18,7 +18,7 @@ import {
     FormControlLabel,
     InputLabel
 } from '@material-ui/core'
-import { postReform } from '../../../services/reforms'
+import { editReform, postReform } from '../../../services/reforms'
 import { postPhotos } from '../../../services/photos'
 
 import NumberFormat from 'react-number-format'
@@ -83,9 +83,7 @@ class ReformForm extends React.Component {
         return await postPhotos(this.state.file)
     }
 
-    handleSubmit = async (event) => {
-        event.preventDefault()
-
+    async handleCreate() {
         const submitfoto = await this.submitFotos()
 
         this.state.photos = submitfoto.images
@@ -114,17 +112,40 @@ class ReformForm extends React.Component {
             reformItens: this.state.reformItens
         }
 
-        //	console.log("REFORMA", reform)
-        const registerAttempt = await this.registrarReforma(reform)
-        //	console.log("CALLBACK", registerAttempt)
+        return await this.registrarReforma(reform)
+    }
+
+    async handleEdit() {
+        const { reform } = this.props
+
+        const reformUpdated = {
+            ...reform,
+            establishmentName: this.state.establishmentName,
+            establishmentType: this.state.establishmentType,
+            area: this.state.area,
+            address: this.state.address,
+            reformItens: this.state.reformItens,
+            goal: this.state.goal,
+            restrictions: this.state.restrictions,
+            budgetLimit: this.state.budgetLimit,
+            phone: this.state.phone
+        }
+
+        return await editReform(reformUpdated)
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault()
+
+        const registerAttempt = this.props.reform
+            ? await this.handleEdit()
+            : await this.handleCreate()
+
         if (registerAttempt.statusCode !== Constants.successCode) {
             this.setState({
                 errorMessage: registerAttempt.statusDesc
             })
             showNotification(registerAttempt.statusDesc, '', 'danger')
-            //X const { history } = this.props
-            // history.push('/AreaCliente')
-            //window.location.reload();
             return false
         } else {
             const { history } = this.props
@@ -150,7 +171,6 @@ class ReformForm extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-        console.log(e.target)
     }
 
     imgChange = (e) => {
@@ -220,6 +240,26 @@ class ReformForm extends React.Component {
         this.setState({
             open: false
         })
+    }
+
+    componentDidMount() {
+        const { reform } = this.props
+        console.log(this.props)
+
+        if (reform) {
+            this.setState({
+                establishmentName: reform.establishmentName,
+                establishmentType: reform.establishmentType,
+                status: reform.status,
+                area: reform.area,
+                address: reform.address,
+                reformItens: reform.reformItens,
+                goal: reform.goal,
+                restrictions: reform.restrictions,
+                budgetLimit: reform.budgetLimit,
+                phone: reform.phone
+            })
+        }
     }
 
     render() {
@@ -894,7 +934,7 @@ class ReformForm extends React.Component {
                                 margin: 20
                             }}
                         >
-                            Encaminhar
+                            Salvar
                         </Button>
                     </Grid>
                     <div style={{}}>

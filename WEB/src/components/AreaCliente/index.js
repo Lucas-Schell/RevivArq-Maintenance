@@ -69,9 +69,10 @@ export default class SwitchListSecondary extends React.Component {
             reforma: reform
         })
         this.props.history.push({
-            pathname: '/reforma',
+            pathname: '/FacaPedido',
             state: {
-                reform
+                reform,
+                title: 'Editar Orçamento'
             }
         })
     }
