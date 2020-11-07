@@ -21,32 +21,30 @@ import UserListPage from 'views/UserPages/List'
 
 export default () => {
     return (
-        <main>
-            <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/protected" component={Page} />
-                <Route path="/email" component={Email} />
-                <Route path="/recpass" component={RecPassword} />
-                <Route path="/AreaAdmin" component={AreaAdmin} />
-                <Route path="/AreaCliente" component={AreaCliente} />
-                <Route path="/SobreNos" component={SobreNos} />
-                <Route path="/FacaPedido" component={FacaPedido} />
-                <Route path="/Reforma" component={Reforma} />
-                <Route path="/Erro403" component={Erro403} />
-                <Route path="/ticket" component={Ticket} />
+        <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/protected" component={Page} />
+            <Route path="/email" component={Email} />
+            <Route path="/recpass" component={RecPassword} />
+            <Route path="/AreaAdmin" component={AreaAdmin} />
+            <Route path="/AreaCliente" component={AreaCliente} />
+            <Route path="/SobreNos" component={SobreNos} />
+            <Route path="/FacaPedido" component={FacaPedido} />
+            <Route path="/Reforma" component={Reforma} />
+            <Route path="/Erro403" component={Erro403} />
+            <Route path="/ticket" component={Ticket} />
 
-                {/* User Container */}
-                <Route exact path="/users" component={UserListPage} />
-                <Route exact path="/users/edit" component={UserEditPage} />
-                <Route exact path="/users/edit/:id" component={UserEditPage} />
-                {/* End of User Container */}
+            {/* User Container */}
+            <Route exact path="/users" component={UserListPage} />
+            <Route exact path="/users/edit" component={UserEditPage} />
+            <Route exact path="/users/edit/:id" component={UserEditPage} />
+            {/* End of User Container */}
 
-                {/* 404 - Page not Found */}
-                <Route component={BlankPage} />
+            {/* 404 - Page not Found */}
+            <Route component={BlankPage} />
 
-                {/* 403 - ForbiddenAcess */}
-                <Route component={Erro403} />
-            </Switch>
-        </main>
+            {/* 403 - ForbiddenAcess */}
+            <Route component={Erro403} />
+        </Switch>
     )
 }

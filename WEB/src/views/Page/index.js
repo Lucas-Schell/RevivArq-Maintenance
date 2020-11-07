@@ -8,6 +8,9 @@ import { show_stringify } from 'helpers/json'
 // Internal Components
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import './styles.css'
+import Container from '@material-ui/core/Container'
+import { Grid } from '@material-ui/core'
 
 class Page extends React.Component {
     constructor(props) {
@@ -129,12 +132,17 @@ class Page extends React.Component {
 
         if (render) {
             return (
-                <div>
+                <Grid
+                    container
+                    alignContent="space-between"
+                    justify="center"
+                    className={'ContainerPage'}
+                >
                     {this.header()}
                     <div style={{ minHeight: '91vh' }}>{render}</div>
                     {this.onRender(onRender)}
                     {this.footer()}
-                </div>
+                </Grid>
             )
         } else {
             return this.loading()
