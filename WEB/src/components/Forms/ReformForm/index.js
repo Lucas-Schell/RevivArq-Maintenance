@@ -296,11 +296,7 @@ class ReformForm extends React.Component {
                     <h1>{this.props.title}</h1>
                 </Grid>
 
-                <Grid
-                    item
-                    xs={3}
-                    style={{ color: 'black', backgroundColor: 'black' }}
-                >
+                <Grid item xs={3}>
                     <div />
                 </Grid>
 
