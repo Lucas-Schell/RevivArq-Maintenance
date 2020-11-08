@@ -212,6 +212,19 @@ const createReformsData = (model) => {
     reforms2.save()
 }
 
+const createHomeTexts = (model) => {
+    const texts = new model({
+        about:
+            'Somos uma empresa que oferece serviços personalizados de arquitetura e design para transformar o seu negócio cabendo no seu bolso',
+        found1:
+            'Oi gente! Sou a Carol, uma das arquitetas inquietas da Revivarq! Me formei em Arquitetura e Urbanismo no ano de 2018, na PUCRS. Tenho experiência com projetos comerciais, administrativos e licenciamentos. Adoro ver as mudanças que a arquitetura pode trazer para as pessoas, pessoal e profissionalmente. Acredito que as mudanças são muito importantes pra que o futuro seja significativo. Além de arquiteta, estudo dança e sou uma grande apreciadora de arte. Por isso, adoro relacionar essas duas áreas. Uma boa arquitetura deve ser considerada uma bela obra de arte!',
+        found2:
+            'E aí, tudo bacana? Eu sou a Vanessa, arquiteta formada pela PUCRS em 2018 e acredito na desmistificação e democratização da arquitetura. Tenho uma trajetória focada no ramo de arquitetura comercial, especialmente trabalhando com grande redes varejistas no cenário nacional. Entretanto, acredito que olhar para o empreendedor de bairro e oferecer a ele uma oportunidade de planejamento e reconfiguração de seu espaço de trabalho propicia um benefício para além de seu negócio, impactando também a vitalidade urbana e permitindo uma movimentação econômica local mais justa. Além de arquiteta, sou uma curiosa nata e conhecer universos diferentes é meu hobby favorito, portanto sinta-se mais que convidado para uma xícara de café e uma boa prosa que vou adorar.',
+        unique: true
+    })
+    texts.save()
+}
+
 fs.readdirSync(__dirname)
     .filter((file) => {
         return (
@@ -226,8 +239,16 @@ fs.readdirSync(__dirname)
         if (fileData.name === 'Users') {
             createAdminUser(models[fileData.name])
             createUsers(models[fileData.name])
-        } else if (fileData.name === 'Reforms')
-            createReformsData(models[fileData.name])
+        } else {
+            if (fileData.name === 'Reforms') {
+                createReformsData(models[fileData.name])
+            } else {
+                if (fileData.name === 'Texts') {
+                    console.log('chamando')
+                    createHomeTexts(models[fileData.name])
+                }
+            }
+        }
     })
 
 module.exports = models
