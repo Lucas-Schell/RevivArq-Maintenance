@@ -25,12 +25,12 @@ export const getTexts = async () => {
     }
 }
 
-export const editTexts = async (reform) => {
+export const editTexts = async (texts) => {
     const response = await axios({
         method: EditTexts.method,
         url: EditTexts.url,
         timeout: 5000,
-        data: reform,
+        data: texts,
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${sessionStorage.getItem('token')}`
