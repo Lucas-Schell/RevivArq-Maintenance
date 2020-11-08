@@ -57,7 +57,7 @@ class ReformForm extends React.Component {
             },
             reformItens: {
                 fachada: false,
-                identidadeEComunicação: false,
+                identidadeEComunicacao: false,
                 paredesERevestimentos: false,
                 paisagismo: false,
                 forro: false,
@@ -776,14 +776,14 @@ class ReformForm extends React.Component {
                                 control={<Checkbox color="yellow" />}
                             />
                             <FormControlLabel
-                                checked={reformItens.identidadeEComunicação}
+                                checked={reformItens.identidadeEComunicacao}
                                 label="Identidade e Comunicação"
                                 labelPlacement="left"
                                 onChange={(e) =>
                                     this.setState({
                                         reformItens: {
                                             ...reformItens,
-                                            identidadeEComunicação:
+                                            identidadeEComunicacao:
                                                 e.target.checked
                                         }
                                     })
