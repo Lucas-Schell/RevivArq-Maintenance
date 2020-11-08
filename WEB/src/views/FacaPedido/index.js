@@ -36,29 +36,22 @@ class FacaPedido extends Page {
     }
 
     authenticated = () => {
+        const { classes } = this.props
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row ',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-            >
-                <ReformForm
-                    title={
-                        this.props.location.state
-                            ? this.props.location.state.title
-                            : 'Fazer um Orçamento'
-                    }
-                    history={this.props.history}
-                    reform={
-                        this.props.location.state
-                            ? this.props.location.state.reform
-                            : undefined
-                    }
-                />
-            </div>
+            <ReformForm
+                title={
+                    this.props.location.state
+                        ? this.props.location.state.title
+                        : 'Fazer um Orçamento'
+                }
+                history={this.props.history}
+                classes={classes}
+                reform={
+                    this.props.location.state
+                        ? this.props.location.state.reform
+                        : undefined
+                }
+            />
         )
     }
 }
