@@ -1,66 +1,7 @@
-.form-reforma {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.container-root {
+    background-color: rgb(255, 248, 41);
+    min-height: 50vh;
 }
-
-.reforma-container h1 {
-    border-top: 5px;
-    border-bottom: 0;
-    text-shadow: 2px 3px rgba(0, 0, 0, 0.3);
-}
-
-.reforma-container .submitBtn {
-    margin: 20px;
-    min-width: 200px;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.623);
-}
-
-.reforma-container .input {
-    width: 300px;
-}
-
-.reforma-error-message {
-    margin-top: 1rem;
-    color: red;
-}
-
-.reforma-container {
-    background: rgb(255, 248, 41);
-    width: 50%;
-    height: 100%;
-    margin: 1rem;
-}
-
-.reforma-form-label {
-    text-align: left;
-}
-
-.reforma-form-inputs-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.reforma-form-radios-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.reforma-form-inputs-container-top {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 20px 10px -50px;
-}
-
-.reforma-form-inner-container {
-    display: flex;
-}
-
-.reforma-form-input {
-    display: flex;
-    margin-bottom: 12px;
+.input {
+   /* width: 30%;*/
 }
