@@ -72,8 +72,8 @@ export default function AlertDialogSlide(props) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={submit}>Submit</Button>
                     <Button onClick={handleClose}>Fechar</Button>
+                    <Button onClick={submit}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>
