@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -32,7 +33,13 @@ export default function AlertDialogSlide(props) {
 
     return (
         <div>
-            <Button onClick={handleClickOpen}>Informações da Home</Button>
+            <Button
+                style={{ backgroundColor: 'white' }}
+                onClick={handleClickOpen}
+            >
+                Editar informações da HomePage
+            </Button>
+
             <Dialog
                 open={open}
                 TransitionComponent={Transition}
@@ -46,30 +53,43 @@ export default function AlertDialogSlide(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogContent>
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        name="about"
-                        label="Sobre Nós"
-                        value={about}
-                        onChange={onChange}
-                    />
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        name="found1"
-                        label="Bio Carolina"
-                        value={found1}
-                        onChange={onChange}
-                    />
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        name="found2"
-                        label="Bio Vanessa"
-                        value={found2}
-                        onChange={onChange}
-                    />
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                multiline
+                                variant="outlined"
+                                name="about"
+                                label="Sobre Nós"
+                                value={about}
+                                onChange={onChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                multiline
+                                fullWidth
+                                variant="outlined"
+                                name="found1"
+                                label="Bio Carolina"
+                                value={found1}
+                                onChange={onChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                multiline
+                                fullWidth
+                                variant="outlined"
+                                name="found2"
+                                label="Bio Vanessa"
+                                value={found2}
+                                onChange={onChange}
+                            />
+                        </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={submit}>Submit</Button>
