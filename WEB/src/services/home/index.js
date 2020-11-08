@@ -3,18 +3,20 @@ import { Constants } from 'configs/constants'
 import { EditTexts, GetTexts } from 'configs/api_routes'
 
 export const getTexts = async () => {
+    let session = sessionStorage.getItem('token')
+    console.log(session)
     const response = await axios({
         method: GetTexts.method,
         url: GetTexts.url,
         timeout: 5000,
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${sessionStorage.getItem('token')}`
+            Authorization: `Bearer ${session === null ? '' : session}`
         }
     })
 
     if (response) {
-        return response.data.data[0]
+        return response.data.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',

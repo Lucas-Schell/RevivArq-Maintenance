@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { getTexts, editTexts } from '../../services/home'
+import { getTexts } from '../../services/home'
 
 class HomeTexts extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class HomeTexts extends React.Component {
         const { text } = this.props
 
         const texts = await getTexts()
-        console.log(texts)
+
         if (texts) {
             this.setState({ text: texts[text] })
         }

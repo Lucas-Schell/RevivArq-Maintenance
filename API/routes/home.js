@@ -1,6 +1,7 @@
 const express = require('express')
 const ResponseHelper = require('../Helpers/ResponseHelper')
 const HomeController = require('../Controllers/HomeController')
+const TokenManager = require('../Helpers/AuthManager')
 
 const routerTexts = express.Router()
 
@@ -13,8 +14,10 @@ routerTexts.get('/', (req, res) => {
 
 //update reforms
 routerTexts.put('/', (req, res) => {
-    HomeController.updateTexts(req.body, req.User, (error, data) => {
-        res.json(ResponseHelper.createResponse(error, data, null, true))
+    TokenManager.ensureUserToken(req, res, () => {
+        HomeController.updateTexts(req.body, req.User, (error, data) => {
+            res.json(ResponseHelper.createResponse(error, data, null, true))
+        })
     })
 })
 

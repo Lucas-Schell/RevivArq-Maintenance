@@ -6,74 +6,18 @@ class HomeController {
         return DAO.findAll(callback)
     }
 
-    static updateReform(reform, user, callback) {
-        const {
-            userId,
-            establishmentName,
-            establishmentType,
-            reformItens,
-            status,
-            area,
-            address,
-            goal,
-            restrictions,
-            budgetLimit,
-            _id,
-            phone
-        } = reform
-        const { valid, message } = validReformRegister(
-            userId,
-            establishmentName,
-            establishmentType,
-            status,
-            area,
-            address,
-            goal,
-            restrictions,
-            budgetLimit,
-            reformItens,
-            phone
-        )
-        const { isAdmin, name, lastName } = user
+    static updateTexts(texts, user, callback) {
+        const { isAdmin } = user
 
-        if (!valid) {
+        if (!isAdmin) {
             const errorObj = {
                 statusDesc: message,
-                statusCode: constants.invalidFields
+                statusCode: constants.userIsNotAdmin
             }
             return callback(errorObj, null)
         }
 
-        let filteredReform
-        if (isAdmin) {
-            //é admin. somente consegue alterar o STATUS
-            filteredReform = { _id, status }
-        } else {
-            //consegue alterar todas as informações editaveis EXCETO o status.
-            const author = user.name + ' ' + user.lastName
-            filteredReform = {
-                _id,
-                establishmentType,
-                area,
-                address,
-                goal,
-                restrictions,
-                budgetLimit,
-                establishmentName,
-                reformItens,
-                author,
-                phone
-            }
-        }
-
-        return DAO.updateReform(filteredReform, callback, isAdmin, () =>
-            this.sendEmailOnChangeStatus(
-                4,
-                constants.returnEmailSender,
-                name + ' ' + lastName,
-                establishmentName
-            )
-        )
+        return DAO.updateTexts(texts, callback)
     }
 }
 
