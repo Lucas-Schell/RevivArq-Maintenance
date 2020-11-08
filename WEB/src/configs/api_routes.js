@@ -57,6 +57,16 @@ export const PostReform = {
     url: `${api}/reform`
 }
 
+export const GetTexts = {
+    method: 'get',
+    url: `${api}/home`
+}
+
+export const EditTexts = {
+    method: 'put',
+    url: `${api}/home`
+}
+
 export const PostGeneratePassCode = {
     method: 'post',
     url: `${api}/recover/generatePassCode`
