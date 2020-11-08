@@ -4,7 +4,7 @@ import { EditTexts, GetTexts } from 'configs/api_routes'
 
 export const getTexts = async () => {
     let session = sessionStorage.getItem('token')
-    console.log(session)
+
     const response = await axios({
         method: GetTexts.method,
         url: GetTexts.url,
