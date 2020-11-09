@@ -46,55 +46,95 @@ export default function AlertDialogSlide(props) {
                 keepMounted
                 onClose={handleClose}
             >
-                <DialogTitle>Admin Text Changer</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Mude o texto da tela home aqui!
-                    </DialogContentText>
-                </DialogContent>
-                <DialogContent>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                fullWidth
-                                multiline
-                                variant="outlined"
-                                name="about"
-                                label="Sobre Nós"
-                                value={about}
-                                onChange={onChange}
-                            />
-                        </Grid>
+                <Grid
+                    container
+                    item
+                    xs={12}
+                    spacing={12}
+                    style={{ backgroundColor: '#FFF829' }}
+                >
+                    <DialogTitle>Editar informções da tela inicial</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Mude o texto da tela home aqui!
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogContent>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    multiline
+                                    variant="outlined"
+                                    name="about"
+                                    label="Sobre Nós"
+                                    value={about}
+                                    onChange={onChange}
+                                    style={{ backgroundColor: '#f5f5f5' }}
+                                    rows={4}
+                                />
+                            </Grid>
 
-                        <Grid item xs={12}>
-                            <TextField
-                                multiline
-                                fullWidth
-                                variant="outlined"
-                                name="found1"
-                                label="Bio Carolina"
-                                value={found1}
-                                onChange={onChange}
-                            />
-                        </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    multiline
+                                    fullWidth
+                                    variant="outlined"
+                                    name="found1"
+                                    label="Bio Carolina"
+                                    value={found1}
+                                    onChange={onChange}
+                                    style={{ backgroundColor: '#f5f5f5' }}
+                                    rows={4}
+                                />
+                            </Grid>
 
-                        <Grid item xs={12}>
-                            <TextField
-                                multiline
-                                fullWidth
-                                variant="outlined"
-                                name="found2"
-                                label="Bio Vanessa"
-                                value={found2}
-                                onChange={onChange}
-                            />
+                            <Grid item xs={12}>
+                                <TextField
+                                    multiline
+                                    fullWidth
+                                    variant="outlined"
+                                    name="found2"
+                                    label="Bio Vanessa"
+                                    value={found2}
+                                    onChange={onChange}
+                                    style={{ backgroundColor: '#f5f5f5' }}
+                                    rows={4}
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Fechar</Button>
-                    <Button onClick={submit}>Submit</Button>
-                </DialogActions>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            onClick={handleClose}
+                            style={{
+                                width: '80%',
+                                color: 'white',
+                                backgroundColor: '#152620',
+                                '&:hover': {
+                                    opacity: 0.9,
+                                    backgroundColor: '#152620'
+                                }
+                            }}
+                        >
+                            Fechar
+                        </Button>
+                        <Button
+                            onClick={submit}
+                            style={{
+                                width: '80%',
+                                color: 'white',
+                                backgroundColor: '#152620',
+                                '&:hover': {
+                                    opacity: 0.9,
+                                    backgroundColor: '#152620'
+                                }
+                            }}
+                        >
+                            Submit
+                        </Button>
+                    </DialogActions>
+                </Grid>
             </Dialog>
         </div>
     )
