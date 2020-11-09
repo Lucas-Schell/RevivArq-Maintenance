@@ -11,6 +11,7 @@ import vanessa from '../../Assets/vanessa.png'
 import Divider from '@material-ui/core/Divider'
 // Views
 import Page from 'views/Page'
+import HomeTexts from '../../components/Home'
 
 // Serviços
 
@@ -146,15 +147,7 @@ class HomePage extends Page {
                             className={classes.centering}
                         >
                             <Typography className={classes.text}>
-                                Somos uma empresa que oferece{' '}
-                                <span className={classes.span}>
-                                    serviços personalizados
-                                </span>{' '}
-                                de arquitetura e design para transformar o seu
-                                negócio{' '}
-                                <span className={classes.span}>
-                                    cabendo no seu bolso
-                                </span>
+                                <HomeTexts text={'about'} />
                             </Typography>
                         </Grid>
                     </Grid>
@@ -212,21 +205,7 @@ class HomePage extends Page {
                                         textAlign: 'justify'
                                     }}
                                 >
-                                    Oi gente! Sou a Carol, uma das arquitetas
-                                    inquietas da Revivarq! Me formei em
-                                    Arquitetura e Urbanismo no ano de 2018, na
-                                    PUCRS. Tenho experiência com projetos
-                                    comerciais, administrativos e
-                                    licenciamentos. Adoro ver as mudanças que a
-                                    arquitetura pode trazer para as pessoas,
-                                    pessoal e profissionalmente. Acredito que as
-                                    mudanças são muito importantes pra que o
-                                    futuro seja significativo. Além de
-                                    arquiteta, estudo dança e sou uma grande
-                                    apreciadora de arte. Por isso, adoro
-                                    relacionar essas duas áreas. Uma boa
-                                    arquitetura deve ser considerada uma bela
-                                    obra de arte!
+                                    <HomeTexts text={'found1'} />
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -269,25 +248,7 @@ class HomePage extends Page {
                                         textAlign: 'justify'
                                     }}
                                 >
-                                    E aí, tudo bacana? Eu sou a Vanessa,
-                                    arquiteta formada pela PUCRS em 2018 e
-                                    acredito na desmistificação e democratização
-                                    da arquitetura. Tenho uma trajetória focada
-                                    no ramo de arquitetura comercial,
-                                    especialmente trabalhando com grande redes
-                                    varejistas no cenário nacional. Entretanto,
-                                    acredito que olhar para o empreendedor de
-                                    bairro e oferecer a ele uma oportunidade de
-                                    planejamento e reconfiguração de seu espaço
-                                    de trabalho propicia um benefício para além
-                                    de seu negócio, impactando também a
-                                    vitalidade urbana e permitindo uma
-                                    movimentação econômica local mais justa.
-                                    Além de arquiteta, sou uma curiosa nata e
-                                    conhecer universos diferentes é meu hobby
-                                    favorito, portanto sinta-se mais que
-                                    convidado para uma xícara de café e uma boa
-                                    prosa que vou adorar.
+                                    <HomeTexts text={'found2'} />
                                 </Typography>
                             </Grid>
                         </Grid>
