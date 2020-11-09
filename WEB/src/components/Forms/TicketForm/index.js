@@ -2,7 +2,6 @@ import React from 'react'
 import { Button, Grid, Typography } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { Constants } from '../../../configs/constants'
 import { showNotification } from '../../Notification'
 import { postTicket } from '../../../services/ticket'
 

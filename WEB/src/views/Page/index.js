@@ -9,7 +9,6 @@ import { show_stringify } from 'helpers/json'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import './styles.css'
-import Container from '@material-ui/core/Container'
 import { Grid } from '@material-ui/core'
 
 class Page extends React.Component {

@@ -1,9 +1,8 @@
 import React from 'react'
 import './styles.css'
-import InstaGallery from '../../components/InstaGallery/index.js'
+//import InstaGallery from '../../components/InstaGallery/index.js'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import image from '../../Assets/backgroundimg5.png'
 import Typography from '@material-ui/core/Typography'
 // Biblioteca de Componentes
 import carol from '../../Assets/carol.png'

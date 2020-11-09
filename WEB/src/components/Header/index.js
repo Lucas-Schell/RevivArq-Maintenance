@@ -11,15 +11,6 @@ import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import { showNotification } from 'components/Notification'
 import Grid from '@material-ui/core/Grid'
-import { withStyles } from '@material-ui/core/styles'
-
-const styles = (theme) => ({
-    container: {
-        backgroundColor: '#FFF289',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
 
 class Header extends React.Component {
     constructor(props) {
@@ -237,7 +228,6 @@ class Header extends React.Component {
     render() {
         const { display } = this.props
         const { render, modalOpened, botaoSair, userName, isAdmin } = this.state
-        const { classes } = this.props
 
         if (display) {
             return (
