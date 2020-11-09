@@ -18,7 +18,7 @@ module.exports = () => {
                         required: true,
                         default: false
                     },
-                    identidadeEComunicação: {
+                    identidadeEComunicacao: {
                         type: Boolean,
                         unique: false,
                         required: true,
@@ -132,7 +132,7 @@ module.exports = () => {
 
     schema.set('toJSON', {
         virtuals: true, // ativa a aparição de virtuals
-        transform: (doc, ret, options) => {
+        transform: () => {
             // remove o id e o __v de queries realizadas
             // delete ret._id;
         },

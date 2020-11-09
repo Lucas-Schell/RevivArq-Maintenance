@@ -14,7 +14,6 @@ import AreaAdmin from '../views/AreaAdmin'
 import AreaCliente from '../views/AreaCliente'
 import SobreNos from '../views/SobreNos'
 import FacaPedido from '../views/FacaPedido'
-import Reforma from '../views/Reforma'
 // Users
 import UserEditPage from 'views/UserPages/CreateUpdate'
 import UserListPage from 'views/UserPages/List'
@@ -30,7 +29,7 @@ export default () => {
             <Route path="/AreaCliente" component={AreaCliente} />
             <Route path="/SobreNos" component={SobreNos} />
             <Route path="/FacaPedido" component={FacaPedido} />
-            <Route path="/Reforma" component={Reforma} />
+            <Route path="/Reforma" component={FacaPedido} />
             <Route path="/Erro403" component={Erro403} />
             <Route path="/ticket" component={Ticket} />
 

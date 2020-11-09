@@ -74,7 +74,7 @@ const getTypes = (itens) => {
         }
         tipos += ' Parede e Revestimento'
     }
-    if (itens.identidadeEComunicação) {
+    if (itens.identidadeEComunicacao) {
         if (tipos.length > 0) {
             tipos += ','
         }

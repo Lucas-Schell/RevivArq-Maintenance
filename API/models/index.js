@@ -104,7 +104,7 @@ const createReformsData = (model) => {
         area: 50,
         reformItens: {
             fachada: true,
-            identidadeEComunicação: false,
+            identidadeEComunicacao: false,
             paredesERevestimentos: false,
             forro: false,
             iluminacao: false,
@@ -142,7 +142,7 @@ const createReformsData = (model) => {
         phone: '5184573823',
         reformItens: {
             fachada: false,
-            identidadeEComunicação: false,
+            identidadeEComunicacao: false,
             paredesERevestimentos: false,
             forro: true,
             iluminacao: false,
@@ -180,7 +180,7 @@ const createReformsData = (model) => {
         phone: '5195848695',
         reformItens: {
             fachada: false,
-            identidadeEComunicação: false,
+            identidadeEComunicacao: false,
             paredesERevestimentos: true,
             forro: false,
             iluminacao: false,

@@ -45,7 +45,19 @@ class FacaPedido extends Page {
                     justifyContent: 'center'
                 }}
             >
-                <ReformForm title="Solicitar Reforma" />
+                <ReformForm
+                    title={
+                        this.props.location.state
+                            ? this.props.location.state.title
+                            : 'Fazer um Orçamento'
+                    }
+                    history={this.props.history}
+                    reform={
+                        this.props.location.state
+                            ? this.props.location.state.reform
+                            : undefined
+                    }
+                />
             </div>
         )
     }
