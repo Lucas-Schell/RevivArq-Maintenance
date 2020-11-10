@@ -115,7 +115,11 @@ class Header extends React.Component {
             )
         }
 
-        return <Button onClick={() => this.doLogout()}>Entrar</Button>
+        return (
+            <Button onClick={() => this.setState({ modalOpened: true })}>
+                Entrar
+            </Button>
+        )
     }
 
     renderHeaderButtons = async () => {
