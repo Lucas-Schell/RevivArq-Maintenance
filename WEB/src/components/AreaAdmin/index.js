@@ -15,6 +15,8 @@ import { showNotification } from 'components/Notification'
 import { Constants } from '../../configs/constants'
 import { Search as SearchIcon } from '@material-ui/icons'
 import ReformaDetalhe from '../ReformaDetalhe'
+import AdminModal from '../AdminModal'
+import { editTexts, getTexts } from '../../services/home'
 
 const styles = () => ({
     root: {
@@ -33,13 +35,20 @@ export default class AreaAdminComponent extends React.Component {
         this.state = {
             reforms: [],
             openedReformIndex: -1,
-            isLoading: true
+            isLoading: true,
+            about: '',
+            found1: '',
+            found2: ''
         }
+        this.onChange = this.onChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+        this.loadInfos = this.loadInfos.bind(this)
     }
 
     async componentDidMount() {
         const reforms = await getReforms()
         this.setState({ reforms, isLoading: false })
+        await this.loadInfos()
     }
 
     async updateReformStatus(reform, index, value) {
@@ -115,11 +124,64 @@ export default class AreaAdminComponent extends React.Component {
         )
     }
 
+    async onSubmit() {
+        const texts = {
+            about: this.state.about,
+            found1: this.state.found1,
+            found2: this.state.found2
+        }
+        const editHomeInfo = await editTexts(texts)
+        if (editHomeInfo.statusCode !== Constants.successCode) {
+            showNotification(
+                'As informações não foram alteradas, tente novamente mais tarde.',
+                'Erro',
+                'danger'
+            )
+        } else {
+            showNotification(
+                'As informações da home foram alteradas.',
+                'Sucesso!'
+            )
+        }
+    }
+
+    onChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    async loadInfos() {
+        const infos = await getTexts()
+        if (infos) {
+            this.setState({
+                about: infos.about,
+                found1: infos.found1,
+                found2: infos.found2
+            })
+        }
+    }
+
     render() {
-        const { reforms, isLoading, openedReformIndex } = this.state
+        const {
+            reforms,
+            isLoading,
+            openedReformIndex,
+            about,
+            found1,
+            found2
+        } = this.state
         const classes = styles()
         return (
             <div>
+                <AdminModal
+                    onChange={this.onChange}
+                    onSubmit={this.onSubmit}
+                    loadInfos={this.loadInfos}
+                    about={about}
+                    found1={found1}
+                    found2={found2}
+                />
                 <div
                     style={{
                         display: 'flex',

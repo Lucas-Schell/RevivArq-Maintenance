@@ -4,10 +4,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
 import './modal.css'
 
-type Props = {
-    maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-}
-
 const styles = {}
 
 class SimpleDialog extends React.Component {
@@ -63,7 +59,7 @@ SimpleDialog.propTypes = {
 
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog)
 
-class Modal extends React.Component<Props> {
+class Modal extends React.Component<> {
     state = {
         open: false
     }
@@ -97,4 +93,4 @@ class Modal extends React.Component<Props> {
     }
 }
 
-export default Modal;
+export default Modal
