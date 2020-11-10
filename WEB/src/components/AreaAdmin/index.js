@@ -19,7 +19,6 @@ import AdminModal from '../AdminModal'
 import { editTexts, getTexts } from '../../services/home'
 import Grid from '@material-ui/core/Grid'
 
-
 export default class AreaAdminComponent extends React.Component {
     constructor(props) {
         super(props)
