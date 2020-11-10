@@ -162,7 +162,11 @@ export default class AreaAdminComponent extends React.Component {
             found2
         } = this.state
         return (
-            <Grid container justify="center" style={{ height: '100%' }}>
+            <Grid
+                container
+                justify="center"
+                style={{ height: '100%', paddingBottom: 50 }}
+            >
                 <AdminModal
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
