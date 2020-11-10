@@ -17,17 +17,8 @@ import { Search as SearchIcon } from '@material-ui/icons'
 import ReformaDetalhe from '../ReformaDetalhe'
 import AdminModal from '../AdminModal'
 import { editTexts, getTexts } from '../../services/home'
+import Grid from '@material-ui/core/Grid'
 
-const styles = () => ({
-    root: {
-        width: '100%',
-        marginTop: 100,
-        overflowX: 'auto'
-    },
-    table: {
-        minWidth: 650
-    }
-})
 
 export default class AreaAdminComponent extends React.Component {
     constructor(props) {
@@ -171,9 +162,8 @@ export default class AreaAdminComponent extends React.Component {
             found1,
             found2
         } = this.state
-        const classes = styles()
         return (
-            <div>
+            <Grid container justify="center" style={{ height: '100%' }}>
                 <AdminModal
                     onChange={this.onChange}
                     onSubmit={this.onSubmit}
@@ -182,89 +172,97 @@ export default class AreaAdminComponent extends React.Component {
                     found1={found1}
                     found2={found2}
                 />
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'left',
-                        marginLeft: 60,
-                        marginBottom: -60,
-                        marginTop: 30
-                    }}
-                >
+
+                <Grid item xs={12}>
                     <Typography
                         variant="overline"
                         style={{
-                            marginLeft: 30,
-                            marginTop: 10,
                             color: 'rgb(255,248,41)',
                             fontSize: 35,
                             fontFamily: 'Playfair Display'
                         }}
-                        gutterBottom
                     >
                         Solicitações de Orçamento
                     </Typography>
-                </div>
-                <Paper className={classes.root} style={{ margin: 60 }}>
-                    <Table className={classes.table}>
-                        <TableHead
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
-                        >
-                            <TableRow>
-                                <TableCell align="left">
-                                    <b>Nome Estabelecimento</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Nome Usuário</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Orçamento Limite</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Tipo Estabelecimento</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Telefone para Contato</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Status</b>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <b>Detalhes</b>
-                                </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        {reforms.length > 0 && (
-                            <TableBody>
-                                {reforms.map((reform, index) =>
-                                    this.renderContent(reform, index)
-                                )}
-                            </TableBody>
+                </Grid>
+
+                <Grid
+                    item
+                    container
+                    xs={12}
+                    style={{
+                        justifyContent: 'center',
+                        maxWidth: '90vw',
+                        overflow: 'auto'
+                    }}
+                >
+                    <Paper
+                        style={{
+                            maxWidth: '100%',
+                            overflow: 'auto'
+                        }}
+                    >
+                        <Table>
+                            <TableHead
+                                style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            >
+                                <TableRow>
+                                    <TableCell align="left">
+                                        <b>Nome Estabelecimento</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Nome Usuário</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Orçamento Limite</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Tipo Estabelecimento</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Telefone para Contato</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Status</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Detalhes</b>
+                                    </TableCell>
+                                </TableRow>
+                            </TableHead>
+                            {reforms.length > 0 && (
+                                <TableBody>
+                                    {reforms.map((reform, index) =>
+                                        this.renderContent(reform, index)
+                                    )}
+                                </TableBody>
+                            )}
+                        </Table>
+                        {openedReformIndex !== -1 && (
+                            <ReformaDetalhe
+                                reform={reforms[openedReformIndex]}
+                                closeDetail={this.closeDetail}
+                                tipoUsuario={0}
+                            />
                         )}
-                    </Table>
-                    {openedReformIndex !== -1 && (
-                        <ReformaDetalhe
-                            reform={reforms[openedReformIndex]}
-                            closeDetail={this.closeDetail}
-                            tipoUsuario={0}
-                        />
-                    )}
-                    {!isLoading && reforms.length === 0 && (
-                        <div
-                            style={{
-                                minHeight: '100px',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center'
-                            }}
-                        >
-                            <h2 style={{ textAlign: 'center' }}>
-                                Nenhuma solicitação de orçamento foi encontrada.
-                            </h2>
-                        </div>
-                    )}
-                </Paper>
-            </div>
+                        {!isLoading && reforms.length === 0 && (
+                            <div
+                                style={{
+                                    minHeight: '100px',
+                                    justifyContent: 'center',
+                                    display: 'flex',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <h2 style={{ textAlign: 'center' }}>
+                                    Nenhuma solicitação de orçamento foi
+                                    encontrada.
+                                </h2>
+                            </div>
+                        )}
+                    </Paper>
+                </Grid>
+            </Grid>
         )
     }
 }

@@ -42,11 +42,7 @@ class AreaAdmin extends Page {
     }
 
     authenticated = () => {
-        return (
-            <div>
-                <AreaAdminComponent />
-            </div>
-        )
+        return <AreaAdminComponent />
     }
 }
 
