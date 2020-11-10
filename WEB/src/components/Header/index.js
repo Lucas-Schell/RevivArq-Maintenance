@@ -103,15 +103,19 @@ class Header extends React.Component {
     }
 
     renderLogin = () => {
-        return (
-            <IconButton
-                onClick={() => {
-                    this.setState({ modalOpened: true })
-                }}
-            >
-                <PersonIcon />
-            </IconButton>
-        )
+        if (isMobile) {
+            return (
+                <IconButton
+                    onClick={() => {
+                        this.setState({ modalOpened: true })
+                    }}
+                >
+                    <PersonIcon />
+                </IconButton>
+            )
+        }
+
+        return <Button onClick={() => this.doLogout()}>Entrar</Button>
     }
 
     renderHeaderButtons = async () => {
