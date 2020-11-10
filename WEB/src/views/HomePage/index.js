@@ -173,7 +173,11 @@ class HomePage extends Page {
                             style={{ height: 'fit-content', marginTop: 50 }}
                         >
                             <Grid item xs={12}>
-                                <img src={carol} className={classes.avatar} />
+                                <img
+                                    alt={'Avatar Carol'}
+                                    src={carol}
+                                    className={classes.avatar}
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography
@@ -216,7 +220,11 @@ class HomePage extends Page {
                             style={{ marginTop: 50 }}
                         >
                             <Grid item xs={12}>
-                                <img src={vanessa} className={classes.avatar} />
+                                <img
+                                    src={vanessa}
+                                    alt={'Avatar Vanessa'}
+                                    className={classes.avatar}
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography

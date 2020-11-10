@@ -2,7 +2,6 @@ import React from 'react'
 
 import { validToken } from 'services/auth/'
 import { getRouteConfigs } from 'configs'
-
 import { show_stringify } from 'helpers/json'
 
 // Internal Components
@@ -10,6 +9,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import './styles.css'
 import { Grid } from '@material-ui/core'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class Page extends React.Component {
     constructor(props) {
@@ -84,12 +84,7 @@ class Page extends React.Component {
     }
 
     loading = () => {
-        return (
-            <div className="container">
-                <p>Carregando pagina. Aguarde...</p>
-                <p>O backend está rodando?...</p>
-            </div>
-        )
+        return <CircularProgress />
     }
 
     header = () => {

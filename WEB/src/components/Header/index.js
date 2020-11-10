@@ -269,13 +269,13 @@ class Header extends React.Component {
                             </Button>
                         </Grid>
 
-                        <Grid item>
-                            {(!isAdmin || isAdmin === 'false') && (
+                        {(!isAdmin || isAdmin === 'false') && (
+                            <Grid item>
                                 <Button onClick={this.redirectFacaPedido}>
                                     Faça um Orçamento
                                 </Button>
-                            )}
-                        </Grid>
+                            </Grid>
+                        )}
 
                         <Grid item>{render}</Grid>
                     </Grid>

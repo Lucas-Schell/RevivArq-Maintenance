@@ -5,7 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import { showNotification } from '../../Notification'
 import { postTicket } from '../../../services/ticket'
 
-const styles = (theme) => ({
+const styles = () => ({
     container: {
         minHeight: '800px',
         alignItems: 'center',
@@ -13,6 +13,12 @@ const styles = (theme) => ({
     },
     titleText: {
         fontSize: 50,
+        fontWeight: 'bold',
+        color: '#000000'
+    },
+    titleTextMob: {
+        fontSize: 25,
+        fontWeight: 'bold',
         color: '#000000'
     },
     containerTitle: {
@@ -78,12 +84,18 @@ class TicketForm extends React.Component {
                 <Grid
                     container
                     item
-                    xs={6}
+                    xs={window.screen.width > 1000 ? 6 : 10}
                     spacing={8}
                     className={classes.containerTitle}
                 >
                     <Grid item xs={12}>
-                        <Typography className={classes.titleText}>
+                        <Typography
+                            className={
+                                window.screen.width > 1000
+                                    ? classes.titleText
+                                    : classes.titleTextMob
+                            }
+                        >
                             ENVIE SEU TICKET
                         </Typography>
                     </Grid>
