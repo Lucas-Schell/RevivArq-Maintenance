@@ -252,16 +252,6 @@ class Header extends React.Component {
                         <Grid item>
                             <Button
                                 onClick={() => {
-                                    this.redirect('/')
-                                }}
-                            >
-                                Início
-                            </Button>
-                        </Grid>
-
-                        <Grid item>
-                            <Button
-                                onClick={() => {
                                     this.redirect('/ticket')
                                 }}
                             >
