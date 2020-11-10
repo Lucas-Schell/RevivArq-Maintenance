@@ -91,7 +91,7 @@ class TicketForm extends React.Component {
                 >
                     <Grid item xs={12}>
                         <Typography className={classes.titleTextMob}>
-                            ENVIE SEU TICKET
+                            Envie sua dúvida
                         </Typography>
                     </Grid>
 

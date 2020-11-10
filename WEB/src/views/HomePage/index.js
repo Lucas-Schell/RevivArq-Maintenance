@@ -94,7 +94,6 @@ class HomePage extends Page {
                         justify="center"
                         style={{
                             height: 700,
-                            //alignItems: 'center',
                             objectFit: 'nonen'
                         }}
                     >

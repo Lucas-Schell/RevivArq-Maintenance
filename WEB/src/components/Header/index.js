@@ -11,6 +11,15 @@ import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import { showNotification } from 'components/Notification'
 import Grid from '@material-ui/core/Grid'
+import { isMobile } from 'react-device-detect'
+
+//Icons
+import IconButton from '@material-ui/core/IconButton'
+import HelpIcon from '@material-ui/icons/Help'
+import PersonIcon from '@material-ui/icons/Person'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import BuildIcon from '@material-ui/icons/Build'
+import PostAddIcon from '@material-ui/icons/PostAdd'
 
 class Header extends React.Component {
     constructor(props) {
@@ -74,6 +83,13 @@ class Header extends React.Component {
     }
 
     renderLogout = () => {
+        if (isMobile) {
+            return (
+                <IconButton onClick={() => this.doLogout()}>
+                    <ExitToAppIcon />
+                </IconButton>
+            )
+        }
         return <Button onClick={() => this.doLogout()}>Sair</Button>
     }
 
@@ -88,13 +104,13 @@ class Header extends React.Component {
 
     renderLogin = () => {
         return (
-            <Button
+            <IconButton
                 onClick={() => {
                     this.setState({ modalOpened: true })
                 }}
             >
-                Entrar
-            </Button>
+                <PersonIcon />
+            </IconButton>
         )
     }
 
@@ -122,6 +138,17 @@ class Header extends React.Component {
     }
 
     renderAdmin = () => {
+        if (isMobile) {
+            return (
+                <IconButton
+                    onClick={() => {
+                        this.redirect('/AreaAdmin')
+                    }}
+                >
+                    <BuildIcon />
+                </IconButton>
+            )
+        }
         return (
             <Button
                 onClick={() => {
@@ -134,6 +161,17 @@ class Header extends React.Component {
     }
 
     renderUserArea = () => {
+        if (isMobile) {
+            return (
+                <IconButton
+                    onClick={() => {
+                        this.redirect('/AreaCliente')
+                    }}
+                >
+                    <PersonIcon />
+                </IconButton>
+            )
+        }
         return (
             <Button
                 onClick={() => {
@@ -230,6 +268,75 @@ class Header extends React.Component {
         const { render, modalOpened, botaoSair, userName, isAdmin } = this.state
 
         if (display) {
+            if (isMobile) {
+                return (
+                    <Grid container className={'App-header-container'} xs={12}>
+                        <Grid item xs={12}>
+                            <img
+                                src={logo}
+                                className="App-logo"
+                                alt="logo"
+                                onClick={() => {
+                                    this.redirect('/')
+                                }}
+                            />
+                        </Grid>
+
+                        <Grid
+                            container
+                            item
+                            xs={12}
+                            className={'App-header-container-center'}
+                        >
+                            <Grid item>
+                                <IconButton
+                                    onClick={() => {
+                                        this.redirect('/ticket')
+                                    }}
+                                >
+                                    <HelpIcon />
+                                </IconButton>
+                            </Grid>
+
+                            {(!isAdmin || isAdmin === 'false') && (
+                                <Grid item>
+                                    <IconButton
+                                        onClick={this.redirectFacaPedido}
+                                    >
+                                        <PostAddIcon />
+                                    </IconButton>
+                                </Grid>
+                            )}
+
+                            <Grid item>{render}</Grid>
+
+                            {botaoSair !== null && (
+                                <Grid item>{botaoSair}</Grid>
+                            )}
+                        </Grid>
+
+                        <Modal
+                            open={modalOpened}
+                            callBackClose={() =>
+                                this.setState({
+                                    modalOpened: false,
+                                    goToNewRequest: false,
+                                    modalState: this.modalScreen.login
+                                })
+                            }
+                            resetCallback={() =>
+                                this.setState({
+                                    modalState: this.modalScreen.login,
+                                    goToNewRequest: false
+                                })
+                            }
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
+                    </Grid>
+                )
+            }
+
             return (
                 <Grid container className={'App-header-container'} xs={12}>
                     <Grid item xs={window.screen.width > 1000 ? 3 : 12}>
