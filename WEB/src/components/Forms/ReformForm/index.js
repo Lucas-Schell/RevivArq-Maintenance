@@ -12,11 +12,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { Constants } from '../../../configs/constants'
-import {
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-} from '@material-ui/core'
+import { Checkbox, FormControl, FormControlLabel } from '@material-ui/core'
 import { editReform, postReform } from '../../../services/reforms'
 import { postPhotos } from '../../../services/photos'
 
