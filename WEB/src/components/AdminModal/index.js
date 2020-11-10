@@ -1,9 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 import TextField from '@material-ui/core/TextField'
@@ -34,7 +32,7 @@ export default function AlertDialogSlide(props) {
     return (
         <div>
             <Button
-                style={{ backgroundColor: 'white' }}
+                style={{ backgroundColor: 'white', margin: 15 }}
                 onClick={handleClickOpen}
             >
                 Editar informações da HomePage
@@ -53,12 +51,19 @@ export default function AlertDialogSlide(props) {
                     spacing={12}
                     style={{ backgroundColor: '#FFF829' }}
                 >
-                    <DialogTitle>Editar informções da tela inicial</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Mude o texto da tela home aqui!
-                        </DialogContentText>
-                    </DialogContent>
+                    <Grid item xs={12}>
+                        <DialogTitle
+                            fullWidth
+                            xs={12}
+                            style={{
+                                fontWeight: 'bold',
+                                textAlign: 'center'
+                            }}
+                        >
+                            Editar informações da tela inicial
+                        </DialogTitle>
+                    </Grid>
+
                     <DialogContent>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -71,7 +76,6 @@ export default function AlertDialogSlide(props) {
                                     value={about}
                                     onChange={onChange}
                                     style={{ backgroundColor: '#f5f5f5' }}
-                                    rows={4}
                                 />
                             </Grid>
 
@@ -85,7 +89,6 @@ export default function AlertDialogSlide(props) {
                                     value={found1}
                                     onChange={onChange}
                                     style={{ backgroundColor: '#f5f5f5' }}
-                                    rows={4}
                                 />
                             </Grid>
 
@@ -99,41 +102,51 @@ export default function AlertDialogSlide(props) {
                                     value={found2}
                                     onChange={onChange}
                                     style={{ backgroundColor: '#f5f5f5' }}
-                                    rows={4}
                                 />
                             </Grid>
                         </Grid>
                     </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={handleClose}
-                            style={{
-                                width: '80%',
-                                color: 'white',
-                                backgroundColor: '#152620',
-                                '&:hover': {
-                                    opacity: 0.9,
-                                    backgroundColor: '#152620'
-                                }
-                            }}
-                        >
-                            Fechar
-                        </Button>
-                        <Button
-                            onClick={submit}
-                            style={{
-                                width: '80%',
-                                color: 'white',
-                                backgroundColor: '#152620',
-                                '&:hover': {
-                                    opacity: 0.9,
-                                    backgroundColor: '#152620'
-                                }
-                            }}
-                        >
-                            Submit
-                        </Button>
-                    </DialogActions>
+                    <Grid
+                        container
+                        item
+                        style={{ width: '100%', paddingBottom: 10 }}
+                        xs={12}
+                        justify="space-around"
+                    >
+                        <Grid item xs={4}>
+                            <Button
+                                fullWidth
+                                onClick={handleClose}
+                                style={{
+                                    color: 'white',
+                                    backgroundColor: '#152620',
+                                    '&:hover': {
+                                        opacity: 0.9,
+                                        backgroundColor: '#152620'
+                                    }
+                                }}
+                            >
+                                Fechar
+                            </Button>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                            <Button
+                                fullWidth
+                                onClick={submit}
+                                style={{
+                                    color: 'white',
+                                    backgroundColor: '#152620',
+                                    '&:hover': {
+                                        opacity: 0.9,
+                                        backgroundColor: '#152620'
+                                    }
+                                }}
+                            >
+                                Submit
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Dialog>
         </div>
