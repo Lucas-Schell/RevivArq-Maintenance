@@ -2,6 +2,15 @@
     background-color: rgb(255, 248, 41);
     min-height: 50vh;
 }
-.checkbox {
-   /* width: 30%;*/
+.inputfileholder {
+    overflow: hidden;
+    max-width: 200px;
+    height: 21px;
+    position: relative
+}
+
+.inputfileholder .inputfile {
+    position: absolute;
+    left: -90px;
+    outline: none;
 }

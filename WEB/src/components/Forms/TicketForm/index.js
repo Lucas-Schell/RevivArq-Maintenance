@@ -84,18 +84,13 @@ class TicketForm extends React.Component {
                 <Grid
                     container
                     item
-                    xs={window.screen.width > 1000 ? 6 : 10}
+                    xs={10}
+                    lg={6}
                     spacing={8}
                     className={classes.containerTitle}
                 >
                     <Grid item xs={12}>
-                        <Typography
-                            className={
-                                window.screen.width > 1000
-                                    ? classes.titleText
-                                    : classes.titleTextMob
-                            }
-                        >
+                        <Typography className={classes.titleTextMob}>
                             ENVIE SEU TICKET
                         </Typography>
                     </Grid>
