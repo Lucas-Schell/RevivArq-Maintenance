@@ -17,8 +17,8 @@
 
 Trabalho entregue no mês de Novembro de 2020 para a cadeira de Manutenção de Software na PUCRS.
 
-<img align="left" width="450" height="200" src="https://vestibulares2020.com/wp-content/uploads/2019/03/vestibular-pucrs-2020.png">
-<img align="right" width="450" height="200" src="https://www.ages.pucrs.br/wp-content/uploads/2020/03/cropped-logo-age-sem-texto.png">
+<img align="left" width="400" height="200" src="https://vestibulares2020.com/wp-content/uploads/2019/03/vestibular-pucrs-2020.png">
+<img align="right" width="400" height="200" src="https://www.ages.pucrs.br/wp-content/uploads/2020/03/cropped-logo-age-sem-texto.png">
 
 
 
