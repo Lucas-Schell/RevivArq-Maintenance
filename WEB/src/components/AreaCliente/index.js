@@ -20,6 +20,7 @@ import { update } from '../../services/user'
 import TextField from '@material-ui/core/TextField'
 import NoteAddIcon from '@material-ui/icons/NoteAdd'
 import Select from '@material-ui/core/Select'
+import SolicitationModal from '../SolicitationModal/index.js'
 
 const styles = () => ({
     root: {
@@ -51,6 +52,7 @@ export default class SwitchListSecondary extends React.Component {
             isLoading: true,
             abreEdicao: false
         }
+        this.onChange = this.onChange.bind(this)
     }
 
     async componentDidMount() {
@@ -196,6 +198,15 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({ openedReformIndex: -1 })
     }
 
+    onChange(e) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
     render() {
         const { reforms, isLoading, user } = this.state
         const classes = styles()
@@ -229,6 +240,11 @@ export default class SwitchListSecondary extends React.Component {
                             Perfil
                         </Typography>
                     </div>
+                    <SolicitationModal
+                        onChange={this.onChange}
+                        onSubmit={this.handleSubmit}
+                        user={this.state.user}
+                    />
                     <Paper
                         className={classes.root}
                         style={{ margin: 60, borderRadius: '15px' }}
