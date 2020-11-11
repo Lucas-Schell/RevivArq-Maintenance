@@ -11,7 +11,6 @@ import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import { showNotification } from 'components/Notification'
 import Grid from '@material-ui/core/Grid'
-import { isMobile } from 'react-device-detect'
 
 //Icons
 import IconButton from '@material-ui/core/IconButton'
@@ -82,8 +81,8 @@ class Header extends React.Component {
         )
     }
 
-    renderLogout = () => {
-        if (isMobile) {
+    renderLogout = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton onClick={() => this.doLogout()}>
                     <ExitToAppIcon />
@@ -102,8 +101,8 @@ class Header extends React.Component {
         if (history !== '/') this.redirect('/')
     }
 
-    renderLogin = () => {
-        if (isMobile) {
+    renderLogin = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -145,8 +144,8 @@ class Header extends React.Component {
         }
     }
 
-    renderAdmin = () => {
-        if (isMobile) {
+    renderAdmin = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -168,8 +167,8 @@ class Header extends React.Component {
         )
     }
 
-    renderUserArea = () => {
-        if (isMobile) {
+    renderUserArea = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -276,145 +275,169 @@ class Header extends React.Component {
         const { render, modalOpened, botaoSair, userName, isAdmin } = this.state
 
         if (display) {
-            if (isMobile) {
-                return (
-                    <Grid container className={'App-header-container'} xs={12}>
-                        <Grid item xs={12}>
-                            <img
-                                src={logo}
-                                className="App-logo"
-                                alt="logo"
-                                onClick={() => {
-                                    this.redirect('/')
-                                }}
-                            />
-                        </Grid>
-
+            return (
+                <div style={{ width: '100%' }}>
+                    <div class="mobile">
                         <Grid
                             container
-                            item
+                            className={'App-header-container'}
                             xs={12}
-                            className={'App-header-container-center'}
                         >
-                            <Grid item>
-                                <IconButton
+                            <Grid item xs={12}>
+                                <img
+                                    src={logo}
+                                    className="App-logo"
+                                    alt="logo"
                                     onClick={() => {
-                                        this.redirect('/ticket')
+                                        this.redirect('/')
                                     }}
-                                >
-                                    <HelpIcon />
-                                </IconButton>
+                                />
                             </Grid>
 
-                            {(!isAdmin || isAdmin === 'false') && (
-                                <Grid item>
-                                    <IconButton
-                                        onClick={this.redirectFacaPedido}
-                                    >
-                                        <PostAddIcon />
-                                    </IconButton>
-                                </Grid>
-                            )}
-
-                            <Grid item>{render}</Grid>
-
-                            {botaoSair !== null && (
-                                <Grid item>{botaoSair}</Grid>
-                            )}
-                        </Grid>
-
-                        <Modal
-                            open={modalOpened}
-                            callBackClose={() =>
-                                this.setState({
-                                    modalOpened: false,
-                                    goToNewRequest: false,
-                                    modalState: this.modalScreen.login
-                                })
-                            }
-                            resetCallback={() =>
-                                this.setState({
-                                    modalState: this.modalScreen.login,
-                                    goToNewRequest: false
-                                })
-                            }
-                        >
-                            {this.renderModalContent()}
-                        </Modal>
-                    </Grid>
-                )
-            }
-
-            return (
-                <Grid container className={'App-header-container'} xs={12}>
-                    <Grid item xs={window.screen.width > 1000 ? 3 : 12}>
-                        <img
-                            src={logo}
-                            className="App-logo"
-                            alt="logo"
-                            onClick={() => {
-                                this.redirect('/')
-                            }}
-                        />
-                    </Grid>
-
-                    <Grid
-                        container
-                        item
-                        xs={window.screen.width > 1000 ? 6 : 12}
-                        className={'App-header-container-center'}
-                    >
-                        <Grid item>
-                            <Button
-                                onClick={() => {
-                                    this.redirect('/ticket')
-                                }}
+                            <Grid
+                                container
+                                item
+                                xs={12}
+                                className={'App-header-container-center'}
                             >
-                                Envie um ticket
-                            </Button>
-                        </Grid>
+                                {isAdmin === 'false' && (
+                                    <Grid item>
+                                        <IconButton
+                                            onClick={() => {
+                                                this.redirect('/ticket')
+                                            }}
+                                        >
+                                            <HelpIcon />
+                                        </IconButton>
+                                    </Grid>
+                                )}
 
-                        {(!isAdmin || isAdmin === 'false') && (
-                            <Grid item>
-                                <Button onClick={this.redirectFacaPedido}>
-                                    Faça um Orçamento
-                                </Button>
+                                {(!isAdmin || isAdmin === 'false') && (
+                                    <Grid item>
+                                        <IconButton
+                                            onClick={this.redirectFacaPedido}
+                                        >
+                                            <PostAddIcon />
+                                        </IconButton>
+                                    </Grid>
+                                )}
+
+                                <Grid item>
+                                    <Grid item>
+                                        {botaoSair !== null
+                                            ? isAdmin === 'true'
+                                                ? this.renderAdmin(true)
+                                                : this.renderUserArea(true)
+                                            : this.renderLogin(true)}
+                                    </Grid>
+                                </Grid>
+                                {botaoSair !== null && (
+                                    <Grid item>{this.renderLogout(true)}</Grid>
+                                )}
                             </Grid>
-                        )}
 
-                        <Grid item>{render}</Grid>
-                    </Grid>
+                            <Modal
+                                open={modalOpened}
+                                callBackClose={() =>
+                                    this.setState({
+                                        modalOpened: false,
+                                        goToNewRequest: false,
+                                        modalState: this.modalScreen.login
+                                    })
+                                }
+                                resetCallback={() =>
+                                    this.setState({
+                                        modalState: this.modalScreen.login,
+                                        goToNewRequest: false
+                                    })
+                                }
+                            >
+                                {this.renderModalContent()}
+                            </Modal>
+                        </Grid>
+                    </div>
+                    <div className="desktop">
+                        <Grid
+                            container
+                            className={'App-header-container'}
+                            xs={12}
+                        >
+                            <Grid item xs={3}>
+                                <img
+                                    src={logo}
+                                    className="App-logo"
+                                    alt="logo"
+                                    onClick={() => {
+                                        this.redirect('/')
+                                    }}
+                                />
+                            </Grid>
 
-                    <Grid
-                        container
-                        item
-                        xs={window.screen.width > 1000 ? 3 : 12}
-                        className={'App-header-container-right'}
-                    >
-                        <Grid item>{userName}</Grid>
+                            <Grid
+                                container
+                                item
+                                xs={6}
+                                className={'App-header-container-center'}
+                            >
+                                {isAdmin === 'false' && (
+                                    <Grid item>
+                                        <Button
+                                            onClick={() => {
+                                                this.redirect('/ticket')
+                                            }}
+                                        >
+                                            Envie um ticket
+                                        </Button>
+                                    </Grid>
+                                )}
 
-                        <Grid item>{botaoSair}</Grid>
-                    </Grid>
+                                {(!isAdmin || isAdmin === 'false') && (
+                                    <Grid item>
+                                        <Button
+                                            onClick={this.redirectFacaPedido}
+                                        >
+                                            Faça um Orçamento
+                                        </Button>
+                                    </Grid>
+                                )}
 
-                    <Modal
-                        open={modalOpened}
-                        callBackClose={() =>
-                            this.setState({
-                                modalOpened: false,
-                                goToNewRequest: false,
-                                modalState: this.modalScreen.login
-                            })
-                        }
-                        resetCallback={() =>
-                            this.setState({
-                                modalState: this.modalScreen.login,
-                                goToNewRequest: false
-                            })
-                        }
-                    >
-                        {this.renderModalContent()}
-                    </Modal>
-                </Grid>
+                                <Grid item>{render}</Grid>
+                            </Grid>
+
+                            <Grid
+                                container
+                                item
+                                xs={3}
+                                className={'App-header-container-right'}
+                            >
+                                <Grid item>{userName}</Grid>
+
+                                {botaoSair !== null && (
+                                    <Grid item>{botaoSair}</Grid>
+                                )}
+                            </Grid>
+
+                            <Modal
+                                open={modalOpened}
+                                callBackClose={() =>
+                                    this.setState({
+                                        modalOpened: false,
+                                        goToNewRequest: false,
+                                        modalState: this.modalScreen.login
+                                    })
+                                }
+                                resetCallback={() =>
+                                    this.setState({
+                                        modalState: this.modalScreen.login,
+                                        goToNewRequest: false
+                                    })
+                                }
+                            >
+                                {this.renderModalContent()}
+                            </Modal>
+                        </Grid>
+                    </div>
+                </div>
             )
         } else {
             return <div />

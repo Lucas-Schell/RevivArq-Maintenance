@@ -16,7 +16,6 @@
     "query-string": "^6.13.2",
     "react": "^16.4.2",
     "react-blur": "^0.6.0",
-    "react-device-detect": "^1.14.0",
     "react-dom": "^16.4.2",
     "react-grid-gallery": "^0.5.5",
     "react-native-blur": "^3.2.2",

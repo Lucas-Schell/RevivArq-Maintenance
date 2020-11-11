@@ -40,3 +40,25 @@
     padding-right: 3em;
     color: rgb(21, 38, 32);
 }
+
+.mobile {
+    display: none;
+    width: 100%;
+}
+
+.desktop {
+    display: inline;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .mobile {
+        display: inline;
+        width: 100%;
+    }
+
+    .desktop {
+        display: none;
+        width: 100%;
+    }
+}
