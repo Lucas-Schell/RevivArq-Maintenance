@@ -300,15 +300,18 @@ class Header extends React.Component {
                                 xs={12}
                                 className={'App-header-container-center'}
                             >
-                                <Grid item>
-                                    <IconButton
-                                        onClick={() => {
-                                            this.redirect('/ticket')
-                                        }}
-                                    >
-                                        <HelpIcon />
-                                    </IconButton>
-                                </Grid>
+                                {isAdmin === 'false' && (
+                                    <Grid item>
+                                        <IconButton
+                                            onClick={() => {
+                                                this.redirect('/ticket')
+                                            }}
+                                        >
+                                            <HelpIcon />
+                                        </IconButton>
+                                    </Grid>
+                                )}
+
                                 {(!isAdmin || isAdmin === 'false') && (
                                     <Grid item>
                                         <IconButton
@@ -376,15 +379,17 @@ class Header extends React.Component {
                                 xs={6}
                                 className={'App-header-container-center'}
                             >
-                                <Grid item>
-                                    <Button
-                                        onClick={() => {
-                                            this.redirect('/ticket')
-                                        }}
-                                    >
-                                        Envie um ticket
-                                    </Button>
-                                </Grid>
+                                {isAdmin === 'false' && (
+                                    <Grid item>
+                                        <Button
+                                            onClick={() => {
+                                                this.redirect('/ticket')
+                                            }}
+                                        >
+                                            Envie um ticket
+                                        </Button>
+                                    </Grid>
+                                )}
 
                                 {(!isAdmin || isAdmin === 'false') && (
                                     <Grid item>
