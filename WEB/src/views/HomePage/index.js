@@ -171,7 +171,7 @@ class HomePage extends Page {
                             container
                             item
                             xs={12}
-                            lg={6}
+                            lg={5}
                             style={{ height: 'fit-content', marginTop: 50 }}
                         >
                             <Grid item xs={12}>
