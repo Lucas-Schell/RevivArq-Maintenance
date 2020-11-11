@@ -280,7 +280,13 @@ class HomePage extends Page {
                             }}
                         >
                             Fique ligado no nosso{' '}
-                            <span className={classes.span}>Instagram!</span>
+                            <a
+                                href={'https://www.instagram.com/revivarq/'}
+                                target="_blank"
+                                className={classes.span}
+                            >
+                                Instagram!
+                            </a>
                         </Typography>
                     </Grid>
 
@@ -295,9 +301,14 @@ class HomePage extends Page {
 
                     <Grid item xs={12} style={{ paddingBottom: 20 }}>
                         <Typography className={classes.textMin}>
-                            <span className={classes.span}>
+                            <a
+                                href={'https://www.instagram.com/revivarq/'}
+                                target="_blank"
+                                className={classes.span}
+                                style={{ textDecoration: 'none' }}
+                            >
                                 Siga nosso instagram!
-                            </span>
+                            </a>
                         </Typography>
                     </Grid>
                 </Grid>
