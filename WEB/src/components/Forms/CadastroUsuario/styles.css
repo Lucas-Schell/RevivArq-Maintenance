@@ -12,11 +12,16 @@
 
 .cadastro-container .submitBtn {
     margin: 20px;
-    min-width: 200px;
-    background-color: rgba(0, 0, 0, 0.9);
+    width: 80%;
     color: white;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.623);
+    background-color: #152620
 }
+
+.cadastro-container .submitBtn:hover {
+    opacity: 0.9;
+    background-color: #152620
+}
+
 
 .cadastro-container .input {
     width: 300px;

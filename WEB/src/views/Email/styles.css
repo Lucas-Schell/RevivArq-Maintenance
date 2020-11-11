@@ -6,13 +6,18 @@
 
 .email-container .submitBtn {
     margin: 20px;
-    background-color: rgba(0, 0, 0, 0.9);
-    min-width: 200px;
+    width: 80%;
     color: white;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.623);
+    background-color: #152620
+}
+
+.email-container .submitBtn:hover {
+    opacity: 0.9;
+    background-color: #152620
 }
 
 .email-container .input {
+    width: 90%;
     margin: 5px;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
 }
