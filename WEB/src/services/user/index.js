@@ -129,7 +129,6 @@ export const update = async (user) => {
     })
 
     if (response) {
-        console.log(response)
         const api_response = response.data
         if (api_response.data) {
             return response.data
