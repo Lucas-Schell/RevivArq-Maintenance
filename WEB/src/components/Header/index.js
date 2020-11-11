@@ -293,14 +293,14 @@ class Header extends React.Component {
                                     }}
                                 />
                             </Grid>
-
                             <Grid
                                 container
                                 item
                                 xs={12}
                                 className={'App-header-container-center'}
                             >
-                                {isAdmin === 'false' && (
+                                {(isAdmin === 'false' ||
+                                    botaoSair === null) && (
                                     <Grid item>
                                         <IconButton
                                             onClick={() => {
@@ -335,7 +335,6 @@ class Header extends React.Component {
                                     <Grid item>{this.renderLogout(true)}</Grid>
                                 )}
                             </Grid>
-
                             <Modal
                                 open={modalOpened}
                                 callBackClose={() =>
@@ -379,7 +378,8 @@ class Header extends React.Component {
                                 xs={6}
                                 className={'App-header-container-center'}
                             >
-                                {isAdmin === 'false' && (
+                                {(isAdmin === 'false' ||
+                                    botaoSair === null) && (
                                     <Grid item>
                                         <Button
                                             onClick={() => {
