@@ -18,10 +18,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide(props) {
     const [open, setOpen] = React.useState(false)
-    const { user, onChange, onSubmit } = props
+    const { user, onChange, handleSubmit } = props
 
     const submit = () => {
-        onSubmit()
+        handleSubmit()
     }
 
     const handleClickOpen = () => {
@@ -41,7 +41,7 @@ export default function AlertDialogSlide(props) {
                 keepMounted
                 onClose={handleClose}
             >
-                <DialogTitle>Pefil</DialogTitle>
+                <DialogTitle>Perfil</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Detalhes do Usuário</DialogContentText>
                 </DialogContent>
@@ -57,7 +57,7 @@ export default function AlertDialogSlide(props) {
                     <TextField
                         fullWidth
                         variant="outlined"
-                        name="surname"
+                        name="lastName"
                         label="Sobrenome"
                         value={user.lastName}
                         onChange={onChange}
@@ -65,7 +65,7 @@ export default function AlertDialogSlide(props) {
                     <TextField
                         fullWidth
                         variant="outlined"
-                        name="phone"
+                        name="whatsapp"
                         label="Celular"
                         value={user.whatsapp}
                         onChange={onChange}
@@ -90,21 +90,17 @@ export default function AlertDialogSlide(props) {
                     <FormControl>
                         <InputLabel>Estado Civil</InputLabel>
                         <Select
-                            name="status"
+                            name="civilStatus"
                             value={user.civilStatus}
                             onChange={onChange}
                         >
-                            <MenuItem value={'Solteiro(a)'}>
-                                Solteiro(a)
-                            </MenuItem>
-                            <MenuItem value={'Casado(a)'}>Casado(a)</MenuItem>
-                            <MenuItem value={'Divorciado(a)'}>
+                            <MenuItem value="Solteiro(a)">Solteiro(a)</MenuItem>
+                            <MenuItem value="Casado(a)">Casado(a)</MenuItem>
+                            <MenuItem value="Divorciado(a)">
                                 Divorciado(a)
                             </MenuItem>
-                            <MenuItem value={'Viúvo(a)'}>Viúvo(a)</MenuItem>
-                            <MenuItem value={'Separado(a)'}>
-                                Separado(a)
-                            </MenuItem>
+                            <MenuItem value="Viúvo(a)">Viúvo(a)</MenuItem>
+                            <MenuItem value="Separado(a)">Separado(a)</MenuItem>
                         </Select>
                     </FormControl>
                 </DialogContent>

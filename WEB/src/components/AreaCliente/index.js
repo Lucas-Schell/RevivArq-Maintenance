@@ -21,6 +21,7 @@ import TextField from '@material-ui/core/TextField'
 import NoteAddIcon from '@material-ui/icons/NoteAdd'
 import Select from '@material-ui/core/Select'
 import SolicitationModal from '../SolicitationModal/index.js'
+import { editTexts } from '../../services/home'
 
 const styles = () => ({
     root: {
@@ -53,6 +54,7 @@ export default class SwitchListSecondary extends React.Component {
             abreEdicao: false
         }
         this.onChange = this.onChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     async componentDidMount() {
@@ -83,8 +85,14 @@ export default class SwitchListSecondary extends React.Component {
         return await update(editUser)
     }
 
-    handleSubmit = async (event) => {
-        event.preventDefault()
+    async handleSubmit() {
+        console.log(this.state.user._id)
+        console.log(this.state.user.name)
+        console.log(this.state.user.lastName)
+        console.log(this.state.user.cpf)
+        console.log(this.state.user.cnpj)
+        console.log(this.state.user.civilStatus)
+        console.log(this.state.user.whatsapp)
 
         const editUser = {
             _id: this.state.user._id,
@@ -242,7 +250,7 @@ export default class SwitchListSecondary extends React.Component {
                     </div>
                     <SolicitationModal
                         onChange={this.onChange}
-                        onSubmit={this.handleSubmit}
+                        handleSubmit={this.handleSubmit}
                         user={this.state.user}
                     />
                     <Paper

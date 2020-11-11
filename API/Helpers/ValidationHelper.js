@@ -396,7 +396,7 @@ class ValidationHelper {
             !ValidationHelper.validCivilStatus(civilStatus)
         )
             message = constants.invalidCivilStatus
-        else message = this.validAddress(address)
+        else message = ValidationHelper.validAddress(address)
 
         return {
             valid: !message,
