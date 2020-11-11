@@ -11,7 +11,6 @@ import Email from 'views/Email'
 import RecPassword from 'views/RecPassword'
 import { showNotification } from 'components/Notification'
 import Grid from '@material-ui/core/Grid'
-import { isMobile } from 'react-device-detect'
 
 //Icons
 import IconButton from '@material-ui/core/IconButton'
@@ -82,8 +81,8 @@ class Header extends React.Component {
         )
     }
 
-    renderLogout = () => {
-        if (isMobile) {
+    renderLogout = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton onClick={() => this.doLogout()}>
                     <ExitToAppIcon />
@@ -102,8 +101,8 @@ class Header extends React.Component {
         if (history !== '/') this.redirect('/')
     }
 
-    renderLogin = () => {
-        if (isMobile) {
+    renderLogin = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -115,7 +114,11 @@ class Header extends React.Component {
             )
         }
 
-        return <Button onClick={() => this.doLogout()}>Entrar</Button>
+        return (
+            <Button onClick={() => this.setState({ modalOpened: true })}>
+                Entrar
+            </Button>
+        )
     }
 
     renderHeaderButtons = async () => {
@@ -141,8 +144,8 @@ class Header extends React.Component {
         }
     }
 
-    renderAdmin = () => {
-        if (isMobile) {
+    renderAdmin = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -164,8 +167,8 @@ class Header extends React.Component {
         )
     }
 
-    renderUserArea = () => {
-        if (isMobile) {
+    renderUserArea = (mobile) => {
+        if (mobile) {
             return (
                 <IconButton
                     onClick={() => {
@@ -306,7 +309,6 @@ class Header extends React.Component {
                                         <HelpIcon />
                                     </IconButton>
                                 </Grid>
-
                                 {(!isAdmin || isAdmin === 'false') && (
                                     <Grid item>
                                         <IconButton
@@ -317,10 +319,17 @@ class Header extends React.Component {
                                     </Grid>
                                 )}
 
-                                <Grid item>{render}</Grid>
-
+                                <Grid item>
+                                    <Grid item>
+                                        {botaoSair !== null
+                                            ? isAdmin === 'true'
+                                                ? this.renderAdmin(true)
+                                                : this.renderUserArea(true)
+                                            : this.renderLogin(true)}
+                                    </Grid>
+                                </Grid>
                                 {botaoSair !== null && (
-                                    <Grid item>{botaoSair}</Grid>
+                                    <Grid item>{this.renderLogout(true)}</Grid>
                                 )}
                             </Grid>
 
@@ -398,11 +407,9 @@ class Header extends React.Component {
                             >
                                 <Grid item>{userName}</Grid>
 
-                                <Grid item>
-                                    <Button onClick={() => this.doLogout()}>
-                                        Sair
-                                    </Button>
-                                </Grid>
+                                {botaoSair !== null && (
+                                    <Grid item>{botaoSair}</Grid>
+                                )}
                             </Grid>
 
                             <Modal
