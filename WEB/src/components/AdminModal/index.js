@@ -48,12 +48,10 @@ export default function AlertDialogSlide(props) {
                     container
                     item
                     xs={12}
-                    spacing={12}
                     style={{ backgroundColor: '#FFF829' }}
                 >
                     <Grid item xs={12}>
                         <DialogTitle
-                            fullWidth
                             xs={12}
                             style={{
                                 fontWeight: 'bold',

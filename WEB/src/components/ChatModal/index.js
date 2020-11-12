@@ -1,14 +1,12 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import { Typography } from '@material-ui/core'
+import { IconButton, Typography } from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat'
 import SendIcon from '@material-ui/icons/Send'
+import ChatMessageBox from '../ChatMessageBox'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -37,7 +35,7 @@ export default function AlertDialogSlide(props) {
     }
 
     return (
-        <div>
+        <>
             <ChatIcon
                 style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
                 onClick={handleClickOpen}
@@ -52,13 +50,68 @@ export default function AlertDialogSlide(props) {
                 <Grid
                     container
                     item
-                    xs={12}
-                    spacing={12}
-                    style={{ backgroundColor: '#FFF829' }}
+                    style={{
+                        backgroundColor: '#FFF829',
+                        width: '100%',
+                        height: '70vh',
+                        padding: 10
+                    }}
                 >
-                    <Typography>AAAA</Typography>
+                    <Grid item xs={12}>
+                        <Typography style={{ textAlign: 'center' }}>
+                            Chat
+                        </Typography>
+                    </Grid>
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        style={{ height: '83%', display: 'inline' }}
+                    >
+                        <Grid item xs={12} justify="flex-end">
+                            <ChatMessageBox
+                                text={
+                                    'oioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioi'
+                                }
+                                author={'danza kuduro'}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <ChatMessageBox
+                                text={'dsafdsgbfdnbgngfdbgndfgfb'}
+                                author={'danza kuduro'}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        style={{
+                            alignItems: 'center',
+                            justifyContent: 'space-around'
+                        }}
+                    >
+                        <Grid item xs={10}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                name="textbox"
+                                label="Escreva aqui sua mensagem"
+                                rows={4}
+                            />
+                        </Grid>
+
+                        <Grid item>
+                            <IconButton>
+                                <SendIcon />
+                            </IconButton>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Dialog>
-        </div>
+        </>
     )
 }

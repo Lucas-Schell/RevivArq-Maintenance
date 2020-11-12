@@ -21,8 +21,8 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <Grid container className={'App-footer'} xs={12}>
-                <img src={logo_ages} className="img" />
+            <Grid container className={'App-footer'}>
+                <img src={logo_ages} className="img" alt="logo_ages"/>
                 <Typography>
                     Agência Experimental de Engenharia de Software - PUCRS -
                     Escola Politécnica. Todos os direitos reservados ©.

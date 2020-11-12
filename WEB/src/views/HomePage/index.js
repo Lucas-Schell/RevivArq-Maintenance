@@ -85,16 +85,15 @@ class HomePage extends Page {
     unauthenticated = () => {
         const { classes } = this.props
         return (
-            <Grid container xs={12} className={classes.containerRoot}>
+            <Grid container className={classes.containerRoot}>
                 <Grid container item xs={12} className={classes.imageContainer}>
                     <Grid
                         item
                         xs={12}
                         className="img"
-                        justify="center"
                         style={{
                             height: 700,
-                            objectFit: 'nonen'
+                            objectFit: 'none'
                         }}
                     >
                         <Grid
@@ -123,7 +122,7 @@ class HomePage extends Page {
                         />
                     </Grid>
 
-                    <Grid container xs={12}>
+                    <Grid container>
                         <Grid
                             container
                             item
