@@ -31,6 +31,8 @@ export default class SwitchListSecondary extends React.Component {
         }
         this.onChange = this.onChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.sendMessage = this.sendMessage.bind(this)
+        this.getChat = this.getChat.bind(this)
     }
 
     async componentDidMount() {
@@ -69,8 +71,7 @@ export default class SwitchListSecondary extends React.Component {
             cpf: this.state.user.cpf,
             cnpj: this.state.user.cnpj,
             civilStatus: this.state.user.civilStatus,
-            whatsapp: this.state.user.whatsapp,
-            chat: []
+            whatsapp: this.state.user.whatsapp
         }
 
         const updateUser = await this.updateUsers(editUser)
@@ -92,10 +93,26 @@ export default class SwitchListSecondary extends React.Component {
     }
 
     async sendMessage(reform) {
-        await editReform(reform)
+        reform.chat.author =
+            this.state.user.name + ' ' + this.state.user.lastName
+        const a = await editReform(reform)
+        if (a) {
+            await this.getChat(reform.id)
+        }
     }
 
-    getChat() {}
+    async getChat(id) {
+        const reforms = await getReforms(id)
+
+        const ref = this.state.reforms
+        for (const [i, reform] of ref) {
+            if (reform.id === id) {
+                ref[i] = reforms
+            }
+        }
+
+        this.setState({ reforms: ref })
+    }
 
     renderRow(reform, index) {
         return (
@@ -133,8 +150,8 @@ export default class SwitchListSecondary extends React.Component {
                     <ChatModal
                         id={reform.id}
                         onSubmit={this.sendMessage}
-                        updateChat={this.getChat}
-                        chat={this.state.chat}
+                        chat={reform.chat}
+                        isAdmin={false}
                     />
                 </TableCell>
             </TableRow>

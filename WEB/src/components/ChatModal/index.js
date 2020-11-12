@@ -14,39 +14,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide(props) {
     const [open, setOpen] = React.useState(false)
-    const { onSubmit } = props
-    //const { chat } = props
-    const chat = [
-        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
-        {
-            author: 'joao',
-            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
-        },
-        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
-        {
-            author: 'joao',
-            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
-        },
-        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
-        {
-            author: 'joao',
-            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
-        },
-        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
-        {
-            author: 'joao',
-            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
-        },
-        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
-        {
-            author: 'joao',
-            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
-        }
-    ]
+    const [msg, setMsg] = React.useState('')
+    const { onSubmit, isAdmin, id, chat } = props
 
     const send = () => {
-        onSubmit()
-        handleClose()
+        const reform = { _id: id, updateChat: true, chat: { message: msg } }
+        onSubmit(reform)
     }
 
     const handleClickOpen = () => {
@@ -89,7 +62,11 @@ export default function AlertDialogSlide(props) {
                         {chat.map((item) => (
                             <div
                                 className={
-                                    item.author === 'admin'
+                                    (
+                                        isAdmin
+                                            ? item.author !== 'Kenai'
+                                            : item.author === 'Kenai'
+                                    )
                                         ? 'chatItem chatLeft'
                                         : 'chatItem chatRight'
                                 }
@@ -116,12 +93,16 @@ export default function AlertDialogSlide(props) {
                                 name="textbox"
                                 label="Escreva aqui sua mensagem"
                                 rows={4}
+                                value={msg}
+                                onChange={(e) => {
+                                    setMsg(e.target.value)
+                                }}
                             />
                         </Grid>
 
                         <Grid item>
                             <IconButton>
-                                <SendIcon />
+                                <SendIcon onClick={send} />
                             </IconButton>
                         </Grid>
                     </Grid>

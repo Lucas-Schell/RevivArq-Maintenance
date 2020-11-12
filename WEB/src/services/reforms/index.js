@@ -2,12 +2,12 @@ import axios from 'axios'
 import { Constants } from 'configs/constants'
 import { GetReforms, PostReform, UpdateReforms } from 'configs/api_routes'
 
-export const getReforms = async (user) => {
+export const getReforms = async (id) => {
+    const url = GetReforms.url + (id ? '/' + id : '')
     const response = await axios({
         method: 'get',
-        url: GetReforms.url,
+        url: url,
         timeout: 5000,
-        data: user,
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${sessionStorage.getItem('token')}`
