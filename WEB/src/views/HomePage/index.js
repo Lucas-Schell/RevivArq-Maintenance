@@ -118,7 +118,7 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 
@@ -154,7 +154,7 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 
@@ -266,7 +266,7 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 

@@ -216,7 +216,7 @@ export default class SwitchListSecondary extends React.Component {
                             variant="overline"
                             style={{
                                 marginTop: 40,
-                                color: 'rgb(255,248,41)',
+                                color: '#fff829',
                                 fontSize: 25,
                                 fontFamily: 'Playfair Display'
                             }}
@@ -250,7 +250,7 @@ export default class SwitchListSecondary extends React.Component {
                             >
                                 <TableHead
                                     style={{
-                                        backgroundColor: 'rgb(255,248,41)'
+                                        backgroundColor: '#fff829'
                                     }}
                                 >
                                     <TableRow>

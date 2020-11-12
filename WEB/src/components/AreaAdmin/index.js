@@ -184,7 +184,7 @@ export default class AreaAdminComponent extends React.Component {
                     <Typography
                         variant="overline"
                         style={{
-                            color: 'rgb(255,248,41)',
+                            color: '#fff829',
                             fontSize: 35,
                             fontFamily: 'Playfair Display'
                         }}
@@ -210,9 +210,7 @@ export default class AreaAdminComponent extends React.Component {
                         }}
                     >
                         <Table>
-                            <TableHead
-                                style={{ backgroundColor: 'rgb(255,248,41)' }}
-                            >
+                            <TableHead style={{ backgroundColor: '#fff829' }}>
                                 <TableRow>
                                     <TableCell align="left">
                                         <b>Nome Estabelecimento</b>
