@@ -126,6 +126,10 @@ class Constants {
         return 'Atualização de usuário invalida'
     }
 
+    static get invalidMessage() {
+        return 'Mensagem invalida'
+    }
+
     static get userIsNotAdmin() {
         return 'Usuário não é um administrador'
     }

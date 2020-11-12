@@ -259,6 +259,7 @@ class ReformForm extends React.Component {
     }
 
     render() {
+        console.log('Bearer ' + sessionStorage.getItem('token'))
         const {
             establishmentName,
             establishmentType,

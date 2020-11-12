@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
-var Schema = mongoose.Schema
+const Schema = mongoose.Schema
 
 module.exports = () => {
     const schema = new Schema(
         {
+            chat: { type: Array, unique: false, required: false },
             establishmentName: { type: String, unique: false, required: true },
             establishmentType: { type: String, unique: false, required: true },
             status: { type: String, unique: false, required: true },
