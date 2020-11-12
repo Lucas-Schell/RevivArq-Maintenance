@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow'
 import { Edit as EditIcon, Search as SearchIcon } from '@material-ui/icons'
 import { showNotification } from 'components/Notification'
 import Paper from '@material-ui/core/Paper'
-import { getReforms } from '../../services/reforms'
+import { getReforms, editReform } from '../../services/reforms'
 import { loggedUser } from '../../services/user/index'
 import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
@@ -69,7 +69,8 @@ export default class SwitchListSecondary extends React.Component {
             cpf: this.state.user.cpf,
             cnpj: this.state.user.cnpj,
             civilStatus: this.state.user.civilStatus,
-            whatsapp: this.state.user.whatsapp
+            whatsapp: this.state.user.whatsapp,
+            chat: []
         }
 
         const updateUser = await this.updateUsers(editUser)
@@ -89,6 +90,12 @@ export default class SwitchListSecondary extends React.Component {
         )
             return this.renderRow(reform, index)
     }
+
+    async sendMessage(reform) {
+        await editReform(reform)
+    }
+
+    getChat() {}
 
     renderRow(reform, index) {
         return (
@@ -123,7 +130,12 @@ export default class SwitchListSecondary extends React.Component {
                     align="right"
                     style={{ borderBottomRightRadius: '15px' }}
                 >
-                    <ChatModal />
+                    <ChatModal
+                        id={reform.id}
+                        onSubmit={this.sendMessage}
+                        updateChat={this.getChat}
+                        chat={this.state.chat}
+                    />
                 </TableCell>
             </TableRow>
         )

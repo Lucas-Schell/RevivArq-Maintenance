@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import { IconButton, Typography } from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat'
 import SendIcon from '@material-ui/icons/Send'
-import ChatMessageBox from '../ChatMessageBox'
+import './styles.css'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -17,8 +17,31 @@ export default function AlertDialogSlide(props) {
     const { onSubmit } = props
     //const { chat } = props
     const chat = [
-        { author: 'admin', message: 'oi' },
-        { author: 'joao', message: 'ola' }
+        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
+        {
+            author: 'joao',
+            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
+        },
+        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
+        {
+            author: 'joao',
+            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
+        },
+        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
+        {
+            author: 'joao',
+            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
+        },
+        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
+        {
+            author: 'joao',
+            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
+        },
+        { author: 'admin', message: 'assdjbf isd  sdkjjkfsdjkfbn kjsdf' },
+        {
+            author: 'joao',
+            message: 'jdsffksandf as as fasdfas dfas dfasdasdsa dasdas d'
+        }
     ]
 
     const send = () => {
@@ -62,28 +85,20 @@ export default function AlertDialogSlide(props) {
                             Chat
                         </Typography>
                     </Grid>
-                    <Grid
-                        container
-                        item
-                        xs={12}
-                        style={{ height: '83%', display: 'inline' }}
-                    >
-                        <Grid item xs={12} justify="flex-end">
-                            <ChatMessageBox
-                                text={
-                                    'oioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioioi'
+                    <div class="chat">
+                        {chat.map((item) => (
+                            <div
+                                className={
+                                    item.author === 'admin'
+                                        ? 'chatItem chatLeft'
+                                        : 'chatItem chatRight'
                                 }
-                                author={'danza kuduro'}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <ChatMessageBox
-                                text={'dsafdsgbfdnbgngfdbgndfgfb'}
-                                author={'danza kuduro'}
-                            />
-                        </Grid>
-                    </Grid>
+                            >
+                                <p class="author">{item.author}</p>
+                                <p class="message">{item.message}</p>
+                            </div>
+                        ))}
+                    </div>
 
                     <Grid
                         container
