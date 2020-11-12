@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
 import toMoneyConversion from 'helpers/toMoneyConversion'
 import { update } from '../../services/user'
-import NoteAddIcon from '@material-ui/icons/NoteAdd'
+import ChatModal from '../ChatModal'
 import SolicitationModal from '../SolicitationModal/index.js'
 import Grid from '@material-ui/core/Grid'
 
@@ -123,10 +123,7 @@ export default class SwitchListSecondary extends React.Component {
                     align="right"
                     style={{ borderBottomRightRadius: '15px' }}
                 >
-                    <NoteAddIcon
-                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={() => console.log('Teste')}
-                    />
+                    <ChatModal />
                 </TableCell>
             </TableRow>
         )

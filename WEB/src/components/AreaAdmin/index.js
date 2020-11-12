@@ -18,6 +18,7 @@ import ReformaDetalhe from '../ReformaDetalhe'
 import AdminModal from '../AdminModal'
 import { editTexts, getTexts } from '../../services/home'
 import Grid from '@material-ui/core/Grid'
+import ChatModal from '../ChatModal'
 
 export default class AreaAdminComponent extends React.Component {
     constructor(props) {
@@ -109,6 +110,9 @@ export default class AreaAdminComponent extends React.Component {
                             this.setState({ openedReformIndex: index })
                         }
                     />
+                </TableCell>
+                <TableCell>
+                    <ChatModal />
                 </TableCell>
             </TableRow>
         )
@@ -230,6 +234,9 @@ export default class AreaAdminComponent extends React.Component {
                                     </TableCell>
                                     <TableCell align="left">
                                         <b>Detalhes</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Chat</b>
                                     </TableCell>
                                 </TableRow>
                             </TableHead>
