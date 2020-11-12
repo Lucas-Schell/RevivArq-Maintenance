@@ -7,7 +7,6 @@
 .cadastro-container h1 {
     border-top: 5px;
     border-bottom: 0;
-    text-shadow: 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .cadastro-container .submitBtn {
