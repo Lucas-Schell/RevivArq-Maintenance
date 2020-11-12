@@ -7,38 +7,16 @@ import { Constants } from '../../configs/constants'
 import TableRow from '@material-ui/core/TableRow'
 import { Edit as EditIcon, Search as SearchIcon } from '@material-ui/icons'
 import { showNotification } from 'components/Notification'
-import MenuItem from '@material-ui/core/MenuItem'
 import Paper from '@material-ui/core/Paper'
 import { getReforms } from '../../services/reforms'
 import { loggedUser } from '../../services/user/index'
 import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
 import toMoneyConversion from 'helpers/toMoneyConversion'
-import BlockIcon from '@material-ui/icons/Block'
-import { Button } from '@material-ui/core'
 import { update } from '../../services/user'
-import TextField from '@material-ui/core/TextField'
 import NoteAddIcon from '@material-ui/icons/NoteAdd'
-import Select from '@material-ui/core/Select'
-
-const styles = () => ({
-    root: {
-        width: '100%',
-        marginTop: 100,
-        overflowX: 'auto',
-        borderRadius: '55px'
-    },
-    table: {
-        minWidth: 650,
-        borderBottomRightRadius: '15px',
-        border: '15px',
-        marginBottom: '15px'
-    },
-    tableWrapper: {
-        maxHeight: 440,
-        overflow: 'auto'
-    }
-})
+import SolicitationModal from '../SolicitationModal/index.js'
+import Grid from '@material-ui/core/Grid'
 
 export default class SwitchListSecondary extends React.Component {
     constructor(props) {
@@ -51,6 +29,8 @@ export default class SwitchListSecondary extends React.Component {
             isLoading: true,
             abreEdicao: false
         }
+        this.onChange = this.onChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     async componentDidMount() {
@@ -81,9 +61,7 @@ export default class SwitchListSecondary extends React.Component {
         return await update(editUser)
     }
 
-    handleSubmit = async (event) => {
-        event.preventDefault()
-
+    async handleSubmit() {
         const editUser = {
             _id: this.state.user._id,
             name: this.state.user.name,
@@ -196,354 +174,66 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({ openedReformIndex: -1 })
     }
 
-    render() {
-        const { reforms, isLoading, user } = this.state
-        const classes = styles()
+    onChange(e) {
+        this.setState({
+            user: {
+                ...this.state.user,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
 
-        const formState = 'outlined-disabled'
+    render() {
+        const { reforms, isLoading } = this.state
 
         return (
-            <div style={{ display: 'inline-flex' }}>
-                <div style={{ display: 'flex-start ' }}>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            marginLeft: 60,
-                            marginBottom: -60,
-                            marginTop: 30,
-                            marginRight: 50
-                        }}
-                    >
-                        <Typography
-                            variant="overline"
-                            style={{
-                                marginLeft: 30,
-                                marginTop: 10,
-                                color: 'rgb(255,248,41)',
-                                fontSize: 40,
-                                fontFamily: 'Playfair Display'
-                            }}
-                            gutterBottom
-                        >
-                            Perfil
-                        </Typography>
-                    </div>
-                    <Paper
-                        className={classes.root}
-                        style={{ margin: 60, borderRadius: '15px' }}
-                    >
-                        <Table
-                            className={classes.table}
-                            style={{
-                                'border-collapse': 'separate',
-                                'border-radius': '15px'
-                            }}
-                        >
-                            <TableHead
-                                style={{ backgroundColor: 'rgb(255,248,41)' }}
-                            >
-                                <TableRow>
-                                    <TableCell
-                                        style={{
-                                            borderTopLeftRadius: '15px',
-                                            fontSize: '20px'
-                                        }}
-                                    >
-                                        Detalhes do Usuário
-                                    </TableCell>
-                                    <TableCell
-                                        style={{
-                                            alignItems: 'center',
-                                            borderTopRightRadius: '15px'
-                                        }}
-                                    >
-                                        {this.state.trocaBotao ? (
-                                            <Typography>
-                                                <TableCell>
-                                                    <BlockIcon
-                                                        style={{
-                                                            fontWeight: 'bold'
-                                                        }}
-                                                        onClick={(e) =>
-                                                            this.trocaBotao(e)
-                                                        }
-                                                    />
-                                                </TableCell>
-                                            </Typography>
-                                        ) : (
-                                            <Typography>
-                                                <TableCell>
-                                                    <EditIcon
-                                                        style={{
-                                                            cursor: 'pointer',
-                                                            align: 'right',
-                                                            marginLeft: 10,
-                                                            color:
-                                                                'rgb(21,38,32)'
-                                                        }}
-                                                        onClick={(e) =>
-                                                            this.abreEdicao(e)
-                                                        }
-                                                    />
-                                                </TableCell>
-                                            </Typography>
-                                        )}
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell align="left">
-                                        <Typography
-                                            style={{ fontSize: '18px' }}
-                                        >
-                                            Nome:
-                                            <br />
-                                            <TextField
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                id={formState}
-                                                value={this.state.user.name}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            name: e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                className={classes.textField}
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left">
-                                        <Typography
-                                            style={{ fontSize: '18px' }}
-                                        >
-                                            Sobrenome:
-                                            <br />
-                                            <TextField
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                id={formState}
-                                                value={this.state.user.lastName}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            lastName:
-                                                                e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                className={classes.textField}
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left">
-                                        <Typography
-                                            style={{ fontSize: '18px' }}
-                                        >
-                                            Celular:
-                                            <br />
-                                            <TextField
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                id={formState}
-                                                value={this.state.user.whatsapp}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            whatsapp:
-                                                                e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                className={classes.textField}
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left">
-                                        <Typography
-                                            style={{ fontSize: '18px' }}
-                                        >
-                                            CPF:
-                                            <br />
-                                            <TextField
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                id={formState}
-                                                value={this.state.user.cpf}
-                                                className={classes.textField}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            cpf: e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left">
-                                        <Typography
-                                            style={{ fontSize: '18px' }}
-                                        >
-                                            CNPJ:
-                                            <br />
-                                            <TextField
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                id={formState}
-                                                value={this.state.user.cnpj}
-                                                className={classes.textField}
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            cnpj: e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell
-                                        className="table-row"
-                                        align="left"
-                                    >
-                                        <Typography
-                                            style={{
-                                                marginTop: '2px',
-                                                fontSize: '18px'
-                                            }}
-                                        >
-                                            Estado Civil:
-                                            <br />
-                                            <br />
-                                            <Select
-                                                disabled={
-                                                    !this.state.abreEdicao
-                                                }
-                                                onChange={(e) =>
-                                                    this.setState({
-                                                        user: {
-                                                            ...user,
-                                                            civilStatus:
-                                                                e.target.value
-                                                        }
-                                                    })
-                                                }
-                                                labelId="label"
-                                                id="select"
-                                                style={{ width: '200px' }}
-                                                value={
-                                                    this.state.user
-                                                        .civilStatus || ''
-                                                }
-                                            >
-                                                <MenuItem value="Solteiro(a)">
-                                                    Solteiro(a)
-                                                </MenuItem>
-                                                <MenuItem value="Casado(a)">
-                                                    Casado(a)
-                                                </MenuItem>
-                                                <MenuItem value="Divorciado(a)">
-                                                    Divorciado(a)
-                                                </MenuItem>
-                                                <MenuItem value="Viúvo(a)">
-                                                    Viúvo(a)
-                                                </MenuItem>
-                                                <MenuItem value="Separado(a)">
-                                                    Separado(a)
-                                                </MenuItem>
-                                            </Select>
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell
-                                        style={{
-                                            borderBottomLeftRadius: '15px'
-                                        }}
-                                    >
-                                        {this.state.abreEdicao ? (
-                                            <Button
-                                                type="submit"
-                                                style={{
-                                                    color: 'white',
-                                                    backgroundColor:
-                                                        'rgb(21,38,32)'
-                                                }}
-                                                onClick={this.handleSubmit}
-                                            >
-                                                Atualizar Dados
-                                            </Button>
-                                        ) : (
-                                            <div />
-                                        )}
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </div>
-                <div
-                    style={{
-                        display: 'block',
-                        marginLeft: 0,
-                        marginBottom: -0,
-                        marginTop: 0
-                    }}
+            <Grid container xs={12} justify="center" alignItems="center">
+                <Grid item xs={12}>
+                    <SolicitationModal
+                        onChange={this.onChange}
+                        handleSubmit={this.handleSubmit}
+                        user={this.state.user}
+                    />
+                </Grid>
+                <Grid
+                    container
+                    item
+                    xs={12}
+                    justify="center"
+                    alignItems="center"
                 >
-                    <div>
+                    <Grid item>
                         <Typography
                             variant="overline"
                             style={{
                                 marginTop: 40,
                                 color: 'rgb(255,248,41)',
-                                fontSize: 40,
+                                fontSize: 25,
                                 fontFamily: 'Playfair Display'
                             }}
                         >
                             Solicitações de Orçamento
                         </Typography>
-                    </div>
-                    <div className={classes.tableWrapper}>
+                    </Grid>
+
+                    <Grid
+                        item
+                        container
+                        xs={12}
+                        style={{
+                            justifyContent: 'center',
+                            maxWidth: '90vw',
+                            overflow: 'auto'
+                        }}
+                    >
                         <Paper
-                            className={classes.root}
-                            style={{ margin: 10, borderRadius: '15px' }}
+                            style={{
+                                borderRadius: '15px',
+                                maxWidth: '100%',
+                                overflow: 'auto'
+                            }}
                         >
                             <Table
-                                className={classes.table}
                                 style={{
                                     'border-collapse': 'separate',
                                     'border-radius': '15px'
@@ -639,9 +329,9 @@ export default class SwitchListSecondary extends React.Component {
                                 </div>
                             )}
                         </Paper>
-                    </div>
-                </div>
-            </div>
+                    </Grid>
+                </Grid>
+            </Grid>
         )
     }
 }
