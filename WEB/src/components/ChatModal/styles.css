@@ -1,9 +1,11 @@
 .chat {
     height: 83%;
-    width: 100%;
+    width: 600px;
     position: relative;
     background-color: #f5f5f5;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .chatItem {

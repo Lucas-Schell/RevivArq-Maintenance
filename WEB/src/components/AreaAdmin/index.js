@@ -34,6 +34,7 @@ export default class AreaAdminComponent extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.loadInfos = this.loadInfos.bind(this)
+        this.sendMessage = this.sendMessage.bind(this)
     }
 
     async componentDidMount() {
@@ -67,6 +68,20 @@ export default class AreaAdminComponent extends React.Component {
             this.state.openedReformIndex === index
         )
             return this.renderRow(reform, index)
+    }
+
+    async sendMessage(reform) {
+        reform.chat.author = 'Kenai'
+        const a = await editReform(reform)
+        if (a) {
+            return await this.getChat(reform._id)
+        }
+    }
+
+    async getChat(id) {
+        const reform = await getReforms(id)
+
+        return reform.chat
     }
 
     renderRow(reform, index) {
@@ -112,7 +127,14 @@ export default class AreaAdminComponent extends React.Component {
                     />
                 </TableCell>
                 <TableCell>
-                    <ChatModal />
+                    <ChatModal
+                        id={reform.id}
+                        onSubmit={this.sendMessage}
+                        messages={reform.chat}
+                        isAdmin={true}
+                        name={reform.author}
+                        updateChat={this.getChat}
+                    />
                 </TableCell>
             </TableRow>
         )

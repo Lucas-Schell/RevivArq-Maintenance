@@ -26,13 +26,11 @@ export default class SwitchListSecondary extends React.Component {
             user: {},
             irDash: false,
             openedReformIndex: -1,
-            isLoading: true,
-            abreEdicao: false
+            isLoading: true
         }
         this.onChange = this.onChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.sendMessage = this.sendMessage.bind(this)
-        this.getChat = this.getChat.bind(this)
     }
 
     async componentDidMount() {
@@ -93,25 +91,17 @@ export default class SwitchListSecondary extends React.Component {
     }
 
     async sendMessage(reform) {
-        reform.chat.author =
-            this.state.user.name + ' ' + this.state.user.lastName
+        reform.chat.author = this.state.user._id
         const a = await editReform(reform)
         if (a) {
-            await this.getChat(reform.id)
+            return await this.getChat(reform._id)
         }
     }
 
     async getChat(id) {
-        const reforms = await getReforms(id)
+        const reform = await getReforms(id)
 
-        const ref = this.state.reforms
-        for (const [i, reform] of ref) {
-            if (reform.id === id) {
-                ref[i] = reforms
-            }
-        }
-
-        this.setState({ reforms: ref })
+        return reform.chat
     }
 
     renderRow(reform, index) {
@@ -150,8 +140,14 @@ export default class SwitchListSecondary extends React.Component {
                     <ChatModal
                         id={reform.id}
                         onSubmit={this.sendMessage}
-                        chat={reform.chat}
+                        messages={reform.chat}
                         isAdmin={false}
+                        name={
+                            this.state.user.name +
+                            ' ' +
+                            this.state.user.lastName
+                        }
+                        updateChat={this.getChat}
                     />
                 </TableCell>
             </TableRow>
@@ -162,38 +158,6 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({
             irDash: false
         })
-    }
-
-    trocaBotao() {
-        const estado = this.state.trocaBotao
-        if (estado) {
-            this.setState({
-                trocaBotao: false,
-                abreEdicao: false,
-                disabled: false
-            })
-        } else {
-            this.setState({
-                trocaBotao: true,
-                abreEdicao: true,
-                disabled: true
-            })
-        }
-    }
-
-    abreEdicao() {
-        const estado = this.state.disabled
-        if (estado) {
-            this.setState({
-                abreEdicao: false,
-                trocaBotao: false
-            })
-        } else {
-            this.setState({
-                abreEdicao: true,
-                trocaBotao: true
-            })
-        }
     }
 
     closeDetail = () => {

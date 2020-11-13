@@ -13,7 +13,6 @@ class AreaAdmin extends Page {
         this.setState({
             isAdmin: admin
         })
-        console.log(admin)
     }
 
     renderAdmin = async () => {
@@ -25,10 +24,8 @@ class AreaAdmin extends Page {
                 this.redirect('/Erro403')
             } else {
                 if (admin === 'false') {
-                    console.log('Entrou-cliente')
                     this.redirect('/Erro403')
                 } else if (admin === 'true') {
-                    console.log('Entrou-admin')
                     this.render(this.authenticated())
                 }
             }

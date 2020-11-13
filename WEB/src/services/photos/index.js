@@ -46,9 +46,7 @@ export const getPhotos = async () => {
         }
     })
     if (response) {
-        const api_response = response.data
-        console.log(api_response)
-        return api_response
+        return response.data
     } else {
         return {
             statusDesc: 'Erro obtendo resposta do servidor.',
