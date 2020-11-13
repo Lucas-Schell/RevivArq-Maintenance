@@ -101,7 +101,7 @@ export default class SwitchListSecondary extends React.Component {
     async getChat(id) {
         const reform = await getReforms(id)
 
-        return reform.chat
+        if (reform !== null && reform.chat) return reform.chat
     }
 
     renderRow(reform, index) {

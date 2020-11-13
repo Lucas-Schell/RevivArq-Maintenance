@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import Slide from '@material-ui/core/Slide'
 import TextField from '@material-ui/core/TextField'
@@ -39,11 +39,15 @@ export default function AlertDialogSlide(props) {
         setOpen(false)
     }
 
+    useEffect(() => {
+        att()
+    }, [])
+
     function att() {
         setTimeout(async function () {
             setChat(await updateChat(id))
             att()
-        }, 1000)
+        }, 3000)
     }
 
     return (

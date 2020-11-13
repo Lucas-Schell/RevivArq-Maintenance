@@ -281,6 +281,7 @@ class HomePage extends Page {
                             Fique ligado no nosso{' '}
                             <a
                                 href={'https://www.instagram.com/revivarq/'}
+                                rel="noopener, noreferrer"
                                 target="_blank"
                                 className={classes.span}
                             >
@@ -302,6 +303,7 @@ class HomePage extends Page {
                         <Typography className={classes.textMin}>
                             <a
                                 href={'https://www.instagram.com/revivarq/'}
+                                rel="noopener, noreferrer"
                                 target="_blank"
                                 className={classes.span}
                                 style={{ textDecoration: 'none' }}
