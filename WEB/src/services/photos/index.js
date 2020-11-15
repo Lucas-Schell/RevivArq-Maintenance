@@ -31,6 +31,27 @@ export const postPhotos = async (photos) => {
     }
 }
 
+export const deletePhotos = async (photos) => {
+    const response = await axios({
+        method: 'delete',
+        url: PostPhotos.url,
+        timeout: 5000,
+        data: photos,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if (response) {
+        return response.data
+    } else {
+        return {
+            statusDesc: 'Erro obtendo resposta do servidor.',
+            statusCode: Constants.InternalServerError
+        }
+    }
+}
+
 export const getPhotos = async () => {
     const param = '?file='
     const image = 'avatar-157409410385791.jpeg'

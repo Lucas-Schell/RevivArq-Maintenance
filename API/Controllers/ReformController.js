@@ -20,6 +20,7 @@ class ReformController {
      * obs: não atualiza as fotos.
      */
     static updateReform(reform, user, callback) {
+        console.log(reform.photos)
         if (!reform.updateChat) {
             const {
                 userId,
@@ -33,7 +34,8 @@ class ReformController {
                 restrictions,
                 budgetLimit,
                 _id,
-                phone
+                phone,
+                photos
             } = reform
             const { valid, message } = validReformRegister(
                 userId,
@@ -76,7 +78,8 @@ class ReformController {
                     establishmentName,
                     reformItens,
                     author,
-                    phone
+                    phone,
+                    photos
                 }
             }
 

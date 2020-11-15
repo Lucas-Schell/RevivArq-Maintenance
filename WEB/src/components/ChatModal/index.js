@@ -39,10 +39,6 @@ export default function AlertDialogSlide(props) {
         setOpen(false)
     }
 
-    useEffect(() => {
-        att()
-    }, [])
-
     function att() {
         setTimeout(async function () {
             setChat(await updateChat(id))
