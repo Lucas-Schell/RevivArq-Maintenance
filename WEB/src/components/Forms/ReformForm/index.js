@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { Constants } from '../../../configs/constants'
 import { Checkbox, FormControl, FormControlLabel } from '@material-ui/core'
 import { editReform, postReform } from '../../../services/reforms'
-import { postPhotos } from '../../../services/photos'
+import { deletePhotos, postPhotos } from '../../../services/photos'
 
 import NumberFormat from 'react-number-format'
 
@@ -85,6 +85,10 @@ class ReformForm extends React.Component {
         return await postPhotos(newFiles)
     }
 
+    async deleteFotos() {
+        return await deletePhotos(this.state.removedPhotos)
+    }
+
     async handleCreate() {
         const submitfoto = await this.submitFotos()
 
@@ -114,8 +118,23 @@ class ReformForm extends React.Component {
         const { reform } = this.props
 
         const submitfoto = await this.submitFotos()
+        await this.deleteFotos()
 
-        reform.photos = reform.photos.concat(submitfoto.images)
+        let tempArray = reform.photos.concat(submitfoto.images)
+        let newArray = []
+
+        for (let i = 0; i < this.state.removedPhotos.length; i++) {
+            let path = this.state.removedPhotos[i].split('?file=')
+            this.state.removedPhotos[i] = path[path.length - 1]
+        }
+
+        for (let i = 0; i < tempArray.length; i++) {
+            if (!this.state.removedPhotos.includes(tempArray[i])) {
+                newArray.push(tempArray[i])
+            }
+        }
+
+        reform.photos = newArray
 
         this.state.budgetLimit = this.state.budgetLimit
             .replace(/\./g, '')
@@ -260,8 +279,11 @@ class ReformForm extends React.Component {
     deletarImg(foto) {
         for (let j = 0; j < this.state.file.length; j++) {
             if (this.state.file[j].name === foto.name) {
-                if (this.state.file[j].oldPhoto === undefined) {
-                    this.state.removedPhotos.push(this.state.file[j].name)
+                if (this.state.file[j].oldPhoto) {
+                    const aux = this.state.removedPhotos
+                    this.setState({
+                        removedPhotos: aux.concat(this.state.file[j].name)
+                    })
                 }
 
                 this.state.file.splice(j, 1)
