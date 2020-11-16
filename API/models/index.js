@@ -244,7 +244,6 @@ fs.readdirSync(__dirname)
                 createReformsData(models[fileData.name])
             } else {
                 if (fileData.name === 'Texts') {
-                    console.log('chamando')
                     createHomeTexts(models[fileData.name])
                 }
             }

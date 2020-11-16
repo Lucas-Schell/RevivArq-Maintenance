@@ -20,8 +20,6 @@ export default function AlertDialogSlide(props) {
     const [open, setOpen] = React.useState(false)
     const { user, onChange, handleSubmit } = props
 
-    console.log(user.name)
-
     const submit = () => {
         handleSubmit()
     }

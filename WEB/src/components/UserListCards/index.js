@@ -42,7 +42,7 @@ class UserListCards extends React.Component {
     renderUserCards = async () => {
         const { contains, sort } = this.state
         const users = await list(contains, sort) // contains: string, sort: string, isAscending: boolean
-        console.log(users)
+
         const render = users.data.map((user) => {
             return (
                 <Card className="user-card" key={user.id}>
@@ -97,4 +97,4 @@ class UserListCards extends React.Component {
     }
 }
 
-export default withRouter(UserListCards);
+export default withRouter(UserListCards)

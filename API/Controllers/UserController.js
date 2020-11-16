@@ -26,7 +26,6 @@ class UserController {
      *  retorna as de um usuário pelo id (Somente usuário Administrador consegue chamar).
      */
     static findUserById(user, id, callback) {
-        console.log('Entrou')
         if (user.isAdmin) return DAO.findUser(id, callback)
         else
             return callback(

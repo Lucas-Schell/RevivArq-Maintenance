@@ -35,17 +35,10 @@ export default class SwitchListSecondary extends React.Component {
 
     async componentDidMount() {
         const reforms = await getReforms()
-        //console.log(reforms.photos)
-        //const photos = await getPhotos()
-        //console.log('getPhotos',photos)
-        //const reform = await getReformById('5d92891f916da312a457a0f1')
         this.setState({ reforms })
-        //console.log("reformas: ", reforms);
     }
 
-    handleClick(reform) {
-        //console.log('this is:', getReformById(reform.id));
-    }
+    handleClick(reform) {}
 
     render() {
         const classes = styles()

@@ -38,8 +38,6 @@ routerPhoto.get('/image', function (req, res) {
     const src = fs.createReadStream(
         path.join(__dirname, '../files/uploads/') + pathImage
     )
-    console.log('teste: /image')
-    console.log(src)
     src.on('open', function () {
         src.pipe(res)
         console.info('down completed: ' + pathImage)

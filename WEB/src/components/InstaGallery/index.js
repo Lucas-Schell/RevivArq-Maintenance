@@ -41,7 +41,7 @@ class InstaGallery extends Component {
         const response = await get()
         const imagens = response.data
         const aux = this.state.fotos
-        console.log(imagens)
+
         for (let i = 0; i < imagens.length; i++) {
             aux.push(imagens[i].images.standard_resolution.url)
         }

@@ -201,7 +201,6 @@ class ReformForm extends React.Component {
 
     componentDidMount() {
         const { reform } = this.props
-        console.log(this.props)
 
         if (reform) {
             this.setState({
@@ -245,13 +244,12 @@ class ReformForm extends React.Component {
             const aux = this.state.file
             const aux2 = this.state.imagePreviewUrl
             const aux3 = this.state.imgPost
-            console.log(aux)
 
             const imgPre = { name: file.name, foto: reader.result }
             aux.push(file)
             aux2.push(imgPre)
             aux3.push(reader.result)
-            console.log(aux)
+
             this.setState({
                 file: aux,
                 imagePreviewUrl: aux2,
@@ -892,9 +890,6 @@ class ReformForm extends React.Component {
                                         return (
                                             <Grid container xs={4}>
                                                 <Grid item xs={12}>
-                                                    <div>
-                                                        {/*console.log(foto)*/}
-                                                    </div>
                                                     <img
                                                         src={foto.foto}
                                                         style={{

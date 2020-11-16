@@ -109,8 +109,6 @@ class UserForm extends React.Component {
 
         const status = await create(user, true)
 
-        console.log('Criação usuário:', status)
-
         this.setState({
             isLoading: false
         })
@@ -124,8 +122,6 @@ class UserForm extends React.Component {
         const { reloadOnSubmission } = this.props
 
         const status = await update(user)
-
-        console.log('Atualização de usuário:', status)
 
         this.setState({
             isLoading: false
