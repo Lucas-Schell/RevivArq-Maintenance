@@ -847,8 +847,8 @@ class ReformForm extends React.Component {
                                             style={{ padding: 20 }}
                                         >
                                             <input
+                                                style={{ width: 118 }}
                                                 required=""
-                                                className={'input'}
                                                 display="none"
                                                 type="file"
                                                 accept="image{/*"

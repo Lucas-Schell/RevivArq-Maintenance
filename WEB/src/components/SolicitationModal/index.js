@@ -22,6 +22,7 @@ export default function AlertDialogSlide(props) {
 
     const submit = () => {
         handleSubmit()
+        handleClose()
     }
 
     const handleClickOpen = () => {
@@ -54,124 +55,137 @@ export default function AlertDialogSlide(props) {
                     spacing={12}
                     style={{ backgroundColor: '#FFF829' }}
                 >
-                    <DialogTitle
-                        fullWidth
-                        xs={12}
-                        style={{
-                            fontWeight: 'bold',
-                            textAlign: 'center'
-                        }}
-                    >
-                        Perfil
-                    </DialogTitle>
+                    <Grid item xs={12}>
+                        <DialogTitle
+                            fullWidth
+                            xs={12}
+                            style={{
+                                fontWeight: 'bold',
+                                textAlign: 'center'
+                            }}
+                        >
+                            Perfil
+                        </DialogTitle>
+                    </Grid>
 
-                    <DialogContent>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    name="name"
-                                    label="Nome"
-                                    value={user.name ? user.name : ''}
-                                    onChange={onChange}
-                                    style={{ backgroundColor: '#f5f5f5' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    name="lastName"
-                                    label="Sobrenome"
-                                    value={user.lastName ? user.lastName : ''}
-                                    onChange={onChange}
-                                    style={{ backgroundColor: '#f5f5f5' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    name="whatsapp"
-                                    label="Celular"
-                                    value={user.whatsapp ? user.whatsapp : ''}
-                                    onChange={onChange}
-                                    style={{ backgroundColor: '#f5f5f5' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    name="cpf"
-                                    label="CPF"
-                                    value={user.cpf ? user.cpf : ''}
-                                    onChange={onChange}
-                                    style={{ backgroundColor: '#f5f5f5' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    name="cnpj"
-                                    label="CNPJ"
-                                    value={user.cnpj ? user.cnpj : ''}
-                                    onChange={onChange}
-                                    style={{ backgroundColor: '#f5f5f5' }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl fullWidth variant="outlined">
-                                    <InputLabel>Estado Civil</InputLabel>
-                                    <Select
-                                        label="Estado Civil"
-                                        name="civilStatus"
+                    <Grid item xs={12}>
+                        <DialogContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        name="name"
+                                        label="Nome"
+                                        value={user.name ? user.name : ''}
+                                        onChange={onChange}
+                                        style={{ backgroundColor: '#f5f5f5' }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        name="lastName"
+                                        label="Sobrenome"
                                         value={
-                                            user.civilStatus
-                                                ? user.civilStatus
-                                                : ''
+                                            user.lastName ? user.lastName : ''
                                         }
                                         onChange={onChange}
                                         style={{ backgroundColor: '#f5f5f5' }}
-                                    >
-                                        <MenuItem value="Solteiro(a)">
-                                            Solteiro(a)
-                                        </MenuItem>
-                                        <MenuItem value="Casado(a)">
-                                            Casado(a)
-                                        </MenuItem>
-                                        <MenuItem value="Divorciado(a)">
-                                            Divorciado(a)
-                                        </MenuItem>
-                                        <MenuItem value="Viúvo(a)">
-                                            Viúvo(a)
-                                        </MenuItem>
-                                        <MenuItem value="Separado(a)">
-                                            Separado(a)
-                                        </MenuItem>
-                                    </Select>
-                                </FormControl>
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        name="whatsapp"
+                                        label="Celular"
+                                        value={
+                                            user.whatsapp ? user.whatsapp : ''
+                                        }
+                                        onChange={onChange}
+                                        style={{ backgroundColor: '#f5f5f5' }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        name="cpf"
+                                        label="CPF"
+                                        value={user.cpf ? user.cpf : ''}
+                                        onChange={onChange}
+                                        style={{ backgroundColor: '#f5f5f5' }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        name="cnpj"
+                                        label="CNPJ"
+                                        value={user.cnpj ? user.cnpj : ''}
+                                        onChange={onChange}
+                                        style={{ backgroundColor: '#f5f5f5' }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl fullWidth variant="outlined">
+                                        <InputLabel>Estado Civil</InputLabel>
+                                        <Select
+                                            label="Estado Civil"
+                                            name="civilStatus"
+                                            value={
+                                                user.civilStatus
+                                                    ? user.civilStatus
+                                                    : ''
+                                            }
+                                            onChange={onChange}
+                                            style={{
+                                                backgroundColor: '#f5f5f5'
+                                            }}
+                                        >
+                                            <MenuItem value="Solteiro(a)">
+                                                Solteiro(a)
+                                            </MenuItem>
+                                            <MenuItem value="Casado(a)">
+                                                Casado(a)
+                                            </MenuItem>
+                                            <MenuItem value="Divorciado(a)">
+                                                Divorciado(a)
+                                            </MenuItem>
+                                            <MenuItem value="Viúvo(a)">
+                                                Viúvo(a)
+                                            </MenuItem>
+                                            <MenuItem value="Separado(a)">
+                                                Separado(a)
+                                            </MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            fullWidth
-                            onClick={submit}
-                            style={{
-                                color: 'white',
-                                backgroundColor: '#152620',
-                                '&:hover': {
-                                    opacity: 0.9,
-                                    backgroundColor: '#152620'
-                                }
-                            }}
-                        >
-                            Atualizar Dados
-                        </Button>
-                    </DialogActions>
+                        </DialogContent>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <DialogActions style={{ justifyContent: 'center' }}>
+                            <Button
+                                onClick={submit}
+                                style={{
+                                    color: 'white',
+                                    width: '80%',
+                                    backgroundColor: '#152620',
+                                    '&:hover': {
+                                        opacity: 0.9,
+                                        backgroundColor: '#152620'
+                                    }
+                                }}
+                            >
+                                Atualizar Dados
+                            </Button>
+                        </DialogActions>
+                    </Grid>
                 </Grid>
             </Dialog>
         </Grid>

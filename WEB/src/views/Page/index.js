@@ -84,7 +84,7 @@ class Page extends React.Component {
     }
 
     loading = () => {
-        return <CircularProgress />
+        return <CircularProgress style={{ paddingTop: 40 }} />
     }
 
     header = () => {

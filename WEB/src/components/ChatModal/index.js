@@ -71,7 +71,7 @@ export default function AlertDialogSlide(props) {
                 >
                     <Grid item xs={12}>
                         <Typography style={{ textAlign: 'center' }}>
-                            {open.toString()}
+                            Chat
                         </Typography>
                     </Grid>
                     <div id="chat" class="chat">
