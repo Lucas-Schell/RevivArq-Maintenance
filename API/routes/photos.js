@@ -49,14 +49,20 @@ routerPhoto.get('/image', function (req, res) {
     })
 })
 
-routerPhoto.delete('/image', function (req, res) {
-    const pathImage = req.query.file
-    const src = fs.createReadStream(
-        path.join(__dirname, '../files/uploads/') + pathImage
-    )
-    fs.unlink(src.path, (err) => {
-        if (err) throw err
-        console.log(req.query.file, 'deleted!')
+routerPhoto.delete('/', function (req, res) {
+    const photos = req.body
+
+    photos.forEach((photo) => {
+        try {
+            let path = photo.split('?file=')
+
+            let src = __dirname + '/../files/uploads/' + path[path.length - 1]
+
+            fs.unlink(src, (err) => {
+                if (err) throw err
+                console.log('deleted!')
+            })
+        } catch (err) {}
     })
     res.status(200).send('')
 })

@@ -137,6 +137,36 @@ function updateReform(filteredReform, callback, isAdmin, callbackSendMail) {
     )
 }
 
+function updateChat(id, message, callback) {
+    ReformModel.findByIdAndUpdate(
+        id,
+        {
+            $push: {
+                chat: message
+            }
+        },
+        (error, reform) => {
+            if (error) {
+                let errorObj = {
+                    statusDesc: error,
+                    statusCode: constants.errorCodeMongoose
+                }
+                return callback(errorObj, null)
+            }
+            if (!reform) {
+                let errorObj = {
+                    statusDesc: constants.notFoundDesc,
+                    statusCode: constants.notFound
+                }
+                return callback(errorObj, null)
+            } else {
+                callback(null, { message: constants.reformUpdated })
+            }
+        }
+    )
+}
+
+module.exports.updateChat = updateChat
 module.exports.fetchReforms = fetchReforms
 module.exports.fetchReform = fetchReform
 module.exports.findReform = findReform

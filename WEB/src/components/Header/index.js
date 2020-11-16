@@ -277,12 +277,8 @@ class Header extends React.Component {
         if (display) {
             return (
                 <div style={{ width: '100%' }}>
-                    <div class="mobile">
-                        <Grid
-                            container
-                            className={'App-header-container'}
-                            xs={12}
-                        >
+                    <div className="mobile">
+                        <Grid container className={'App-header-container'}>
                             <Grid item xs={12}>
                                 <img
                                     src={logo}
@@ -356,11 +352,7 @@ class Header extends React.Component {
                         </Grid>
                     </div>
                     <div className="desktop">
-                        <Grid
-                            container
-                            className={'App-header-container'}
-                            xs={12}
-                        >
+                        <Grid container className={'App-header-container'}>
                             <Grid item xs={3}>
                                 <img
                                     src={logo}

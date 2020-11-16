@@ -18,6 +18,7 @@ import ReformaDetalhe from '../ReformaDetalhe'
 import AdminModal from '../AdminModal'
 import { editTexts, getTexts } from '../../services/home'
 import Grid from '@material-ui/core/Grid'
+import ChatModal from '../ChatModal'
 
 export default class AreaAdminComponent extends React.Component {
     constructor(props) {
@@ -33,6 +34,7 @@ export default class AreaAdminComponent extends React.Component {
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.loadInfos = this.loadInfos.bind(this)
+        this.sendMessage = this.sendMessage.bind(this)
     }
 
     async componentDidMount() {
@@ -66,6 +68,20 @@ export default class AreaAdminComponent extends React.Component {
             this.state.openedReformIndex === index
         )
             return this.renderRow(reform, index)
+    }
+
+    async sendMessage(reform) {
+        reform.chat.author = 'Kenai'
+        const a = await editReform(reform)
+        if (a) {
+            return await this.getChat(reform._id)
+        }
+    }
+
+    async getChat(id) {
+        const reform = await getReforms(id)
+
+        if (reform !== null && reform.chat) return reform.chat
     }
 
     renderRow(reform, index) {
@@ -108,6 +124,16 @@ export default class AreaAdminComponent extends React.Component {
                         onClick={() =>
                             this.setState({ openedReformIndex: index })
                         }
+                    />
+                </TableCell>
+                <TableCell>
+                    <ChatModal
+                        id={reform.id}
+                        onSubmit={this.sendMessage}
+                        messages={reform.chat}
+                        isAdmin={true}
+                        name={reform.author}
+                        updateChat={this.getChat}
                     />
                 </TableCell>
             </TableRow>
@@ -180,7 +206,7 @@ export default class AreaAdminComponent extends React.Component {
                     <Typography
                         variant="overline"
                         style={{
-                            color: 'rgb(255,248,41)',
+                            color: '#fff829',
                             fontSize: 35,
                             fontFamily: 'Playfair Display'
                         }}
@@ -206,9 +232,7 @@ export default class AreaAdminComponent extends React.Component {
                         }}
                     >
                         <Table>
-                            <TableHead
-                                style={{ backgroundColor: 'rgb(255,248,41)' }}
-                            >
+                            <TableHead style={{ backgroundColor: '#fff829' }}>
                                 <TableRow>
                                     <TableCell align="left">
                                         <b>Nome Estabelecimento</b>
@@ -230,6 +254,9 @@ export default class AreaAdminComponent extends React.Component {
                                     </TableCell>
                                     <TableCell align="left">
                                         <b>Detalhes</b>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <b>Chat</b>
                                     </TableCell>
                                 </TableRow>
                             </TableHead>

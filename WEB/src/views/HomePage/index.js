@@ -85,16 +85,15 @@ class HomePage extends Page {
     unauthenticated = () => {
         const { classes } = this.props
         return (
-            <Grid container xs={12} className={classes.containerRoot}>
+            <Grid container className={classes.containerRoot}>
                 <Grid container item xs={12} className={classes.imageContainer}>
                     <Grid
                         item
                         xs={12}
                         className="img"
-                        justify="center"
                         style={{
                             height: 700,
-                            objectFit: 'nonen'
+                            objectFit: 'none'
                         }}
                     >
                         <Grid
@@ -119,11 +118,11 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 
-                    <Grid container xs={12}>
+                    <Grid container>
                         <Grid
                             container
                             item
@@ -155,7 +154,7 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 
@@ -267,7 +266,7 @@ class HomePage extends Page {
                     <Grid item xs={12} className={classes.divider}>
                         <Divider
                             variant="middle"
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
+                            style={{ backgroundColor: '#fff829' }}
                         />
                     </Grid>
 
@@ -282,6 +281,7 @@ class HomePage extends Page {
                             Fique ligado no nosso{' '}
                             <a
                                 href={'https://www.instagram.com/revivarq/'}
+                                rel="noopener, noreferrer"
                                 target="_blank"
                                 className={classes.span}
                             >
@@ -303,6 +303,7 @@ class HomePage extends Page {
                         <Typography className={classes.textMin}>
                             <a
                                 href={'https://www.instagram.com/revivarq/'}
+                                rel="noopener, noreferrer"
                                 target="_blank"
                                 className={classes.span}
                                 style={{ textDecoration: 'none' }}

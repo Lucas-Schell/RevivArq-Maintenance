@@ -35,7 +35,7 @@ export default function AlertDialogSlide(props) {
     }
 
     return (
-        <Grid container xs={12} justify="center" alignItems="center">
+        <Grid container justify="center" alignItems="center">
             <Button
                 style={{ backgroundColor: 'white', margin: 15 }}
                 onClick={handleClickOpen}

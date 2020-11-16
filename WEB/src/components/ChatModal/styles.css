@@ -1,0 +1,42 @@
+.chat {
+    height: 83%;
+    width: 600px;
+    position: relative;
+    background-color: #f5f5f5;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatItem {
+    padding: 10px;
+    background-color: #cbcbcb;
+    width: fit-content;
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    margin: 10px 10px;
+}
+
+.chatLeft {
+    float: left;
+}
+
+.chatRight {
+    float: right;
+}
+
+.chatRight p {
+    text-align: right;
+}
+
+.author {
+    font-size: 13px;
+    font-weight: bold;
+    color: #152620;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

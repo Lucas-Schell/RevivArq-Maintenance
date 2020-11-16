@@ -23,7 +23,7 @@ export const create = async (user, encryptPassword) => {
             Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }
     })
-    console.log(response)
+
     if (response) {
         let api_response = response.data
         if (api_response && api_response.statusCode === Constants.successCode) {

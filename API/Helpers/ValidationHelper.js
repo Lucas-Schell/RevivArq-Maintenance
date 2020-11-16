@@ -443,6 +443,17 @@ class ValidationHelper {
         return message
     }
 
+    static validChat(text) {
+        let message
+        if (!text.message) {
+            message = constants.invalidMessage
+        }
+        return {
+            valid: !message,
+            message
+        }
+    }
+
     static validReformRegister(
         userId,
         establishmentName,

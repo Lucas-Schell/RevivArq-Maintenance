@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { Constants } from '../../../configs/constants'
 import { Checkbox, FormControl, FormControlLabel } from '@material-ui/core'
 import { editReform, postReform } from '../../../services/reforms'
-import { postPhotos } from '../../../services/photos'
+import { deletePhotos, postPhotos } from '../../../services/photos'
 
 import NumberFormat from 'react-number-format'
 
@@ -63,7 +63,8 @@ class ReformForm extends React.Component {
                 necessidadeConstruir: false,
                 outros: ''
             },
-            abreFotos: false
+            abreFotos: false,
+            removedPhotos: []
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.onChange = this.onChange.bind(this)
@@ -75,7 +76,17 @@ class ReformForm extends React.Component {
     }
 
     async submitFotos() {
-        return await postPhotos(this.state.file)
+        const newFiles = []
+        for (let i = 0; i < this.state.file.length; i++) {
+            if (this.state.file[i].oldPhoto === undefined) {
+                newFiles.push(this.state.file[i])
+            }
+        }
+        return await postPhotos(newFiles)
+    }
+
+    async deleteFotos() {
+        return await deletePhotos(this.state.removedPhotos)
     }
 
     async handleCreate() {
@@ -105,6 +116,25 @@ class ReformForm extends React.Component {
 
     async handleEdit() {
         const { reform } = this.props
+
+        const submitfoto = await this.submitFotos()
+        await this.deleteFotos()
+
+        let tempArray = reform.photos.concat(submitfoto.images)
+        let newArray = []
+
+        for (let i = 0; i < this.state.removedPhotos.length; i++) {
+            let path = this.state.removedPhotos[i].split('?file=')
+            this.state.removedPhotos[i] = path[path.length - 1]
+        }
+
+        for (let i = 0; i < tempArray.length; i++) {
+            if (!this.state.removedPhotos.includes(tempArray[i])) {
+                newArray.push(tempArray[i])
+            }
+        }
+
+        reform.photos = newArray
 
         this.state.budgetLimit = this.state.budgetLimit
             .replace(/\./g, '')
@@ -169,6 +199,45 @@ class ReformForm extends React.Component {
         })
     }
 
+    componentDidMount() {
+        const { reform } = this.props
+        console.log(this.props)
+
+        if (reform) {
+            this.setState({
+                establishmentName: reform.establishmentName,
+                establishmentType: reform.establishmentType,
+                status: reform.status,
+                area: reform.area,
+                address: reform.address,
+                reformItens: reform.reformItens,
+                goal: reform.goal,
+                restrictions: reform.restrictions,
+                budgetLimit: reform.budgetLimit,
+                phone: reform.phone
+            })
+
+            const IMAGES = []
+            for (let i = 0; i < reform.photos.length; i++) {
+                IMAGES.push({
+                    foto:
+                        'http://localhost:4000/api/photos/image?file=' +
+                        reform.photos[i],
+                    name:
+                        'http://localhost:4000/api/photos/image?file=' +
+                        reform.photos[i],
+                    oldPhoto: true
+                })
+            }
+
+            this.setState({
+                imagePreviewUrl: [...IMAGES],
+                file: [...IMAGES],
+                imgPost: [...IMAGES]
+            })
+        }
+    }
+
     imgChange = (e) => {
         let reader = new FileReader()
         let file = e.target.files[0]
@@ -176,11 +245,13 @@ class ReformForm extends React.Component {
             const aux = this.state.file
             const aux2 = this.state.imagePreviewUrl
             const aux3 = this.state.imgPost
+            console.log(aux)
 
-            const imgPre = { nome: file.name, foto: reader.result }
+            const imgPre = { name: file.name, foto: reader.result }
             aux.push(file)
             aux2.push(imgPre)
             aux3.push(reader.result)
+            console.log(aux)
             this.setState({
                 file: aux,
                 imagePreviewUrl: aux2,
@@ -190,8 +261,6 @@ class ReformForm extends React.Component {
         if (file && file.type.match('image.*')) {
             reader.readAsDataURL(file)
         }
-
-        //	console.log(this.state.file)
     }
 
     abreFotos() {
@@ -209,7 +278,14 @@ class ReformForm extends React.Component {
 
     deletarImg(foto) {
         for (let j = 0; j < this.state.file.length; j++) {
-            if (this.state.file[j].name === foto.nome) {
+            if (this.state.file[j].name === foto.name) {
+                if (this.state.file[j].oldPhoto) {
+                    const aux = this.state.removedPhotos
+                    this.setState({
+                        removedPhotos: aux.concat(this.state.file[j].name)
+                    })
+                }
+
                 this.state.file.splice(j, 1)
                 this.state.imagePreviewUrl.splice(j, 1)
                 this.state.imgPost.splice(j, 1)
@@ -236,26 +312,6 @@ class ReformForm extends React.Component {
         this.setState({
             open: false
         })
-    }
-
-    componentDidMount() {
-        const { reform } = this.props
-        console.log(this.props)
-
-        if (reform) {
-            this.setState({
-                establishmentName: reform.establishmentName,
-                establishmentType: reform.establishmentType,
-                status: reform.status,
-                area: reform.area,
-                address: reform.address,
-                reformItens: reform.reformItens,
-                goal: reform.goal,
-                restrictions: reform.restrictions,
-                budgetLimit: reform.budgetLimit,
-                phone: reform.phone
-            })
-        }
     }
 
     render() {
@@ -836,12 +892,17 @@ class ReformForm extends React.Component {
                                         return (
                                             <Grid container xs={4}>
                                                 <Grid item xs={12}>
+                                                    <div>
+                                                        {/*console.log(foto)*/}
+                                                    </div>
                                                     <img
                                                         src={foto.foto}
                                                         style={{
-                                                            width: 70,
-                                                            height: 70,
-                                                            margin: 20
+                                                            width: 256,
+                                                            height: 256,
+                                                            margin: 20,
+                                                            objectFit:
+                                                                'contain '
                                                         }}
                                                         alt={'foto'}
                                                     />

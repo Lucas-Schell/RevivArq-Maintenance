@@ -8,13 +8,13 @@ import TableRow from '@material-ui/core/TableRow'
 import { Edit as EditIcon, Search as SearchIcon } from '@material-ui/icons'
 import { showNotification } from 'components/Notification'
 import Paper from '@material-ui/core/Paper'
-import { getReforms } from '../../services/reforms'
+import { getReforms, editReform } from '../../services/reforms'
 import { loggedUser } from '../../services/user/index'
 import Typography from '@material-ui/core/Typography'
 import ReformaDetalhe from '../ReformaDetalhe/index.js'
 import toMoneyConversion from 'helpers/toMoneyConversion'
 import { update } from '../../services/user'
-import NoteAddIcon from '@material-ui/icons/NoteAdd'
+import ChatModal from '../ChatModal'
 import SolicitationModal from '../SolicitationModal/index.js'
 import Grid from '@material-ui/core/Grid'
 
@@ -26,11 +26,11 @@ export default class SwitchListSecondary extends React.Component {
             user: {},
             irDash: false,
             openedReformIndex: -1,
-            isLoading: true,
-            abreEdicao: false
+            isLoading: true
         }
         this.onChange = this.onChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.sendMessage = this.sendMessage.bind(this)
     }
 
     async componentDidMount() {
@@ -90,6 +90,20 @@ export default class SwitchListSecondary extends React.Component {
             return this.renderRow(reform, index)
     }
 
+    async sendMessage(reform) {
+        reform.chat.author = this.state.user._id
+        const a = await editReform(reform)
+        if (a) {
+            return await this.getChat(reform._id)
+        }
+    }
+
+    async getChat(id) {
+        const reform = await getReforms(id)
+
+        if (reform !== null && reform.chat) return reform.chat
+    }
+
     renderRow(reform, index) {
         return (
             <TableRow key={reform.id}>
@@ -123,9 +137,17 @@ export default class SwitchListSecondary extends React.Component {
                     align="right"
                     style={{ borderBottomRightRadius: '15px' }}
                 >
-                    <NoteAddIcon
-                        style={{ cursor: 'pointer', color: 'rgb(21,38,32)' }}
-                        onClick={() => console.log('Teste')}
+                    <ChatModal
+                        id={reform.id}
+                        onSubmit={this.sendMessage}
+                        messages={reform.chat}
+                        isAdmin={false}
+                        name={
+                            this.state.user.name +
+                            ' ' +
+                            this.state.user.lastName
+                        }
+                        updateChat={this.getChat}
                     />
                 </TableCell>
             </TableRow>
@@ -136,38 +158,6 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({
             irDash: false
         })
-    }
-
-    trocaBotao() {
-        const estado = this.state.trocaBotao
-        if (estado) {
-            this.setState({
-                trocaBotao: false,
-                abreEdicao: false,
-                disabled: false
-            })
-        } else {
-            this.setState({
-                trocaBotao: true,
-                abreEdicao: true,
-                disabled: true
-            })
-        }
-    }
-
-    abreEdicao() {
-        const estado = this.state.disabled
-        if (estado) {
-            this.setState({
-                abreEdicao: false,
-                trocaBotao: false
-            })
-        } else {
-            this.setState({
-                abreEdicao: true,
-                trocaBotao: true
-            })
-        }
     }
 
     closeDetail = () => {
@@ -207,7 +197,7 @@ export default class SwitchListSecondary extends React.Component {
                             variant="overline"
                             style={{
                                 marginTop: 40,
-                                color: 'rgb(255,248,41)',
+                                color: '#fff829',
                                 fontSize: 25,
                                 fontFamily: 'Playfair Display'
                             }}
@@ -241,7 +231,7 @@ export default class SwitchListSecondary extends React.Component {
                             >
                                 <TableHead
                                     style={{
-                                        backgroundColor: 'rgb(255,248,41)'
+                                        backgroundColor: '#fff829'
                                     }}
                                 >
                                     <TableRow>

@@ -1,6 +1,9 @@
 const DAO = require('../DAO/reformsDAO')
 const EmailSenderHelper = require('../Helpers/EmailSenderHelper')
-const { validReformRegister } = require('../Helpers/ValidationHelper')
+const {
+    validReformRegister,
+    validChat
+} = require('../Helpers/ValidationHelper')
 const constants = require('../config/Contents')
 
 class ReformController {
@@ -17,73 +20,88 @@ class ReformController {
      * obs: não atualiza as fotos.
      */
     static updateReform(reform, user, callback) {
-        const {
-            userId,
-            establishmentName,
-            establishmentType,
-            reformItens,
-            status,
-            area,
-            address,
-            goal,
-            restrictions,
-            budgetLimit,
-            _id,
-            phone
-        } = reform
-        const { valid, message } = validReformRegister(
-            userId,
-            establishmentName,
-            establishmentType,
-            status,
-            area,
-            address,
-            goal,
-            restrictions,
-            budgetLimit,
-            reformItens,
-            phone
-        )
-        const { isAdmin, name, lastName } = user
-
-        if (!valid) {
-            const errorObj = {
-                statusDesc: message,
-                statusCode: constants.invalidFields
-            }
-            return callback(errorObj, null)
-        }
-
-        let filteredReform
-        if (isAdmin) {
-            //é admin. somente consegue alterar o STATUS
-            filteredReform = { _id, status }
-        } else {
-            //consegue alterar todas as informações editaveis EXCETO o status.
-            const author = user.name + ' ' + user.lastName
-            filteredReform = {
-                _id,
+        console.log(reform.photos)
+        if (!reform.updateChat) {
+            const {
+                userId,
+                establishmentName,
                 establishmentType,
+                reformItens,
+                status,
                 area,
                 address,
                 goal,
                 restrictions,
                 budgetLimit,
+                _id,
+                phone,
+                photos
+            } = reform
+            const { valid, message } = validReformRegister(
+                userId,
                 establishmentName,
+                establishmentType,
+                status,
+                area,
+                address,
+                goal,
+                restrictions,
+                budgetLimit,
                 reformItens,
-                author,
                 phone
-            }
-        }
-
-        return DAO.updateReform(filteredReform, callback, isAdmin, () =>
-            this.sendEmailOnChangeStatus(
-                4,
-                constants.returnEmailSender,
-                name + ' ' + lastName,
-                establishmentName
             )
-        )
+            const { isAdmin, name, lastName } = user
+
+            if (!valid) {
+                const errorObj = {
+                    statusDesc: message,
+                    statusCode: constants.invalidFields
+                }
+                return callback(errorObj, null)
+            }
+
+            let filteredReform
+            if (isAdmin) {
+                //é admin. somente consegue alterar o STATUS
+                filteredReform = { _id, status }
+            } else {
+                //consegue alterar todas as informações editaveis EXCETO o status.
+                const author = user.name + ' ' + user.lastName
+                filteredReform = {
+                    _id,
+                    establishmentType,
+                    area,
+                    address,
+                    goal,
+                    restrictions,
+                    budgetLimit,
+                    establishmentName,
+                    reformItens,
+                    author,
+                    phone,
+                    photos
+                }
+            }
+
+            return DAO.updateReform(filteredReform, callback, isAdmin, () =>
+                this.sendEmailOnChangeStatus(
+                    4,
+                    constants.returnEmailSender,
+                    name + ' ' + lastName,
+                    establishmentName
+                )
+            )
+        } else {
+            const { valid, message } = validChat(reform.chat)
+            if (!valid) {
+                const errorObj = {
+                    statusDesc: message,
+                    statusCode: constants.invalidFields
+                }
+                return callback(errorObj, null)
+            }
+            return DAO.updateChat(reform._id, reform.chat, callback)
+        }
     }
 
     static fetchReform(user, body, callback) {

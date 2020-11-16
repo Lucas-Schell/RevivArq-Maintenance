@@ -65,7 +65,7 @@ export default class SwitchListSecondary extends React.Component {
                         style={{
                             marginLeft: 30,
                             marginTop: 10,
-                            color: 'rgb(255,248,41)',
+                            color: '#fff829',
                             fontSize: 35,
                             fontFamily: 'Playfair Display'
                         }}
@@ -76,9 +76,7 @@ export default class SwitchListSecondary extends React.Component {
                 </div>
                 <Paper className={classes.root} style={{ margin: 60 }}>
                     <Table className={classes.table}>
-                        <TableHead
-                            style={{ backgroundColor: 'rgb(255,248,41)' }}
-                        >
+                        <TableHead style={{ backgroundColor: '#fff829' }}>
                             <TableRow>
                                 <TableCell>ID #</TableCell>
                                 <TableCell align="left">
