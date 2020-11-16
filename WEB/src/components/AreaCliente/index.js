@@ -35,7 +35,7 @@ export default class SwitchListSecondary extends React.Component {
 
     async componentDidMount() {
         const reforms = await getReforms()
-        console.log(reforms)
+
         this.setState({ reforms, isLoading: false })
 
         const user = await loggedUser()
