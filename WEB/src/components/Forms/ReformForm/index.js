@@ -696,7 +696,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 identidadeEComunicacao:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }
@@ -713,7 +713,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 paredesERevestimentos:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }
@@ -771,7 +771,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 projetoImobiliario:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }
@@ -786,7 +786,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 projetoHidraulico:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }
@@ -801,7 +801,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 necessidadeDemolir:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }
@@ -816,7 +816,7 @@ class ReformForm extends React.Component {
                                             reformItens: {
                                                 ...reformItens,
                                                 necessidadeConstruir:
-                                                e.target.checked
+                                                    e.target.checked
                                             }
                                         })
                                     }

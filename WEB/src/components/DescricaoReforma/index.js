@@ -38,8 +38,7 @@ export default class SwitchListSecondary extends React.Component {
         this.setState({ reforms })
     }
 
-    handleClick(reform) {
-    }
+    handleClick(reform) {}
 
     render() {
         const classes = styles()

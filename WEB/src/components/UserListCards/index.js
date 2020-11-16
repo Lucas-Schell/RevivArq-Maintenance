@@ -97,4 +97,4 @@ class UserListCards extends React.Component {
     }
 }
 
-export default withRouter(UserListCards);
+export default withRouter(UserListCards)
