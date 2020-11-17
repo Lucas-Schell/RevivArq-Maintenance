@@ -52,9 +52,10 @@ routerPhoto.delete('/', function (req, res) {
 
     photos.forEach((photo) => {
         try {
-            let path = photo.split('?file=')
+            let pathFile = photo.split('?file=')
 
-            let src = __dirname + '/../files/uploads/' + path[path.length - 1]
+            let src =
+                __dirname + '/../files/uploads/' + pathFile[pathFile.length - 1]
 
             fs.unlink(src, (err) => {
                 if (err) throw err
